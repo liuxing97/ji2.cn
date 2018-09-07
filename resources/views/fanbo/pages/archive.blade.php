@@ -93,24 +93,32 @@
         }
     </style>
 
+    @if($menuData != 'menu')
+        <div class="archiveTitle">
+            {{$archiveData['archive']}}
+        </div>
+    @endif
+
     <div class="articleList">
         @if($dataListArray['data'])
             @foreach($dataListArray['data'] as $item)
                 {{--如果是纯文字，无缩略图--}}
                 @if(!$item['icon'])
-                    <div class="article">
-                        <div class="article-header">
-                            <h3 class="articletitle"><i class="layui-icon layui-icon-read"></i>{{$item['title']}}</h3>
-                            <div class="release_time">{{$item['created_at']}}</div>
-                            <hr class="articletitle_hr">
-                        </div>
-                        <div class="article-words">
-                            <div class="describe">
-                                <span>描述：</span>
-                                {{$item['describe']}}
+                    <a href="/acticle/{{$item['id']}}">
+                        <div class="article">
+                            <div class="article-header">
+                                <h3 class="articletitle"><i class="layui-icon layui-icon-read"></i>{{$item['title']}}</h3>
+                                <div class="release_time">{{$item['created_at']}}</div>
+                                <hr class="articletitle_hr">
+                            </div>
+                            <div class="article-words">
+                                <div class="describe">
+                                    <span>描述：</span>
+                                    {{$item['describe']}}
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 @else
                     <div class="article">
                         <div class="article-header">

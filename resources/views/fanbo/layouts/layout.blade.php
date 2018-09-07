@@ -2,6 +2,9 @@
 <html lang="en">
 
 <head>
+    <title>极爱网-极爱撸羊毛</title>
+    <meta name="keywords" content="优惠 低价 购物 商城">
+    <meta name="description" content="极爱网，极爱撸羊毛。本站收集各站点优惠商品信息，用最低家，购买最实惠优质的商品。记住本网站吧——ji2.cn">
     <link rel="stylesheet" href="/layui/css/layui.css" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
@@ -62,15 +65,11 @@
                         <li class="layui-nav-item"><a href="{{$menuItem->href}}" target="{{$menuItem -> type}}">{{$menuItem->title}}</a></li>
                     @endif
             @endforeach
+                @section('menuList')
+                @show
             </ul>
         </div>
     @endif
-
-    @if($menuData != 'menu')
-        <div class="archiveTitle">
-            {{$archiveData['archive']}}
-        </div>
-        @endif
 
     @section('content')
         @show
