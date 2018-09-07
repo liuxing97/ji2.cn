@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic);
+/*@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic);*/
 /*!
  *   AdminLTE v2.3.8
  *   Author: Almsaeed Studio
@@ -10,6 +10,72 @@
  * Core: General Layout Style
  * -------------------------
  */
+.pageHeader{
+  position: relative;
+}
+.textItem{
+  margin-bottom: 2rem;
+}
+.textTitle{
+  width: 12rem;
+  display: inline-block;
+  text-align: right;
+  margin-right: 1rem;
+}
+.text{
+  width: 226px;
+  line-height: 2.8rem;
+  border: 1px solid #e5e5e5;
+  text-indent: 8px;
+}
+.post{
+  background: #228b22!important;
+  line-height: 3.3rem!important;
+  color: #fff!important;
+  text-align: center!important;
+  border-radius: 3px!important;
+  margin-left: 13.4rem!important;
+  width: 226px!important;
+  margin-top: 2.5rem!important;
+  cursor: pointer;
+}
+.headerBg{
+  position: absolute;
+  right: 0;
+  width: 100%;
+  top: -7rem;
+  z-index: 0;
+}
+.headerBg img{
+  height: 300px;
+  width: 100%;
+}
+.pageContent{
+  position: absolute;
+  top: 260px;
+  padding-left: 2rem;
+  padding-top: 2rem;
+}
+.pageHeader .tips{
+  background: rgba(255,255,255,0.86);
+  color: #999;
+  line-height: 2.5rem;
+  padding: 2.5rem 2rem;
+  letter-spacing: 2px;
+  border-radius: 3px;
+  box-shadow: 0 0 10px #e5e5e5;
+}
+.pageContent{
+  position: relative;
+  top: 100px;
+  /*padding-left: 2rem;*/
+  padding-top: 2rem;
+}
+.page-title{
+  position: relative;
+  color: #fff;
+  margin-bottom: 4.5rem;
+}
 html,
 body {
   height: 100%;
@@ -125,6 +191,8 @@ body {
     padding-top: 100px;
   }
 }
+
+
 .fixed.layout-boxed .wrapper {
   max-width: 100%;
 }
@@ -164,6 +232,7 @@ h6,
 .h6 {
   font-family: 'Source Sans Pro', sans-serif;
 }
+
 /* General Links */
 a {
   color: #3c8dbc;
@@ -190,9 +259,10 @@ a:focus {
  * ----------------------
  */
 .main-header {
-  position: relative;
+  position: fixed;
   max-height: 100px;
   z-index: 1030;
+  right: 0;
 }
 .main-header .navbar {
   -webkit-transition: margin-left 0.3s ease-in-out;

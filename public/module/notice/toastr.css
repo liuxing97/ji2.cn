@@ -8,6 +8,16 @@
  * Author: John Papa and Hans Fjällemark
  * Project: https://github.com/CodeSeven/toastr
  */
+.toast{
+  margin: 0 auto!important;
+}
+.toast-top-right{
+  top: 40%!important;
+  right: 0!important;
+  left: 115px!important;
+  margin: 0 auto!important;
+  display: inline-block!important;
+}
 .toast-title {
   font-weight: bold;
 }

@@ -28,6 +28,15 @@
     .menuList .layui-nav{
         background-color: #b43727;
     }
+    .archiveTitle{
+        text-align: center;
+        margin-top: 2rem;
+        font-size: 22px;
+        background: #fff;
+        line-height: 4rem;
+        /*border-left: 5px solid #5FB878;*/
+        /*text-indent: -2.5px;*/
+    }
     .footer{
         margin-top: 20px;
         padding: 20px;
@@ -43,22 +52,29 @@
         <a href="/"><img class="logo" src="/pages/img/logo.png" /></a>
     </div>
     {{--菜单--}}
-    <div class="menuList">
-        <ul class="layui-nav" lay-filter="menu_list">
-            <li class="layui-nav-item"><a href="">最新活动</a></li>
-            <li class="layui-nav-item"><a href="">产品</a></li>
-            <li class="layui-nav-item"><a href="">大数据</a></li>
-            <li class="layui-nav-item">
-                <a href="javascript:;">解决方案</a>
-                <dl class="layui-nav-child"> <!-- 二级菜单 -->
-                    <dd><a href="">移动模块</a></dd>
-                    <dd><a href="">后台模版</a></dd>
-                    <dd><a href="">电商平台</a></dd>
-                </dl>
-            </li>
-            <li class="layui-nav-item"><a href="">社区</a></li>
-        </ul>
-    </div>
+    @if($menuArray != 'null')
+        <div class="menuList">
+            <ul class="layui-nav" lay-filter="menu_list">
+            @foreach($menuArray as $menuItem)
+                @if($menuItem->isThis)
+                        <li class="layui-nav-item layui-this"><a href="{{$menuItem->href}}" target="{{$menuItem -> type}}">{{$menuItem->title}}</a></li>
+                    @else
+                        <li class="layui-nav-item"><a href="{{$menuItem->href}}" target="{{$menuItem -> type}}">{{$menuItem->title}}</a></li>
+                    @endif
+            @endforeach
+            </ul>
+        </div>
+    @endif
+
+    @if($menuData != 'menu')
+        <div class="archiveTitle">
+            {{$archiveData['archive']}}
+        </div>
+        @endif
+
+    @section('content')
+        @show
+
     {{--尾部--}}
     <div class="footer">
         <p>极爱网，给您最新购物资讯</p>

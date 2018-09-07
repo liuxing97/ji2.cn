@@ -15,6 +15,9 @@
 
 <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
+        <div class="headerBg">
+            <img src="/adminlte/img/headerTitle.jpg" />
+        </div>
         <!-- Main content -->
         <section class="content">
             @if(isset($siteTitle))
@@ -40,7 +43,6 @@
                             </ul>
                         </div>
                     @endif
-
                     @yield('content')
 
                 </div>
@@ -52,7 +54,8 @@
 {!! Form::open(['route' => 'auth.logout', 'style' => 'display:none;', 'id' => 'logout']) !!}
 <button type="submit">Logout</button>
 {!! Form::close() !!}
-
 @include('partials.javascripts')
+@section('js')
+@show
 </body>
 </html>

@@ -11,7 +11,101 @@
                     <span class="title">@lang('global.app_dashboard')</span>
                 </a>
             </li>
-            
+
+            {{--目录管理--}}
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-users"></i>
+                    <span class="title">目录管理</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+
+                    <li class="{{ ($request->segment(3) == 'menu')&&($request->segment(4) == 'create') ? 'active active-sub' : '' }}">
+                        <a href="/admin/cms/menu/create">
+                            <i class="fa fa-briefcase"></i>
+                            <span class="title">
+                                创建目录
+                            </span>
+                        </a>
+                    </li>
+                    <li class="{{ $request->segment(2) == 'menuList' ? 'active active-sub' : '' }}">
+                        <a href="/admin/cms/menu/list">
+                            <i class="fa fa-briefcase"></i>
+                            <span class="title">
+                                我的目录
+                            </span>
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+
+            {{--文章分类--}}
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-users"></i>
+                    <span class="title">@lang('global.menu.archive.title')</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+
+                    <li class="{{ ($request->segment(3) == 'archive')&&($request -> segment(4) == 'create') ? 'active active-sub' : '' }}">
+                        <a href="@lang('global.menu.archive.create.h')">
+                            <i class="fa fa-briefcase"></i>
+                            <span class="title">
+                                @lang('global.menu.archive.create.t')
+                            </span>
+                        </a>
+                    </li>
+                    <li class="{{ ($request->segment(3) == 'archive')&&($request -> segment(4) == 'list') ? 'active active-sub' : '' }}">
+                        <a href="@lang('global.menu.archive.list.h')">
+                            <i class="fa fa-briefcase"></i>
+                            <span class="title">
+                                @lang('global.menu.archive.list.t')
+                            </span>
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+
+            {{--我的文章--}}
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-users"></i>
+                    <span class="title">我的文章</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+
+                    <li class="{{ $request->segment(2) == 'permissions' ? 'active active-sub' : '' }}">
+                        <a href="/admin/cms/article/create">
+                            <i class="fa fa-briefcase"></i>
+                            <span class="title">
+                                创建文章
+                            </span>
+                        </a>
+                    </li>
+                    <li class="{{ $request->segment(2) == 'roles' ? 'active active-sub' : '' }}">
+                        <a href="{{ route('admin.roles.index') }}">
+                            <i class="fa fa-briefcase"></i>
+                            <span class="title">
+                                文章列表
+                            </span>
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+
+
             @can('users_manage')
             <li class="treeview">
                 <a href="#">
@@ -54,7 +148,7 @@
             <li class="{{ $request->segment(1) == 'change_password' ? 'active' : '' }}">
                 <a href="{{ route('auth.change_password') }}">
                     <i class="fa fa-key"></i>
-                    <span class="title">Change password</span>
+                    <span class="title">更改密码</span>
                 </a>
             </li>
 

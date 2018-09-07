@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <h3 class="page-title">Change password</h3>
+    <h3 class="page-title">更改密码</h3>
 
     @if(session('success'))
         <!-- If password successfully show message -->
