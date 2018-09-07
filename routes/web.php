@@ -1,5 +1,8 @@
 <?php
-Route::get('/', function () { return redirect('/admin/home'); });
+use Illuminate\Support\Facades\Route;
+
+Route::get('/', function () { return redirect('/index'); });
+Route::get('/admin', function () { return redirect('/admin/home'); });
 
 // Authentication Routes...
 $this->get('login', 'Auth\LoginController@showLoginForm')->name('auth.login');
@@ -25,4 +28,42 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
     Route::resource('users', 'Admin\UsersController');
     Route::post('users_mass_destroy', ['uses' => 'Admin\UsersController@massDestroy', 'as' => 'users.mass_destroy']);
 
+    //文章管理系统
+    //创建目录
+    Route::get('/cms/menu/create',['uses' => 'Admin\CmsMenuController@createPage']);
+    Route::post('/cms/menu/create',['uses' => 'Admin\CmsMenuController@createAct']);
+    //我的目录
+    Route::get('/cms/menu/list',['uses' => 'Admin\CmsMenuController@listPage']);
+    Route::post('/cms/menu/del',['uses' => 'Admin\CmsMenuController@delAct']);
+    Route::post('/cms/menu/change',['uses' => 'Admin\CmsMenuController@changeAct']);
+
+
+
+    //创建分类
+    Route::get('/cms/archive/create',['uses' => 'Admin\CmsArchiveController@createPage']);
+    Route::post('/cms/archive/create',['uses' => 'Admin\CmsArchiveController@createAct']);
+    //修改分类
+    Route::get('/cms/archive/change/{number}',['uses' => 'Admin\CmsArchiveController@changePage']);
+    Route::post('/cms/archive/change/{number}',['uses' => 'Admin\CmsArchiveController@change']);
+    //删除分类
+    Route::post('/cms/archive/delete',['uses' => 'Admin\CmsArchiveController@deleteAct']);
+    //文章分类
+    Route::get('/cms/archive/list',['uses' => 'Admin\CmsArchiveController@listPage']);
+
+
+
+    //创建文章-在对应的档案表中生成自增文章记录
+    Route::get('/cms/article/create',['uses' => 'Admin\CmsActicleController@creatPage']);
+    Route::post('/cms/acticle/create',['uses' => 'Admin\CmsActicleController@creatAct']);
+    //文章列表
+    //我的文章
+    Route::get('/cms/acticle/list');
+});
+
+
+Route::get('/index',['uses' => 'Page\Home@homePage']);
+Route::get('/archive/type-{number}',['uses' => 'Page\Archive@archivePage']);
+
+Route::get('page',function (){
+    return view('/fanbo/layouts/page');
 });
