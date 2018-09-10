@@ -76,7 +76,7 @@
             {{--标题--}}
             <div class="i-msg">
                 <div class="i-title">分类名称：{{$item['archive']}}</div>
-                <div class="i-href">分类页面：<a href="http://{{ $_SERVER['SERVER_NAME']}}/archive/type-{{$item['id']}}">{{ $_SERVER['SERVER_NAME']}}/archive/type-{{$item['id']}}</a></div>
+                <div class="i-href">分类页面：<a href="http://{{ $_SERVER['SERVER_NAME']}}/archive/type-{{$item['id']}}">http://{{ $_SERVER['SERVER_NAME']}}/archive/type-{{$item['id']}}</a></div>
                 <div class="i-describe">分类描述：{{$item['describe']}}</div>
             </div>
             <div class="i-more">
