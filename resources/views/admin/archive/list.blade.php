@@ -35,6 +35,10 @@
         .archiveItem .i-describe{
             color: #9a9a9a;
         }
+        .archiveItem .i-href{
+            color: #9a9a9a;
+            margin-bottom: 1.5rem;
+        }
         .archiveItem .i-number{
 
         }
@@ -72,6 +76,7 @@
             {{--标题--}}
             <div class="i-msg">
                 <div class="i-title">分类名称：{{$item['archive']}}</div>
+                <div class="i-href">分类页面：<a href="{{ $_SERVER['SERVER_NAME']}}/archive/type-{{$item['id']}}">{{ $_SERVER['SERVER_NAME']}}/archive/type-{{$item['id']}}</a></div>
                 <div class="i-describe">分类描述：{{$item['describe']}}</div>
             </div>
             <div class="i-more">
@@ -80,6 +85,7 @@
                 <div class="i-updated">更新时间：{{$item['updated_at']}}</div>
             </div>
             <div class="i-act">
+                {{--<div data-archive_id="{{$item['id']}}" class="i-action deleteArchive"><a>打开</a></div>--}}
                 <div class="i-action changeArchive" onclick="location.href='/admin/cms/archive/change/{{$item['id']}}'">修改</div>
                 <div data-archive_id="{{$item['id']}}" class="i-action deleteArchive">删除</div>
             </div>

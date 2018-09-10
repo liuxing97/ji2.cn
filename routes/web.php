@@ -65,5 +65,5 @@ Route::get('/index',['uses' => 'Page\Home@homePage']);
 Route::get('/archive/type-{number}',['uses' => 'Page\Archive@archivePage']);
 Route::get('/acticle/{number}',['uses' => 'Page\Acticle@acticlePage']);
 Route::get('page',function (){
-    return view('/fanbo/layouts/page');
+    return view('/admin/default/layouts/layout');
 });
