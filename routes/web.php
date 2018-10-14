@@ -2,9 +2,10 @@
 use Illuminate\Support\Facades\Route;
 
 
+//该路径不可使用ui.checkdata中间件
+Route::get('/', function () { return redirect('/index'); });
 //主页及页面显示相关路由，使用检查前端数据中间件
 Route::group(['middleware' => ['ui.checkdata']], function (){
-    Route::get('/', function () { return redirect('/index'); });
     //两种首页路由，此时开启的是自动寻址模式
     //Route::get('/index',['uses' => 'Page\Home@homePage']);
     Route::get('/index',['uses' => 'Page\Home@homePage']) -> middleware('ui.tohome');

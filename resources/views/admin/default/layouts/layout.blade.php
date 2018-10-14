@@ -6,12 +6,35 @@
     <link rel="stylesheet" href="/layui/css/layui.css" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
 
-<body class="censcms-layout-admin">
+<body async="true" class="censcms-layout-admin">
+<input id="csrf" type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
 <style>
-
+    /**
+    新定义特性
+     */
+    /*在layui-elem-quote上的新特性*/
+    .layui-elem-quote-headtitle{
+        margin-bottom: 20px;
+    }
+    .layui-elem-quote-block{
+        padding-top: 20px;
+        padding-bottom: 20px;
+        margin-bottom: 20px;
+    }
+    .layui-elem-quote-block .layui-form-item:last-child{
+        margin-bottom: 0;
+    }
+    .censng-button-act-box{
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+    }
+    /**
+    完
+     */
     .censcms-layout-admin .censcms-header{
         z-index: 9999;
         height: 50px;
@@ -56,6 +79,67 @@
         transition: all .2s;
         -webtplay-transition: all .2s;
     }
+    .censcms-layout-admin .censcms-header .censcms-layout-right{
+        position: absolute !important;
+        right: 20px;
+        top: 0;
+    }
+    .censcms-layout-admin .censcms-header .censcms-layout-right .censcms-nav{
+        line-height: 50px;
+
+    }
+    .censcms-layout-admin .censcms-header .censcms-layout-right .censcms-nav > .item{
+        vertical-align: top;
+        display: inline-block;
+        /*width: 50px;*/
+        text-align: center;
+        padding: 0 15px;
+        position: relative;
+    }
+    .censcms-layout-admin .censcms-header .censcms-layout-right .censcms-nav .hasChildItem{
+
+    }
+    .censcms-layout-admin .censcms-header .censcms-layout-right .censcms-nav .hasChildItem .childList{
+        display: none;
+        position: absolute;
+        top: 49px;
+        right: 0;
+        background: #2c3e50;
+        color: #fff;
+        border-top: 1px solid rgba(0,0,0,0.09);
+        text-align: left;
+    }
+    .censcms-layout-admin .censcms-header .censcms-layout-right .censcms-nav .hasChildItem .childList li{
+        padding: 0 20px;
+        line-height: 40px;
+        width: 136px;
+        box-sizing: border-box;
+    }
+    .censcms-layout-admin .censcms-header .censcms-layout-right .censcms-nav .hasChildItem .childList li:hover{
+        background-color: rgba(0,0,0,0.09);
+    }
+    .censcms-layout-admin .censcms-header .censcms-layout-right .censcms-nav .hasChildItem:hover .childList{
+        display: block;
+    }
+    .censcms-layout-admin .censcms-header .censcms-layout-right .censcms-nav > .item:hover{
+        background-color: rgba(0,0,0,.09);
+        cursor: pointer;
+    }
+    .censcms-layout-admin .censcms-header .censcms-layout-right .censcms-nav > .item a{
+        color: #fff;
+        outline: none;
+    }
+    .censcms-layout-admin .censcms-header .censcms-layout-right .censcms-nav > .item > .hasChild{
+        padding-right: 16px;
+    }
+    .censcms-layout-admin .censcms-header .censcms-layout-right .censcms-nav > .item > .hasChild:after{
+        top: 0;
+        right: 13px;
+        font-family: layui-icon !important;
+        content: '\e61a';
+        position: absolute;
+        font-size: 12px;
+    }
     .censcms-layout-admin .censcms-sidebar{
         position: fixed;
         bottom: 0;
@@ -84,6 +168,7 @@
         overflow: hidden;
         text-overflow: ellipsis;
         position: relative;
+        outline:none;
     }
     .censcms-layout-admin .censcms-sidebar .censcms-sidebar-scroll .censcms-menu .censcms-menu-item a:hover{
         background-color: #f0f0f0 !important;
@@ -93,7 +178,7 @@
     .censcms-layout-admin .censcms-sidebar .censcms-sidebar-scroll .censcms-menu .censcms-this a{
         background: #f0f0f0;
     }
-    .censcms-layout-admin .censcms-sidebar .censcms-sidebar-scroll .censcms-menu .censcms-menu-item a.chird:after{
+    .censcms-layout-admin .censcms-sidebar .censcms-sidebar-scroll .censcms-menu .censcms-menu-item a.child:after{
         font-family: layui-icon !important;
         content: '\e61a';
         position: absolute;
@@ -101,17 +186,20 @@
         font-size: 12px;
         top: 14px;
     }
-    .censcms-layout-admin .censcms-sidebar .censcms-sidebar-scroll .censcms-menu .censcms-show > a.chird:after{
+    .censcms-layout-admin .censcms-sidebar .censcms-sidebar-scroll .censcms-menu .censcms-show > a.child:after{
         content: '\e619';
     }
     .censcms-layout-admin .censcms-sidebar .censcms-sidebar-scroll .censcms-menu .censcms-menu-item .censcms-menu-child{
         display: none;
     }
-    .censcms-layout-admin .censcms-sidebar .censcms-sidebar-scroll .censcms-menu .censcms-show .censcms-menu-child{
+    .censcms-layout-admin .censcms-sidebar .censcms-sidebar-scroll .censcms-menu .censcms-show > .censcms-menu-child{
         display: block;
     }
-    .censcms-layout-admin .censcms-sidebar .censcms-sidebar-scroll .censcms-menu .censcms-menu-item .censcms-menu-child .censcms-menu-item a{
+    .censcms-layout-admin .censcms-sidebar .censcms-sidebar-scroll .censcms-menu .censcms-menu-item > .censcms-menu-child > .censcms-menu-item a{
         padding-left: 30px;
+    }
+    .censcms-layout-admin .censcms-sidebar .censcms-sidebar-scroll .censcms-menu .censcms-menu-item > .censcms-menu-child > .censcms-menu-item > .censcms-menu-child > .censcms-menu-item a{
+        padding-left: 45px;
     }
     .censcms-layout-admin .censcms-body{
         left: 220px;
@@ -155,6 +243,16 @@
     .censcms-layout-admin .censcms-body .censcms-body-body .censcms-note-box .censcms-note-box-list{
 
     }
+    .censcms-layout-quote{
+        margin-top: 1.2rem;
+    }
+    .censcms-layout-content{
+        padding: 20px 20px 30px 20px;
+    }
+    .censcms-layui-select{
+        width: 200px;
+        margin-top: 1rem;
+    }
     @media screen and (max-width: 992px) {
         .censcms-layout-admin .censcms-body .censcms-body-body .layui-col-sm12{
             margin-top: 15px!important;
@@ -166,73 +264,158 @@
 <div class="censcms-header">
     <div class="censcms-logo">
         <div class="censcms-logo-brand">
-            <a href="/">Censcms Pro</a>
+            <a>辰象CMS Pro</a>
         </div>
         <div class="censcms-logo-toggle" data-toggle="on"><i class="layui-icon layui-icon-left"></i></div>
+    </div>
+    <div class="censcms-layout-right">
+        <ul class="censcms-nav">
+            <li class="item">
+                <a target="_blank" href="/">
+                    <i class="layui-icon layui-icon-website"></i>
+                </a>
+            </li>
+            <li class="item">
+                <a href="/">
+                    <i class="layui-icon layui-icon-edit"></i>
+                </a>
+            </li>
+            <li class="item hasChildItem">
+                <a class="hasChild">
+                    管理
+                </a>
+                {!! Form::open(['route' => 'auth.logout', 'style' => 'display:none;', 'id' => 'logout']) !!}
+                <button type="submit">Logout</button>
+                {!! Form::close() !!}
+                <ul class="childList">
+                    <li>
+                        <i class="layui-icon layui-icon-set"></i>
+                        <a href="#/system/dataset">站点配置</a>
+                    </li>
+                    <li>
+                        <i class="layui-icon layui-icon-edit"></i>
+                        <a href="#/me/safety/password">更改密码</a>
+                    </li>
+                    <li>
+                        <i class="layui-icon layui-icon-return"></i>
+                        <a onclick="$('#logout').submit()">登出</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
     </div>
 </div>
 <div class="censcms-sidebar">
     {{--如何判断是否已被选中，全部携带id，当点击后，亮起，进入后，判断哪个id与之相对应--}}
     <div class="censcms-sidebar-scroll">
         <div>
+            {{--以下为案例，不可删除，其包含逻辑方法--}}
             <ul class="censcms-menu">
                 {{--一级菜单--}}
-                <li class="censcms-menu-item censcms-this">
-                    <a href="">
+                <li data-id="" class="censcms-menu-item censcms-menu-item-a censcms-this">
+                    <a class="" href="/page/#">
                         <i class="layui-icon layui-icon-chart-screen"></i>
                         <span>首页</span>
                     </a>
                 </li>
                 {{--三级菜单--}}
-                <li class="censcms-menu-item censcms-show">
-                    <a class="chird">
+                <li data-toggle="off" class="censcms-menu-item censcms-menu-item-hasChird">
+                    <a class="child">
                         <i class="layui-icon layui-icon-set"></i>
                         <span>设置</span>
                     </a>
-                    <ul class="censcms-menu-child">
-                        <li class="censcms-menu-item">
-                            <a href="">
+                    <ul class="censcms-menu-child layui-anim">
+                        <li data-toggle="off" class="censcms-menu-item censcms-menu-item-hasChird">
+                            <a class="child">
                                 <i class="layui-icon layui-icon-chart-screen"></i>
                                 <span>个人</span>
                             </a>
+                            <ul class="censcms-menu-child layui-anim">
+                                <li data-id="sanji" id="sanji"  class="censcms-menu-item censcms-menu-item-a">
+                                    <a class="" href="#/me/safety/password">
+                                        <i class="layui-icon layui-icon-chart-screen"></i>
+                                        <span>更改密码</span>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
-                        <li class="censcms-menu-item">
-                            <a href="">
+                        <li data-toggle="off" class="censcms-menu-item censcms-menu-item-hasChird">
+                            <a class="child">
                                 <i class="layui-icon layui-icon-chart-screen"></i>
                                 <span>系统</span>
                             </a>
+                            <ul class="censcms-menu-child layui-anim">
+                                <li data-id="sanji" id="sanji"  class="censcms-menu-item censcms-menu-item-a">
+                                    <a class="" href="#/system/dataset">
+                                        <i class="layui-icon layui-icon-chart-screen"></i>
+                                        <span>站点信息</span>
+                                    </a>
+                                </li>
+                                <li style="display: none" data-id="sanji" id="sanji"  class="censcms-menu-item censcms-menu-item-a">
+                                    <a class="" href="#/system/power">
+                                        <i class="layui-icon layui-icon-chart-screen"></i>
+                                        <span>权限节点</span>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </li>
                 {{--二级菜单--}}
-                <li class="censcms-menu-item censcms-show">
-                    <a class="chird">
+                <li style="display: none" data-toggle="off" class="censcms-menu-item-hasChird censcms-menu-item">
+                    <a class="child">
                         <i class="layui-icon layui-icon-user"></i>
                         <span>用户</span>
                     </a>
-                    <ul class="censcms-menu-child">
-                        <li class="censcms-menu-item">
-                            <a href="">
+                    <ul class="censcms-menu-child layui-anim">
+                        <li class="censcms-menu-item censcms-menu-item-a">
+                            <a class="" href="#/user/userpower">
                                 <i class="layui-icon layui-icon-chart-screen"></i>
-                                <span>管理组</span>
+                                <span>权限管理</span>
                             </a>
                         </li>
-                        <li class="censcms-menu-item">
-                            <a href="">
+                        <li class="censcms-menu-item censcms-menu-item-a">
+                            <a class="" href="#/user/usergroup">
                                 <i class="layui-icon layui-icon-chart-screen"></i>
-                                <span>用户组</span>
+                                <span>用户组管理</span>
+                            </a>
+                        </li>
+                        <li class="censcms-menu-item censcms-menu-item-a">
+                            <a class="" href="#/user/users">
+                                <i class="layui-icon layui-icon-chart-screen"></i>
+                                <span>用户管理</span>
                             </a>
                         </li>
                     </ul>
                 </li>
-                <li class="censcms-menu-item">
-                    <a href="">
+                <li class="censcms-menu-item censcms-menu-item-a">
+                    <a href="#/menu">
+                        <i class="layui-icon layui-icon-read"></i>
+                        <span>菜单</span>
+                    </a>
+                </li>
+                <li data-toggle="off" class="censcms-menu-item censcms-menu-item-hasChird">
+                    <a class="child">
                         <i class="layui-icon layui-icon-read"></i>
                         <span>文章</span>
                     </a>
+                    <ul class="censcms-menu-child layui-anim">
+                        <li data-id="fenleiguanli" id="fenleiguanli" class="censcms-menu-item censcms-menu-item-a">
+                            <a class="" href="#/cms/archive">
+                                <i class="layui-icon layui-icon-chart-screen"></i>
+                                <span>分类管理</span>
+                            </a>
+                        </li>
+                        <li class="censcms-menu-item censcms-menu-item-a">
+                            <a class="" href="#/cms/article">
+                                <i class="layui-icon layui-icon-chart-screen"></i>
+                                <span>文章管理</span>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
-                <li class="censcms-menu-item">
-                    <a href="">
+                <li class="censcms-menu-item censcms-menu-item-a">
+                    <a href="#/aboutus">
                         <i class="layui-icon layui-icon-about"></i>
                         <span>我们</span>
                     </a>
@@ -245,58 +428,46 @@
 {{--内容区总容器-无15px外间距--}}
 <div class="censcms-body">
     {{--内容区-已15px外间距--}}
-    <div class="censcms-body-body">
-        <div class="layui-card censcms-note-box">
-            <div class="layui-card-header">便签</div>
-            <div class="censcms-note-box-list">
-                我的便签
-            </div>
-        </div>
-        {{--主面板--}}
-        <div class="censcms-main-body layui-col-md8">
-            <div class="layui-card censcms-main-card">
-                <div class="layui-card-header">实时访客</div>
-            </div>
-            <div class="censcms-card layui-card layui-tab">
-                <ul class="layui-tab-title">
-                    <li class="layui-this">登录记录</li>
-                    <li>用户管理</li>
-                    <li>权限分配</li>
-                    <li>商品管理</li>
-                    <li>订单管理</li>
-                </ul>
-                <div class="layui-tab-content">
-                    <div class="layui-tab-item layui-show">内容1</div>
-                    <div class="layui-tab-item">内容2</div>
-                    <div class="layui-tab-item">内容3</div>
-                    <div class="layui-tab-item">内容4</div>
-                    <div class="layui-tab-item">内容5</div>
-                </div>
-            </div>
-        </div>
-        {{--侧边栏--}}
-        <div class="censcms-side-body layui-col-md4 layui-col-sm12">
-            <div class="layui-card censcms-main-card">
-                <div class="layui-card-header">快捷入口</div>
-                <div></div>
-            </div>
-            <div class="layui-card censcms-main-card">
-                <div class="layui-card-header">官方公告</div>
-                <div></div>
-            </div>
-            <div class="layui-card censcms-main-card">
-                <div class="layui-card-header">系统情况</div>
-                <div></div>
-            </div>
-        </div>
+    <div class="censcms-body-body" id="page-main">
     </div>
 </div>
 
 </body>
+
 <script type="text/javascript" src="/layui/layui.js"></script>
 <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
-<script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
-<script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+
+<script type="text/javascript" src="/js/md5.js"></script>
+
+{{--<script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>--}}
+{{--<script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>--}}
+
+<link rel="stylesheet" href="/module/loading/jquery.mloading.css">
+<script src="/module/loading/jquery.mloading.js"></script>
+<script src="/module/loading/use.js"></script>
+
+
+<link href="/module/notice/toastr.css" rel="stylesheet"/>
+<script src="/module/notice/toastr.js"></script>
+<script src="/js/http.js"></script>
+<script src="/module/select/js/selectFilter.js"></script>
+
+<script type="text/javascript" src="/js/require.js"></script>
+<link href="/module/editor/wangEditor.css" rel="stylesheet" />
+
+{{--layer--}}
+<script>
+    var table = undefined;
+    var layer = undefined;
+    var form = undefined;
+    layui.use(['table','layer','form','element'], function(){
+        table = layui.table;
+        layer = layui.layer;
+        form = layui.form;
+        element = layui.element;
+    });
+
+</script>
 <script>
     //切换边栏
     var toggleCenscmsSidebar = function () {
@@ -316,18 +487,190 @@
             $('.censcms-sidebar').animate({'left':'0'});
         }
     }
-    $('.censcms-logo-toggle').on('click',function(){toggleCenscmsSidebar()})
+    $('.censcms-logo-toggle').on('click',function(){toggleCenscmsSidebar()});
 
     //切换二级菜单
+    var toggleCenscmsSidebarChirdMenu = function (event,ele) {
+        console.log(ele);
+        //得到toggle值
+        var toggle = $(ele).data('toggle');
+//        alert(toggle);
+        if(toggle === 'off'){
+            $(ele).data('toggle', 'on');
+            $(ele).addClass('censcms-show');
+            $(ele).children(".censcms-menu-child").addClass('layui-anim-upbit')
+        }else{
+            $(ele).data('toggle', 'off');
+            $(ele).removeClass('censcms-show');
+            $(ele).children(".censcms-menu-child").removeClass('layui-anim-upbit')
+        }
+        event.stopPropagation();
+        return false;
+    };
+    $('.censcms-menu-item-hasChird').on('click',function(event){toggleCenscmsSidebarChirdMenu(event,this)});
+
+    //点击菜单，使用本地存储id，进行匹配，并添加样式
+    //新方案，使用前端路由，路由后，ajax获取html内容，向主体中进行刷新
+    var clickCenscmsSidebarMenuItem = function (event,ele){
+        $('.censcms-this').removeClass('censcms-this');
+        $(ele).addClass("censcms-this");
+        event.stopPropagation();
+        return false;
+    };
+    $('.censcms-menu-item-a').on('click',function(event,ele){clickCenscmsSidebarMenuItem(event,this)});
+</script>
+{{--前端路由--}}
+<script>
+    //配置路由对象 执行顺序为12534
+    function Router(){
+        this.currentUrl='';
+        this.routes = {
+        };
+    }
+    //绑定路由及对应的方法
+    Router.prototype.route = function(path,callback){
+        console.log(5);
+        this.routes[path] = callback || function(){}
+    };
+    //多绑定
+    Router.prototype.routegroup = function (group) {
+        for(i=0; i<group.length; i++){
+            this.route(group[i][0],group[i][1]);
+        }
+    };
+    //得到路由，启用路由方法
+    Router.prototype.refresh = function(){
+        console.log(this);
+        console.log(3);
+        this.currentUrl = location.hash.slice(1) || '/';
+        console.log(4);
+        var type = typeof(this.routes[this.currentUrl]);
+        console.log(type);
+        if(type === 'function'){
+            console.log('running route');
+            this.routes[this.currentUrl]();
+        }else {
+
+        }
+        console.log(this.routes)
+    };
+    //路由初始化
+    Router.prototype.init = function() {
+        console.log(1);
+        console.log('判断addeventListener是在加载完后执行，即route was settled');
+        //绑定load事件，如发生，执行-得到路由，启用路由方法-该方法，使用this方法。
+        window.addEventListener('load', this.refresh.bind(this), false);
+        console.log(2);
+        //绑定hashchange事件，如发生，执行-得到路由，启用路由方法-该方法
+        window.addEventListener('hashchange', this.refresh.bind(this), false);
+        console.log(location.hash);
+    };
+
+    var route = new Router();
+    route.init();
+
+    //加载路由页面-已经加载的，会被缓存，不存在多次加载情况
+    function loadingRoutePage (route){
+        //渲染菜单-没有必要-tplay中也没有进行对于刷新后，菜单状态丢失的渲染
+        // 引入加载中
+        // loading.loadingShow("加载中");
+        //特殊对待路由
+        if(route==='/'){
+            route = '/index'
+        }
+        //根据路由，请求后台
+        var url = '/admin/default/route'+route;
+        //开始请求
+        http.getPage(url).then(function (res) {
+            //处理结果
+            console.log(res);
+            $('#page-main').html(res);
+        }).catch(function (res) {
+            $('#page-main').html('找不到页面');
+        });
+    }
+    //根路由
+    route.route('/',loadingRoutePage.bind(null,'/'));
+    //设置路由组-个人
+    route.routegroup([
+        //密码管理
+        ['/me/safety/password',loadingRoutePage.bind(null,'/me/safety/password')]
+    ]);
+    //设置路由组-系统
+    route.routegroup([
+        //站点信息配置
+        ['/system/dataset',loadingRoutePage.bind(null,'/system/dataset')],
+        //权限节点
+        ['/system/power',loadingRoutePage.bind(null,'/system/power')]
+    ]);
+    //用户路由组
+    route.routegroup([
+        //权限管理
+        ['/user/userpower',loadingRoutePage.bind(null,'/user/userpower')],
+        //用户组管理
+        ['/user/usergroup',loadingRoutePage.bind(null,'/user/usergroup')],
+        //用户管理
+        ['/user/users',loadingRoutePage.bind(null,'/user/users')]
+    ]);
+    //菜单路由
+    route.route('/menu',loadingRoutePage.bind(null,'/menu'));
+
+    //文章路由组
+    route.routegroup([
+        //分类管理
+        ['/cms/archive',loadingRoutePage.bind(null,'/cms/archive')],
+        //文章管理
+        ['/cms/article',loadingRoutePage.bind(null,'/cms/article')],
+    ]);
+    route.route('/aboutus',loadingRoutePage.bind(null,'/aboutus'))
 </script>
 <script>
-    layui.use('element', function(){
-        var element = layui.element;
-        //一些事件监听
-        element.on('demo', function (elem) {
-            console.log(elem);
-//            element.tabChange('demo', layid);
-        })
-    });
+
+
 </script>
+<script>
+//    layui.use('table', function(){
+//        table = layui.table;
+//    })
+</script>
+<style>
+    body .httpLoading-class{
+        background: none;
+        box-shadow: none;
+        border: none;
+        overflow: visible;
+    }
+    body .httpLoading-class .layui-layer-title{background:none; color:#fff; border: none;}
+    body .httpLoading-class .layui-layer-btn{border-top:none}
+    body .httpLoading-class .layui-layer-btn a{background:none;}
+    body .httpLoading-class .layui-layer-btn .layui-layer-btn1{background:none;}
+    #httpLoading{
+        color: #fff;
+        display: none;
+        z-index: 99999;
+        font-size: 22px;
+        margin: 0 auto;
+        left: 0;
+        right: 0;
+        top: 46%;
+        text-align: center;
+    }
+    #httpLoading div{
+        position: relative;
+    }
+    #httpLoading .layui-icon{
+        font-size: 36px;
+        margin-bottom: 2rem;
+    }
+    #httpLoading .tips{
+        letter-spacing: 3px;
+        text-indent: 3px;
+    }
+</style>
+<div id="httpLoading" class="">
+    <div class="layui-icon layui-icon-loading layui-anim layui-anim-rotate layui-anim-loop"></div>
+    <div class="tips">数据处理中</div>
+</div>
 </html>
+
+{{--2018年09月11日14:37-前端样式预览版已架设完毕-后续任务-与登录登出功能进行对接--}}

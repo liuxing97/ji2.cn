@@ -93,18 +93,17 @@
         }
     </style>
 
-    @if($menuData != 'menu')
+
         <div class="archiveTitle">
-            {{$archiveData['archive']}}
+            {{$archiveData['title']}}
         </div>
-    @endif
 
     <div class="articleList">
         @if($dataListArray['data'])
             @foreach($dataListArray['data'] as $item)
                 {{--如果是纯文字，无缩略图--}}
                 @if(!$item['icon'])
-                    <a href="/acticle/{{$item['id']}}">
+                    <a href="/article/{{$item['id']}}">
                         <div class="article">
                             <div class="article-header">
                                 <h3 class="articletitle"><i class="layui-icon layui-icon-read"></i>{{$item['title']}}</h3>

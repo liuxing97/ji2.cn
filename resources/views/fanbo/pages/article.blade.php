@@ -89,18 +89,18 @@
 
     <div class="content">
         <div class="content-header">
-            <h3 class="articletitle"><i class="layui-icon layui-icon-read"></i>{{$acticleData['title']}}</h3>
-            <div class="release_time">{{$acticleData['created_at']}}</div>
+            <h3 class="articletitle"><i class="layui-icon layui-icon-read"></i>{{$articleData['title']}}</h3>
+            <div class="release_time">{{$articleData['created_at']}}</div>
             <hr class="articletitle_hr">
         </div>
         <div class="content-words">
             <div class="describe"><span>描述：</span>
-                {{$acticleData['describe']}}
+                {{$articleData['describe']}}
                 <hr>
             </div>
             <div class="content_main">
                 <span class="content_main_title">正文：</span>
-                {!! $acticleData['content'] !!}
+                {!! $articleData['content'] !!}
             </div>
         </div>
     </div>

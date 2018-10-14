@@ -59,10 +59,10 @@
         <div class="menuList">
             <ul class="layui-nav" lay-filter="menu_list">
             @foreach($menuArray as $menuItem)
-                @if($menuItem->isThis)
-                        <li class="layui-nav-item layui-this"><a href="{{$menuItem->href}}" target="{{$menuItem -> type}}">{{$menuItem->title}}</a></li>
+                @if($menuItem['isThis'])
+                        <li class="layui-nav-item layui-this"><a href="{{$menuItem['href']}}" target="{{$menuItem['target']}}">{{$menuItem['title']}}</a></li>
                     @else
-                        <li class="layui-nav-item"><a href="{{$menuItem->href}}" target="{{$menuItem -> type}}">{{$menuItem->title}}</a></li>
+                        <li class="layui-nav-item"><a href="{{$menuItem['href']}}" target="{{$menuItem['target']}}">{{$menuItem['title']}}</a></li>
                     @endif
             @endforeach
                 @section('menuList')
