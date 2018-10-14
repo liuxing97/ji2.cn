@@ -6,6 +6,7 @@
  * @package  Laravel
  * @author   Taylor Otwell <taylor@laravel.com>
  */
+$_SERVER['REQUEST_URI'] = trim($_SERVER['REQUEST_URI'], '/');
 
 /*
 |--------------------------------------------------------------------------

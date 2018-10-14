@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Page;
 
-use App\CmsActicle;
+use App\CmsArticle;
 use App\MenuList;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -36,7 +36,7 @@ class Acticle extends Controller
         }
 
         //获取文章信息
-        $acticleObj = new CmsActicle();
+        $acticleObj = new CmsArticle();
         $acticleObj = $acticleObj -> find($number);
         if(!$acticleObj){
             return "没有找到页面";

@@ -31,7 +31,7 @@ const acticle = {
             }
             loading.postShow();
             http.post(
-                '/admin/cms/acticle/create',
+                '/admin/cms/arcitle/create',
                 {
                     title: title,
                     describe: this.getDescribe(),

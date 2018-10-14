@@ -8,17 +8,19 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 
-class CmsArchiveController extends Controller
+class CmsArticleController extends Controller
 {
-
     function create(Request $request){
         $data['time'] = date('Y-m-d H:i:s');
-        $paras = $request -> only('title','alias','describe','running');
-        $obj = new CmsArchive();
+        $paras = $request -> only('archive','title','describe','content','state');
+        $obj = new CmsArticle();
+        $obj -> archive = $paras['archive'];
         $obj -> title = $paras['title'];
-        $obj -> alias = $paras['alias'];
         $obj -> describe = $paras['describe'];
-        $obj -> running = $paras['running'];
+        $obj -> content = $paras['content'];
+        $obj -> state = $paras['state'];
+        $obj -> publisher = $request -> user()->id;
+        $obj -> publisherName = $request -> user()->name;
         $res = $obj -> save();
         if($res){
             $data['msg'] = 'create success';
@@ -33,7 +35,7 @@ class CmsArchiveController extends Controller
         $date = date('Y-m-d H:i:s');
         //得到传递的数据
         $keylist = $request -> input('keylist');
-        $obj = new CmsArchive();
+        $obj = new CmsArticle();
         $data = [
             'msg' => 'delete success',
             'time' => $date,
@@ -54,9 +56,6 @@ class CmsArchiveController extends Controller
                     'time' => $date
                 ];
             }
-            //删除后删除所有此分类的文章
-            $acticleObj = new CmsArticle();
-            $acticleObj -> where('archive',$keyItem) -> delete();
         }
         //判断是否删除成功
         if($data['msg'] == 'delete success'){
@@ -74,7 +73,7 @@ class CmsArchiveController extends Controller
         //得到传递的数据
         $data = $request -> only('key','value','id');
         //继续执行
-        $obj = new CmsArchive();
+        $obj = new CmsArticle();
         $obj = $obj -> find($data['id']);
         if($obj){
             $obj -> $data['key'] = $data['value'];

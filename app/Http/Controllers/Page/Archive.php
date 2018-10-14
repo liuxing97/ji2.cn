@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Page;
 
-use App\CmsActicle;
+use App\CmsArticle;
 use App\CmsArchive;
 use App\Http\Controllers\Admin\CmsMenuController;
 use App\MenuList;
@@ -37,7 +37,7 @@ class Archive extends Controller
             $menuArray = 'null';
         }
         //得到当前档案的所有记录
-        $obj = new CmsActicle();
+        $obj = new CmsArticle();
         $data = $obj -> where('archive',$number) -> simplePaginate(5);
         $dataListArray = $data -> toArray();
         //得到当前档案的名称
