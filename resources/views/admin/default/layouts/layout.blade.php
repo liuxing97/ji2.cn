@@ -202,6 +202,7 @@
         padding-left: 45px;
     }
     .censcms-layout-admin .censcms-body{
+        min-width: 768px;
         left: 220px;
         top: 50px;
         right: 0;
@@ -636,9 +637,6 @@
 //    })
 </script>
 <style>
-    body{
-        min-width:980px;
-    }
     body .httpLoading-class{
         background: none;
         box-shadow: none;
