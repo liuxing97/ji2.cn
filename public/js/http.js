@@ -56,6 +56,18 @@ var http = {
         return this.request(url,'get',data)
     },
     getPage: function (url,data) {
+        layui.use('layer', function(){
+            layer = layui.layer;
+            layer.open({
+                skin:'httpLoading-class',
+                type:1,
+                area:['300px','200px'],
+                closeBtn:0,
+                shade: 0.86,
+                title:false,
+                content:$('#httpPageLoading')
+            })
+        });
         return this.request(url,'getpage',data)
     }
 };

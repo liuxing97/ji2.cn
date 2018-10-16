@@ -313,7 +313,7 @@
             <ul class="censcms-menu">
                 {{--一级菜单--}}
                 <li data-id="" class="censcms-menu-item censcms-menu-item-a censcms-this">
-                    <a class="" href="/page/#">
+                    <a class="" href="/admin/default/home/#/">
                         <i class="layui-icon layui-icon-chart-screen"></i>
                         <span>首页</span>
                     </a>
@@ -585,8 +585,10 @@
             //处理结果
             console.log(res);
             $('#page-main').html(res);
+            layer.close(layer.index);
         }).catch(function (res) {
-            $('#page-main').html('找不到页面');
+            $('#page-main').html('页面加载异常');
+            layer.close(layer.index);
         });
     }
     //根路由
@@ -634,6 +636,9 @@
 //    })
 </script>
 <style>
+    body{
+        min-width:980px;
+    }
     body .httpLoading-class{
         background: none;
         box-shadow: none;
@@ -644,7 +649,7 @@
     body .httpLoading-class .layui-layer-btn{border-top:none}
     body .httpLoading-class .layui-layer-btn a{background:none;}
     body .httpLoading-class .layui-layer-btn .layui-layer-btn1{background:none;}
-    #httpLoading{
+    .httpLoading{
         color: #fff;
         display: none;
         z-index: 99999;
@@ -655,21 +660,26 @@
         top: 46%;
         text-align: center;
     }
-    #httpLoading div{
+    .httpLoading div{
         position: relative;
     }
-    #httpLoading .layui-icon{
+    .httpLoading .layui-icon{
         font-size: 36px;
         margin-bottom: 2rem;
     }
-    #httpLoading .tips{
+    .httpLoading .tips{
         letter-spacing: 3px;
         text-indent: 3px;
     }
-</style>
-<div id="httpLoading" class="">
+
+    </style>
+<div id="httpLoading" class="httpLoading">
     <div class="layui-icon layui-icon-loading layui-anim layui-anim-rotate layui-anim-loop"></div>
     <div class="tips">数据处理中</div>
+</div>
+<div id="httpPageLoading" class="httpLoading">
+    <div class="layui-icon layui-icon-loading layui-anim layui-anim-rotate layui-anim-loop"></div>
+    <div class="tips">页面加载中，请稍后</div>
 </div>
 </html>
 
