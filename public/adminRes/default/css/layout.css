@@ -3,6 +3,14 @@
     /*display: inline-block!important;*/
     flex-wrap: wrap;
 }
+/**
+菜单栏滚动
+ */
+.censcms-layout-admin .censcms-sidebar{
+    position: fixed;
+    min-height: 0!important;
+}
+/*菜单栏提示*/
 .censcms-sidebar-menu-help{
     display: none;
 }
