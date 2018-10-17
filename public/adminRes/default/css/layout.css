@@ -14,7 +14,7 @@
 .censcms-sidebar-menu-help{
     display: none;
 }
-有些只可以在电脑上存在，而不能在手机上存在的动态！本打算990px，但为了不舍弃电脑更好的效果，采用420px，
+/*有些只可以在电脑上存在，而不能在手机上存在的动态！本打算990px，但为了不舍弃电脑更好的效果，采用420px，*/
 @media only screen and (min-width: 420px){
     .censcms-layout-admin .censcms-header .censcms-layout-right .censcms-nav .hasChildItem:hover .childList{
         display: block;
