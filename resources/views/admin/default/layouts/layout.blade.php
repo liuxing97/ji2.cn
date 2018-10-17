@@ -124,9 +124,6 @@
     .censcms-layout-admin .censcms-header .censcms-layout-right .censcms-nav .hasChildItem .childList li:hover{
         background-color: rgba(0,0,0,0.09);
     }
-    .censcms-layout-admin .censcms-header .censcms-layout-right .censcms-nav .hasChildItem:hover .childList{
-        display: block;
-    }
     .censcms-layout-admin .censcms-header .censcms-layout-right .censcms-nav > .item:hover{
         background-color: rgba(0,0,0,.09);
         cursor: pointer;
