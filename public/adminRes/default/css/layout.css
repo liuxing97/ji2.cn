@@ -14,11 +14,18 @@
 .censcms-sidebar-menu-help{
     display: none;
 }
-@media only screen and (max-width: 992px) {
+有些只可以在电脑上存在，而不能在手机上存在的动态！本打算990px，但为了不舍弃电脑更好的效果，采用420px，
+@media only screen and (min-width: 420px){
+    .censcms-layout-admin .censcms-header .censcms-layout-right .censcms-nav .hasChildItem:hover .childList{
+        display: block;
+    }
+}
+@media only screen and (max-width: 990px) {
     .censcms-layout-admin .censcms-body .censcms-body-body .layui-col-sm12{
         margin-top: 15px!important;
         padding-left: 0!important;
     }
+
 }
 @media only screen and (max-width: 600px){
     .censcms-sidebar-menu-help{
@@ -44,7 +51,7 @@
         display: inline-block!important;
     }
 }
-@media only screen and (max-width: 420px){
+@media only screen and (max-width: 419px){
     .layui-form-label{
         text-align: left;
         padding: 9px 0;
