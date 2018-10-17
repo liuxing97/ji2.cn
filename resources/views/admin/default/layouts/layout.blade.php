@@ -300,7 +300,9 @@
                     </li>
                     <li>
                         <i class="layui-icon layui-icon-return"></i>
-                        <a onclick="$('#logout').submit()">登出</a>
+                        {!! Form::open(['route' => 'auth.logout', 'style' => 'display:inline-block;background:none', 'id' => 'logout']) !!}
+                        <button style="background: none;outline: none;border: none;color: #fff;" type="submit">登出</button>
+                        {!! Form::close() !!}
                     </li>
                 </ul>
             </li>
@@ -597,10 +599,10 @@
         console.log(width);
         //开始请求
         http.getPage(url).then(function (res) {
-            if(width !== '220px'){
-                //关闭侧边栏
-                toggleCenscmsSidebar();
-            }
+//            if(width !== '220px'){
+//                //关闭侧边栏
+//                toggleCenscmsSidebar();
+//            }
             //处理结果
             console.log(res);
             $('#page-main').html(res);

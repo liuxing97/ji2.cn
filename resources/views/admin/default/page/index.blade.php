@@ -3,7 +3,7 @@
         <div class="layui-card censcms-note-box">
             <div class="layui-card-header">便签</div>
             <div class="censcms-note-box-list">
-                我的便签
+
             </div>
         </div>
         <div class="layui-card censcms-main-card">
