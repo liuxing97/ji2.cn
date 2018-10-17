@@ -102,6 +102,9 @@
     .censcms-layout-admin .censcms-header .censcms-layout-right .censcms-nav .hasChildItem{
 
     }
+    .censcms-layout-admin .censcms-header .censcms-layout-right .censcms-nav .censcms-show .childList{
+        display: inline-block!important;
+    }
     .censcms-layout-admin .censcms-header .censcms-layout-right .censcms-nav .hasChildItem .childList{
         display: none;
         position: absolute;
@@ -122,7 +125,7 @@
         background-color: rgba(0,0,0,0.09);
     }
     .censcms-layout-admin .censcms-header .censcms-layout-right .censcms-nav .hasChildItem:hover .childList{
-        display: block;
+        /*display: block;*/
     }
     .censcms-layout-admin .censcms-header .censcms-layout-right .censcms-nav > .item:hover{
         background-color: rgba(0,0,0,.09);
@@ -190,6 +193,7 @@
         font-size: 12px;
         top: 14px;
     }
+
     .censcms-layout-admin .censcms-sidebar .censcms-sidebar-scroll .censcms-menu .censcms-show > a.child:after{
         content: '\e619';
     }
@@ -283,7 +287,7 @@
                 </a>
             </li>
             <li class="item hasChildItem">
-                <a class="hasChild">
+                <a onclick="toggleNavListPanel(this)" data-toggle="off" class="hasChild censcms-nav-hasChildItem">
                     管理
                 </a>
                 {!! Form::open(['route' => 'auth.logout', 'style' => 'display:none;', 'id' => 'logout']) !!}
@@ -599,10 +603,10 @@
         console.log(width);
         //开始请求
         http.getPage(url).then(function (res) {
-//            if(width !== '220px'){
-//                //关闭侧边栏
-//                toggleCenscmsSidebar();
-//            }
+            if(width !== '220px'){
+                //关闭侧边栏
+                toggleCenscmsSidebar();
+            }
             //处理结果
             console.log(res);
             $('#page-main').html(res);
@@ -703,6 +707,22 @@
     <div class="layui-icon layui-icon-loading layui-anim layui-anim-rotate layui-anim-loop"></div>
     <div class="tips">页面加载中，请稍后</div>
 </div>
+<script>
+    function toggleNavListPanel(ele){
+        var toggle = $(ele).data('toggle');
+        console.log(toggle);
+        if(toggle === 'off'){
+            $(ele).data('toggle', 'on');
+            console.log($(ele).parent());
+            $(ele).parent().addClass('censcms-show');
+        }else{
+            $(ele).data('toggle', 'off');
+            $(ele).parent().removeClass('censcms-show');
+        }
+        return false;
+    }
+//    $(".censcms-nav-hasChildItem").bind('click',this,toggleNavListPanel)
+</script>
 </html>
 
 {{--2018年09月11日14:37-前端样式预览版已架设完毕-后续任务-与登录登出功能进行对接--}}
