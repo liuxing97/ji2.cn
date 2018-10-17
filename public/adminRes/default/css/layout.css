@@ -1,0 +1,53 @@
+/*折叠编辑器工具栏*/
+.w-e-toolbar{
+    /*display: inline-block!important;*/
+    flex-wrap: wrap;
+}
+.censcms-sidebar-menu-help{
+    display: none;
+}
+@media only screen and (max-width: 992px) {
+    .censcms-layout-admin .censcms-body .censcms-body-body .layui-col-sm12{
+        margin-top: 15px!important;
+        padding-left: 0!important;
+    }
+}
+@media only screen and (max-width: 600px){
+    .censcms-sidebar-menu-help{
+        display: block;
+        padding: 1rem 1rem;
+
+        text-align: left;
+
+        line-height: 1.5rem;
+
+
+        color: #9a9a9a;
+    }
+    .censcms-layout-admin .censcms-sidebar{
+        background: #fff;
+        min-height: 100%;
+        width: 100% !important;
+    }
+    .censcms-layout-right .item{
+        display: none!important;
+    }
+    .censcms-layout-right .item:nth-child(3){
+        display: inline-block!important;
+    }
+}
+@media only screen and (max-width: 420px){
+    .layui-form-label{
+        text-align: left;
+        padding: 9px 0;
+        width: 100%;
+    }
+    .layui-input-block{
+        margin-left: 0;
+    }
+    .layui-form-select .layui-edge{
+        position: absolute;
+        bottom: 9px;
+        top: auto;
+    }
+}

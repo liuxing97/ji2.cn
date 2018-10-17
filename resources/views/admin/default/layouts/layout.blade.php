@@ -4,9 +4,11 @@
 <head>
     <title>辰象CMS</title>
     <link rel="stylesheet" href="/layui/css/layui.css" />
+    <link rel="stylesheet" href="/adminRes/default/css/layout.css" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
 </head>
 
 
@@ -42,6 +44,7 @@
         background-color: #2c3e50;
         border-bottom: 1px solid #2c3e50;
         position: fixed;
+        /*position: absolute;*/
         width: 100%;
     }
     .censcms-layout-admin .censcms-header .censcms-logo{
@@ -58,7 +61,7 @@
 
     .censcms-layout-admin .censcms-header .censcms-logo .censcms-logo-brand a{
         display: block;
-        padding-left: 23px;
+        padding-left: 60px;
         color: #fff;
     }
     .censcms-layout-admin .censcms-header .censcms-logo .censcms-logo-toggle{
@@ -66,7 +69,7 @@
         left: 0;
         top: 0;
         display: block;
-        width: 50px;
+        width: 80px;
         height: 50px;
         text-align: center;
         line-height: 50px;
@@ -142,6 +145,7 @@
     }
     .censcms-layout-admin .censcms-sidebar{
         position: fixed;
+        /*position: absolute;*/
         bottom: 0;
         z-index: 9998;
         left: 0;
@@ -151,7 +155,7 @@
         box-shadow: 1px 1px 10px rgba(0,0,0,.1);
     }
     .censcms-layout-admin .censcms-sidebar .censcms-sidebar-scroll{
-        width: 220px;
+        width: 100%;
         background-color: #fff;
     }
     .censcms-layout-admin .censcms-sidebar .censcms-sidebar-scroll .censcms-menu{
@@ -201,8 +205,11 @@
     .censcms-layout-admin .censcms-sidebar .censcms-sidebar-scroll .censcms-menu .censcms-menu-item > .censcms-menu-child > .censcms-menu-item > .censcms-menu-child > .censcms-menu-item a{
         padding-left: 45px;
     }
+    body{
+        min-width: 980px;
+    }
     .censcms-layout-admin .censcms-body{
-        min-width: 768px;
+        /*min-width: 768px;*/
         left: 220px;
         top: 50px;
         right: 0;
@@ -254,12 +261,6 @@
         width: 200px;
         margin-top: 1rem;
     }
-    @media screen and (max-width: 992px) {
-        .censcms-layout-admin .censcms-body .censcms-body-body .layui-col-sm12{
-            margin-top: 15px!important;
-            padding-left: 0!important;
-        }
-    }
 </style>
 
 <div class="censcms-header">
@@ -267,7 +268,7 @@
         <div class="censcms-logo-brand">
             <a>辰象CMS Pro</a>
         </div>
-        <div class="censcms-logo-toggle" data-toggle="on"><i class="layui-icon layui-icon-left"></i></div>
+        <div class="censcms-logo-toggle" data-toggle="on"><i class="layui-icon layui-icon-left"></i><span>菜单</span></div>
     </div>
     <div class="censcms-layout-right">
         <ul class="censcms-nav">
@@ -312,6 +313,8 @@
         <div>
             {{--以下为案例，不可删除，其包含逻辑方法--}}
             <ul class="censcms-menu">
+                <p class="censcms-sidebar-menu-help">使用移动端操作时，推荐将屏幕旋转，更便于操作</p>
+
                 {{--一级菜单--}}
                 <li data-id="" class="censcms-menu-item censcms-menu-item-a censcms-this">
                     <a class="" href="/admin/default/home/#/">
@@ -473,18 +476,26 @@
     //切换边栏
     var toggleCenscmsSidebar = function () {
         var toggle = $(".censcms-logo-toggle").data('toggle');
+        //得到侧边栏宽度
+        var width = $('.censcms-sidebar').css('width');
+        console.log(width);
 //        alert(toggle);
         if(toggle === 'on'){
             $('.censcms-logo-toggle').data('toggle','off');
             $('.censcms-logo-toggle i').removeClass('layui-icon-left');
             $('.censcms-logo-toggle i').addClass('layui-icon-right');
             $('.censcms-body').animate({'left':'0'});
-            $('.censcms-sidebar').animate({'left':'-220px'});
+            //如果菜单的宽度属性是100%，则左移整个窗口
+            if(width !== '220px'){
+                $('.censcms-sidebar').animate({'left':'-'+width});
+            }else{
+                $('.censcms-sidebar').animate({'left':'-220px'});
+            }
         }else{
             $('.censcms-logo-toggle').data('toggle','on');
             $('.censcms-logo-toggle i').removeClass('layui-icon-right');
             $('.censcms-logo-toggle i').addClass('layui-icon-left');
-            $('.censcms-body').animate({'left':'220px'});
+            $('.censcms-body').animate({'left':width});
             $('.censcms-sidebar').animate({'left':'0'});
         }
     }
@@ -581,13 +592,24 @@
         }
         //根据路由，请求后台
         var url = '/admin/default/route'+route;
+        //得到侧边栏宽度
+        var width = $('.censcms-sidebar').css('width');
+        console.log(width);
         //开始请求
         http.getPage(url).then(function (res) {
+            if(width !== '220px'){
+                //关闭侧边栏
+                toggleCenscmsSidebar();
+            }
             //处理结果
             console.log(res);
             $('#page-main').html(res);
             layer.close(layer.index);
         }).catch(function (res) {
+            if(width !== '220px'){
+                //关闭侧边栏
+                toggleCenscmsSidebar();
+            }
             $('#page-main').html('页面加载异常');
             layer.close(layer.index);
         });
