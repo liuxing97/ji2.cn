@@ -165,10 +165,12 @@
     require(['/module/editor/wangEditor.js'], function (E) {
         editor = new E('#editor');
         editor.create();
+        //绑定点击插入链接
+        $(editor.$toolbarElem[0].children[9]).on('click',listenLink);
     });
     //新建文章
     function createArticle(){
-        var archive = $("select[name='article-create-select-archive'] option:selected").val()
+        var archive = $("select[name='article-create-select-archive'] option:selected").val();
         var title = $("input[name='article-create-title']").val();
         var describe = $("input[name='article-create-describe']").val();
         var content = editor.txt.html();
@@ -342,4 +344,18 @@
             }
         })
     });
+    //检测剪贴板，得到内容，如果是链接，询问是否插入。
+    function listenLink(){
+        //给编辑器的插入链接功能绑定更改
+        $('.w-e-panel-tab-content div input').eq(0).on('change',function (){
+            var value = $('.w-e-panel-tab-content div input').eq(0).val();
+            //如果是一个链接
+            if(value.substr(0,7) === 'http://' || value.substr(0,8) === 'https://'){
+                var value = $('.w-e-panel-tab-content div input').eq(1).val(value);
+            }else{
+            }
+        });
+    }
+    console.log(editor);
+
 </script>

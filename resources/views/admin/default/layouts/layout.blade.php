@@ -397,7 +397,7 @@
                 </li>
                 <li class="censcms-menu-item censcms-menu-item-a">
                     <a href="#/menu">
-                        <i class="layui-icon layui-icon-read"></i>
+                        <i class="layui-icon layui-icon-template"></i>
                         <span>菜单</span>
                     </a>
                 </li>

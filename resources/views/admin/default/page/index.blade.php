@@ -98,7 +98,7 @@
             <div class="layui-card-header">快捷入口</div>
             <div class="layui-card-body">
                 <div class="censcms-index-shortcutList">
-                    <a href="#/cms/article"><div class="item">文章管理</div></a>
+                    <a href="#/cms/archive"><div class="item">分类管理</div></a>
                     <a href="#/cms/article"><div class="item">文章管理</div></a>
                 </div>
             </div>

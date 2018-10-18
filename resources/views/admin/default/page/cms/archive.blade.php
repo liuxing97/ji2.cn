@@ -59,7 +59,7 @@ if($objData){
                                 <td>{{$item['acticles']}}</td>
                                 <td>{{$item['running']}}</td>
                                 <td title="a">
-                                    <span>ID访问：<a style="color: #5FB878" href="/archive/{{$item['id']}}">/archive/{{$item['id']}}</a></span>
+                                    <span>ID访问：<a style="color: #5FB878" href="/archive/num/{{$item['id']}}">/archive/num/{{$item['id']}}</a></span>
                                     <span>别名访问：<a style="color: #5FB878" href="/archive/{{$item['alias']}}">/archive/{{$item['alias']}}</a></span>
                                 </td>
                                 <td>{{$item['created_at']}}</td>
