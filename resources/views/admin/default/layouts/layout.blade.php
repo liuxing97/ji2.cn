@@ -602,7 +602,10 @@
         http.getPage(url).then(function (res) {
             if(width !== '220px'){
                 //关闭侧边栏
-                toggleCenscmsSidebar();
+                var toggle = $(".censcms-logo-toggle").data('toggle');
+                if(toggle === 'on'){
+                    toggleCenscmsSidebar();
+                }
             }
             //处理结果
             console.log(res);
