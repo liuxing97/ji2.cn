@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\ClientVisit;
 use App\Http\Middleware\ToHome;
 use App\Http\Middleware\UICheckData;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
@@ -59,6 +60,7 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'ui.checkdata' => UICheckData::class,
-        'ui.tohome' => ToHome::class
+        'ui.tohome' => ToHome::class,
+        'client.visit' => ClientVisit::class,
     ];
 }

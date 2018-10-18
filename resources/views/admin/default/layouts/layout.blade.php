@@ -275,10 +275,10 @@
         <ul class="censcms-nav">
             <li class="item">
                 <a target="_blank" href="/">
-                    <i class="layui-icon layui-icon-website"></i>
+                    <i class="layui-icon layui-icon-website"><span style="font-size: 14px;position: relative;top: -1px;margin-left: 4px;">我的站点</span></i>
                 </a>
             </li>
-            <li class="item">
+            <li style="display: none;" class="item">
                 <a href="/">
                     <i class="layui-icon layui-icon-edit"></i>
                 </a>
