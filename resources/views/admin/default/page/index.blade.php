@@ -52,15 +52,15 @@
         <div class="layui-card censcms-main-card">
             <div class="layui-card-header">实时访客</div>
             <div class="layui-card-body">
-                <table class="layui-table" lay-filter="test">
+                <table class="layui-table" lay-data="{id:'visit_numbers'}" lay-filter="visit_numbers">
                     <thead>
                     <tr>
-                        <th lay-data="{field:'id', width:80, sort: true}">今日访客(UV)</th>
-                        <th lay-data="{field:'username', width:80}">今日页面浏览量(PV)</th>
-                        <th lay-data="{field:'sex', width:80, sort: true}">本周UV</th>
-                        <th lay-data="{field:'city'}">本周PV</th>
-                        <th lay-data="{field:'sign'}">本月UV</th>
-                        <th lay-data="{field:'experience', sort: true}">本月PV</th>
+                        <th lay-data="{field:'id', width:120}">今日访客(UV)</th>
+                        <th lay-data="{field:'username',width:160}">今日页面浏览量(PV)</th>
+                        <th lay-data="{field:'sex', width:100}">本周UV</th>
+                        <th lay-data="{field:'city',width:100}">本周PV</th>
+                        <th lay-data="{field:'sign',width:100}">本月UV</th>
+                        <th lay-data="{field:'experience'}">本月PV</th>
                     </tr>
                     </thead>
                     <tbody>
