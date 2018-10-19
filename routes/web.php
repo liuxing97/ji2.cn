@@ -51,6 +51,7 @@ Route::group(['middleware' => ['client.visit','ui.checkdata']], function (){
             return "不存在的分类";
         }
     });
+    //文章访问
     Route::get('/article/{number}',function ($number){
         $articleObj = new \App\CmsArticle();
         $articleData = $articleObj -> find($number);
@@ -60,8 +61,11 @@ Route::group(['middleware' => ['client.visit','ui.checkdata']], function (){
         if($articleData -> state == '0'){
             return '禁止访问文章';
         }
+        //推荐文章
+        $articleShowArray = $articleObj -> orderBy('id','desc') -> take(5) -> get() -> toArray();
         return view('fanbo/pages/article',[
-            'articleData' => $articleData
+            'articleData' => $articleData,
+            'articleShow' => $articleShowArray
         ]);
     });
     //最新文章

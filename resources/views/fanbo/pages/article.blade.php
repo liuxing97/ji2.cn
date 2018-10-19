@@ -108,12 +108,9 @@
         <div class="more_article_title">更多资讯</div>
         <div class="more_articleList">
             <ul>
-                <li><a href="baidu.com"><i class="layui-icon layui-icon-read"></i>这里是更多文章&nbsp;&nbsp;&nbsp;<span class="r-time">2018-09-07 12:25:23</span></a></li>
-                <li><a href="baidu.com"><i class="layui-icon layui-icon-read"></i>这里是更多文章&nbsp;&nbsp;&nbsp;<span class="r-time">2018-09-07 12:25:23</span></a></li>
-                <li><a href="baidu.com"><i class="layui-icon layui-icon-read"></i>这里是更多文章&nbsp;&nbsp;&nbsp;<span class="r-time">2018-09-07 12:25:23</span></a></li>
-                <li><a href="baidu.com"><i class="layui-icon layui-icon-read"></i>这里是更多文章&nbsp;&nbsp;&nbsp;<span class="r-time">2018-09-07 12:25:23</span></a></li>
-                <li><a href="baidu.com"><i class="layui-icon layui-icon-read"></i>这里是更多文章&nbsp;&nbsp;&nbsp;<span class="r-time">2018-09-07 12:25:23</span></a></li>
-
+                @foreach($articleShow as $showItem)
+                <li><a href="/article/{{$showItem['id']}}"><i class="layui-icon layui-icon-read"></i>{{$showItem['title']}}&nbsp;&nbsp;&nbsp;<span class="r-time">{{$showItem['created_at']}}</span></a></li>
+                @endforeach
             </ul>
         </div>
     </div>
