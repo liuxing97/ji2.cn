@@ -71,7 +71,7 @@ Route::group(['middleware' => ['client.visit','ui.checkdata']], function (){
     //最新文章
     Route::get('/new_article',function (){
         //查询这个分类下的所有文章
-        $archiveArray['title'] = '最新分类';
+        $archiveArray['title'] = '最新线报';
         $archiveArray['alias'] = 'new';
         $archiveArray['describe'] = '这里收录最新创建的文章';
         $archiveArray['created_at'] = time();
