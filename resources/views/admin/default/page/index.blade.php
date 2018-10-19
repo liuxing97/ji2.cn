@@ -112,7 +112,7 @@
         <div class="layui-card censcms-main-card">
             <div class="layui-card-header">系统情况</div>
             <div style="color:#9a9a9a" class="layui-card-body">
-                <p>当前时间：{{date('Y-m-d H:i:s')}}</p>
+                <p>本次访问：{{date('Y-m-d H:i:s')}}</p>
                 <p>系统版本：alpha 1.0</p>
                 <p>开发语言：PHP、HTML等……</p>
                 <p>开发单位：西安辰象的象网络科技有限公司</p>

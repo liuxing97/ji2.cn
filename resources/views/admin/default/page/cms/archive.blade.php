@@ -18,7 +18,10 @@ if($objData){
                 <li class="layui-this">分类管理</li>
                 <li>创建分类</li>
             </ul>
-            <div class="layui-elem-quote censcms-layout-quote">分类管理中，支持点击单元格进行编辑修改</div>
+            <div class="layui-elem-quote censcms-layout-quote">
+                <p>分类管理中，支持点击单元格进行编辑修改</p>
+                <p><a style="cursor: pointer; color: #0d6aad" href="/new_article">/new_article</a> 收录您的最新文章</p>
+            </div>
             <div class="layui-tab-content censcms-layout-content">
                 <div class="layui-tab-item layui-show">
                     <div style="margin-top: 0" class="actionList censng-button-act-box">

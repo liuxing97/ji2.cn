@@ -13,11 +13,14 @@ Route::group(['middleware' => ['client.visit','ui.checkdata']], function (){
     Route::get('/archive/num/{number}',function ($number){
         $archiveObj = new \App\CmsArchive();
         $archiveData = $archiveObj -> where('id',$number) -> first();
+        if($archiveData -> running == '0'){
+            return "禁止访问";
+        }
         if($archiveData){
             $archiveArray = $archiveData -> toArray();
             //查询这个分类下的所有文章
             $obj = new \App\CmsArticle();
-            $data = $obj -> where('archive',$archiveData->id) -> orderBy('id','desc') -> simplePaginate(5);
+            $data = $obj -> where('archive',$archiveData->id) -> where('state','1') -> orderBy('id','desc') -> simplePaginate(5);
             $dataListArray = $data -> toArray();
             return view('fanbo/pages/archive',[
                 'dataListArray' => $dataListArray,
@@ -30,12 +33,15 @@ Route::group(['middleware' => ['client.visit','ui.checkdata']], function (){
     //分类Alias形式访问
     Route::get('/archive/{archiveAlias}',function ($archiveAlias){
         $archiveObj = new \App\CmsArchive();
-        $archiveData = $archiveObj -> where('alias',$archiveAlias) -> orderBy('id','desc') -> first();
+        $archiveData = $archiveObj -> where('alias',$archiveAlias) -> first();
+        if($archiveData -> running == '0'){
+            return "禁止访问";
+        }
         if($archiveData){
             $archiveArray = $archiveData -> toArray();
             //查询这个分类下的所有文章
             $obj = new \App\CmsArticle();
-            $data = $obj -> where('archive',$archiveData->id) -> simplePaginate(5);
+            $data = $obj -> where('archive',$archiveData->id) -> where('state','1') -> orderBy('id','desc') -> simplePaginate(5);
             $dataListArray = $data -> toArray();
             return view('fanbo/pages/archive',[
                 'dataListArray' => $dataListArray,
@@ -48,8 +54,30 @@ Route::group(['middleware' => ['client.visit','ui.checkdata']], function (){
     Route::get('/article/{number}',function ($number){
         $articleObj = new \App\CmsArticle();
         $articleData = $articleObj -> find($number);
+        if(!$articleData){
+            return '文章不存在';
+        }
+        if($articleData -> state == '0'){
+            return '禁止访问文章';
+        }
         return view('fanbo/pages/article',[
             'articleData' => $articleData
+        ]);
+    });
+    //最新文章
+    Route::get('/new_article',function (){
+        //查询这个分类下的所有文章
+        $archiveArray['title'] = '最新分类';
+        $archiveArray['alias'] = 'new';
+        $archiveArray['describe'] = '这里收录最新创建的文章';
+        $archiveArray['created_at'] = time();
+        $archiveArray['updated_at'] = time();
+        $obj = new \App\CmsArticle();
+        $data = $obj -> where('state','1') -> orderBy('id','desc') -> simplePaginate(5);
+        $dataListArray = $data -> toArray();
+        return view('fanbo/pages/archive',[
+            'dataListArray' => $dataListArray,
+            'archiveData' => $archiveArray
         ]);
     });
 });
