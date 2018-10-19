@@ -1,5 +1,11 @@
 
 @extends('fanbo/layouts/layout')
+@section('web-title')
+    {{$siteData['censcms_web_name']}}-{{$articleData['title']}}
+@endsection
+@section('web-describe')
+    {{$siteData['censcms_web_name']}}-{{$articleData['describe']}}
+@endsection
 @section('menuList')
     <li class="layui-nav-item layui-this"><a href="">资讯正文</a></li>
 @endsection

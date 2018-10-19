@@ -2,10 +2,17 @@
 <html lang="en">
 
 <head>
-    <title>极爱网-极爱撸羊毛</title>
-    <meta name="keywords" content="优惠 低价 购物 商城">
-    <meta name="description" content="极爱网，极爱撸羊毛。本站收集各站点优惠商品信息，用最低家，购买最实惠优质的商品。记住本网站吧——ji2.cn">
+    <title>@section('web-title')
+            {{$siteData['censcms_web_name']}}
+        @show</title>
+    <meta name="keywords" content="@section('web-tag')
+    {{$siteData['censcms_web_tag']}}
+    @show">
+    <meta name="description" content="@section('web-tag')
+    {{$siteData['censcms_web_describe']}}
+    @show">
     <link rel="stylesheet" href="/layui/css/layui.css" />
+    <link rel="shortcut icon" href="/ji2_favicon.ico" type="image/x-icon"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
     <!-- [if lt IE 9]>

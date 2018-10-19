@@ -1,4 +1,7 @@
 @extends('fanbo/layouts/layout')
+@section('web-title')
+    {{$siteData['censcms_web_name']}}-{{$archiveData['title']}}
+@endsection
 @section('content')
     <style>
         .article{

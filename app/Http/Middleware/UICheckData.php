@@ -59,6 +59,15 @@ class UICheckData
             }
         }
         view()->share('menuArray',$menuArray);
+        //传入系统参数
+        //获取站点配置信息
+        $siteDataObj = new \App\Sitedata();
+        $siteDataArray = $siteDataObj -> get() -> toArray();
+        $siteData = [];
+        foreach ($siteDataArray as $siteDataItem){
+            $siteData[$siteDataItem['key']] = $siteDataItem['value'];
+        }
+        view()->share('siteData',$siteData);
         return $next($request);
     }
 }
