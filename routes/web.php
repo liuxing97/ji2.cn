@@ -17,7 +17,7 @@ Route::group(['middleware' => ['client.visit','ui.checkdata']], function (){
             $archiveArray = $archiveData -> toArray();
             //查询这个分类下的所有文章
             $obj = new \App\CmsArticle();
-            $data = $obj -> where('archive',$archiveData->id) -> simplePaginate(5);
+            $data = $obj -> where('archive',$archiveData->id) -> orderBy('id','desc') -> simplePaginate(5);
             $dataListArray = $data -> toArray();
             return view('fanbo/pages/archive',[
                 'dataListArray' => $dataListArray,
@@ -30,7 +30,7 @@ Route::group(['middleware' => ['client.visit','ui.checkdata']], function (){
     //分类Alias形式访问
     Route::get('/archive/{archiveAlias}',function ($archiveAlias){
         $archiveObj = new \App\CmsArchive();
-        $archiveData = $archiveObj -> where('alias',$archiveAlias) -> first();
+        $archiveData = $archiveObj -> where('alias',$archiveAlias) -> orderBy('id','desc') -> first();
         if($archiveData){
             $archiveArray = $archiveData -> toArray();
             //查询这个分类下的所有文章
