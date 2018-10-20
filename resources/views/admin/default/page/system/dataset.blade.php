@@ -62,7 +62,7 @@ $sitedata = null;
                     </div>
                 </div>
                 <div class="">
-                    <table class="layui-table" lay-data="{id:'sitedata'}" lay-filter="sitedata">
+                    <table class="layui-table" lay-data="{id:'sitedata','page':'true'}" lay-filter="sitedata">
                         <colgroup>
                             <col>
                             <col>

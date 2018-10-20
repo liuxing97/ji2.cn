@@ -8,6 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
 </head>
 
 
@@ -418,6 +419,26 @@
                                 <span>文章管理</span>
                             </a>
                         </li>
+                        <li data-toggle="off" class="censcms-menu-item censcms-menu-item-hasChird">
+                            <a class="child">
+                                <i class="layui-icon layui-icon-read"></i>
+                                <span>图片管理</span>
+                            </a>
+                            <ul class="censcms-menu-child layui-anim">
+                                <li data-id="fenleiguanli" id="fenleiguanli" class="censcms-menu-item censcms-menu-item-a">
+                                    <a class="" href="#/cms/photo/archive">
+                                        <i class="layui-icon layui-icon-chart-screen"></i>
+                                        <span>图片分类</span>
+                                    </a>
+                                </li>
+                                <li class="censcms-menu-item censcms-menu-item-a">
+                                    <a class="" href="#/cms/photo/list">
+                                        <i class="layui-icon layui-icon-chart-screen"></i>
+                                        <span>所有图片</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                 </li>
                 <li class="censcms-menu-item censcms-menu-item-a">
@@ -444,10 +465,9 @@
 <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
 
 <script type="text/javascript" src="/js/md5.js"></script>
-
-{{--<script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>--}}
-{{--<script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>--}}
-
+<!--[if lt IE 9]>
+<script type="text/javascript"  src="http://www.ijquery.cn/js/html5shiv.js"></script>
+<![endif]-->
 <link rel="stylesheet" href="/module/loading/jquery.mloading.css">
 <script src="/module/loading/jquery.mloading.js"></script>
 <script src="/module/loading/use.js"></script>
@@ -460,82 +480,51 @@
 
 <script type="text/javascript" src="/js/require.js"></script>
 <link href="/module/editor/wangEditor.css" rel="stylesheet" />
-
-{{--layer--}}
-<script>
-    var table = undefined;
-    var layer = undefined;
-    var form = undefined;
-    layui.use(['table','layer','form','element'], function(){
-        table = layui.table;
-        layer = layui.layer;
-        form = layui.form;
-        element = layui.element;
-    });
-
-</script>
-<script>
-    //切换边栏
-    var toggleCenscmsSidebar = function () {
-        var toggle = $(".censcms-logo-toggle").data('toggle');
-        //得到侧边栏宽度
-        var width = $('.censcms-sidebar').css('width');
-        console.log(width);
-//        alert(toggle);
-        if(toggle === 'on'){
-            $('.censcms-logo-toggle').data('toggle','off');
-            $('.censcms-logo-toggle i').removeClass('layui-icon-left');
-            $('.censcms-logo-toggle i').addClass('layui-icon-right');
-            $('.censcms-body').animate({'left':'0'});
-            //如果菜单的宽度属性是100%，则左移整个窗口
-            if(width !== '220px'){
-                $('.censcms-sidebar').animate({'left':'-'+width});
-            }else{
-                $('.censcms-sidebar').animate({'left':'-220px'});
-            }
-        }else{
-            $('.censcms-logo-toggle').data('toggle','on');
-            $('.censcms-logo-toggle i').removeClass('layui-icon-right');
-            $('.censcms-logo-toggle i').addClass('layui-icon-left');
-            $('.censcms-body').animate({'left':width});
-            $('.censcms-sidebar').animate({'left':'0'});
-        }
-    }
-    $('.censcms-logo-toggle').on('click',function(){toggleCenscmsSidebar()});
-
-    //切换二级菜单
-    var toggleCenscmsSidebarChirdMenu = function (event,ele) {
-        console.log(ele);
-        //得到toggle值
-        var toggle = $(ele).data('toggle');
-//        alert(toggle);
-        if(toggle === 'off'){
-            $(ele).data('toggle', 'on');
-            $(ele).addClass('censcms-show');
-            $(ele).children(".censcms-menu-child").addClass('layui-anim-upbit')
-        }else{
-            $(ele).data('toggle', 'off');
-            $(ele).removeClass('censcms-show');
-            $(ele).children(".censcms-menu-child").removeClass('layui-anim-upbit')
-        }
-        event.stopPropagation();
-        return false;
-    };
-    $('.censcms-menu-item-hasChird').on('click',function(event){toggleCenscmsSidebarChirdMenu(event,this)});
-
-    //点击菜单，使用本地存储id，进行匹配，并添加样式
-    //新方案，使用前端路由，路由后，ajax获取html内容，向主体中进行刷新
-    var clickCenscmsSidebarMenuItem = function (event,ele){
-        $('.censcms-this').removeClass('censcms-this');
-        $(ele).addClass("censcms-this");
-        event.stopPropagation();
-        return false;
-    };
-    $('.censcms-menu-item-a').on('click',function(event,ele){clickCenscmsSidebarMenuItem(event,this)});
-</script>
 {{--前端路由--}}
+<style>
+    body .httpLoading-class{
+        background: none;
+        box-shadow: none;
+        border: none;
+        overflow: visible;
+    }
+    body .httpLoading-class .layui-layer-title{background:none; color:#fff; border: none;}
+    body .httpLoading-class .layui-layer-btn{border-top:none}
+    body .httpLoading-class .layui-layer-btn a{background:none;}
+    body .httpLoading-class .layui-layer-btn .layui-layer-btn1{background:none;}
+    .httpLoading{
+        color: #fff;
+        display: none;
+        z-index: 99999;
+        font-size: 22px;
+        margin: 0 auto;
+        left: 0;
+        right: 0;
+        top: 46%;
+        text-align: center;
+    }
+    .httpLoading div{
+        position: relative;
+    }
+    .httpLoading .layui-icon{
+        font-size: 36px;
+        margin-bottom: 2rem;
+    }
+    .httpLoading .tips{
+        letter-spacing: 3px;
+        text-indent: 3px;
+    }
+    </style>
+<div id="httpLoading" class="httpLoading">
+    <div class="layui-icon layui-icon-loading layui-anim layui-anim-rotate layui-anim-loop"></div>
+    <div class="tips">数据处理中</div>
+</div>
+<div id="httpPageLoading" class="httpLoading">
+    <div class="layui-icon layui-icon-loading layui-anim layui-anim-rotate layui-anim-loop"></div>
+    <div class="tips">页面加载中，请稍后</div>
+</div>
 <script>
-    //配置路由对象 执行顺序为12534
+    {{--前端路由,配置路由对象 执行顺序为12534--}}
     function Router(){
         this.currentUrl='';
         this.routes = {
@@ -579,45 +568,46 @@
         window.addEventListener('hashchange', this.refresh.bind(this), false);
         console.log(location.hash);
     };
-
+    //运行
     var route = new Router();
     route.init();
-
     //加载路由页面-已经加载的，会被缓存，不存在多次加载情况
     function loadingRoutePage (route){
-        //渲染菜单-没有必要-tplay中也没有进行对于刷新后，菜单状态丢失的渲染
-        // 引入加载中
-        // loading.loadingShow("加载中");
-        //特殊对待路由
-        if(route==='/'){
-            route = '/index'
-        }
-        //根据路由，请求后台
-        var url = '/admin/default/route'+route;
-        //得到侧边栏宽度
-        var width = $('.censcms-sidebar').css('width');
-        console.log(width);
-        //开始请求
-        http.getPage(url).then(function (res) {
-            if(width !== '220px'){
-                //关闭侧边栏
-                var toggle = $(".censcms-logo-toggle").data('toggle');
-                if(toggle === 'on'){
+        $(document).ready(function (){
+            //渲染菜单-没有必要-tplay中也没有进行对于刷新后，菜单状态丢失的渲染
+            // 引入加载中
+            // loading.loadingShow("加载中");
+            //特殊对待路由
+            if(route==='/'){
+                route = '/index'
+            }
+            //根据路由，请求后台
+            var url = '/admin/default/route'+route;
+            //得到侧边栏宽度
+            var width = $('.censcms-sidebar').css('width');
+            console.log(width);
+            //开始请求
+            http.getPage(url).then(function (res) {
+                if(width !== '220px'){
+                    //关闭侧边栏
+                    var toggle = $(".censcms-logo-toggle").data('toggle');
+                    if(toggle === 'on'){
+                        toggleCenscmsSidebar();
+                    }
+                }
+                //处理结果
+                console.log(res);
+                $('#page-main').html(res);
+                layer.close(layer.index);
+            }).catch(function (res) {
+                if(width !== '220px'){
+                    //关闭侧边栏
                     toggleCenscmsSidebar();
                 }
-            }
-            //处理结果
-            console.log(res);
-            $('#page-main').html(res);
-            layer.close(layer.index);
-        }).catch(function (res) {
-            if(width !== '220px'){
-                //关闭侧边栏
-                toggleCenscmsSidebar();
-            }
-            $('#page-main').html('页面加载异常');
-            layer.close(layer.index);
-        });
+                $('#page-main').html('页面加载异常');
+                layer.close(layer.index);
+            });
+        })
     }
     //根路由
     route.route('/',loadingRoutePage.bind(null,'/'));
@@ -644,83 +634,101 @@
     ]);
     //菜单路由
     route.route('/menu',loadingRoutePage.bind(null,'/menu'));
-
     //文章路由组
     route.routegroup([
         //分类管理
         ['/cms/archive',loadingRoutePage.bind(null,'/cms/archive')],
         //文章管理
         ['/cms/article',loadingRoutePage.bind(null,'/cms/article')],
+        //图片分类
+        ['/cms/photo/archive',loadingRoutePage.bind(null,'/cms/photo/archive')],
+        //所有图片
+        ['/cms/photo/list',loadingRoutePage.bind(null,'/cms/photo/list')]
     ]);
-    route.route('/aboutus',loadingRoutePage.bind(null,'/aboutus'))
-</script>
-<script>
-
-
-</script>
-<script>
-//    layui.use('table', function(){
-//        table = layui.table;
-//    })
-</script>
-<style>
-    body .httpLoading-class{
-        background: none;
-        box-shadow: none;
-        border: none;
-        overflow: visible;
-    }
-    body .httpLoading-class .layui-layer-title{background:none; color:#fff; border: none;}
-    body .httpLoading-class .layui-layer-btn{border-top:none}
-    body .httpLoading-class .layui-layer-btn a{background:none;}
-    body .httpLoading-class .layui-layer-btn .layui-layer-btn1{background:none;}
-    .httpLoading{
-        color: #fff;
-        display: none;
-        z-index: 99999;
-        font-size: 22px;
-        margin: 0 auto;
-        left: 0;
-        right: 0;
-        top: 46%;
-        text-align: center;
-    }
-    .httpLoading div{
-        position: relative;
-    }
-    .httpLoading .layui-icon{
-        font-size: 36px;
-        margin-bottom: 2rem;
-    }
-    .httpLoading .tips{
-        letter-spacing: 3px;
-        text-indent: 3px;
-    }
-
-    </style>
-<div id="httpLoading" class="httpLoading">
-    <div class="layui-icon layui-icon-loading layui-anim layui-anim-rotate layui-anim-loop"></div>
-    <div class="tips">数据处理中</div>
-</div>
-<div id="httpPageLoading" class="httpLoading">
-    <div class="layui-icon layui-icon-loading layui-anim layui-anim-rotate layui-anim-loop"></div>
-    <div class="tips">页面加载中，请稍后</div>
-</div>
-<script>
-    function toggleNavListPanel(ele){
-        var toggle = $(ele).data('toggle');
-        console.log(toggle);
-        if(toggle === 'off'){
-            $(ele).data('toggle', 'on');
-            console.log($(ele).parent());
-            $(ele).parent().addClass('censcms-show');
-        }else{
-            $(ele).data('toggle', 'off');
-            $(ele).parent().removeClass('censcms-show');
+    route.route('/aboutus',loadingRoutePage.bind(null,'/aboutus'));
+    //加载layui相关
+    var table = undefined;
+    var layer = undefined;
+    var form = undefined;
+    layui.use(['table','layer','form','element'], function(){
+        table = layui.table;
+        layer = layui.layer;
+        form = layui.form;
+        element = layui.element;
+    });
+    $(document).ready(function (){
+        //切换边栏
+        var toggleCenscmsSidebar = function () {
+            var toggle = $(".censcms-logo-toggle").data('toggle');
+            //得到侧边栏宽度
+            var width = $('.censcms-sidebar').css('width');
+            console.log(width);
+//        alert(toggle);
+            if(toggle === 'on'){
+                $('.censcms-logo-toggle').data('toggle','off');
+                $('.censcms-logo-toggle i').removeClass('layui-icon-left');
+                $('.censcms-logo-toggle i').addClass('layui-icon-right');
+                $('.censcms-body').animate({'left':'0'});
+                //如果菜单的宽度属性是100%，则左移整个窗口
+                if(width !== '220px'){
+                    $('.censcms-sidebar').animate({'left':'-'+width});
+                }else{
+                    $('.censcms-sidebar').animate({'left':'-220px'});
+                }
+            }else{
+                $('.censcms-logo-toggle').data('toggle','on');
+                $('.censcms-logo-toggle i').removeClass('layui-icon-right');
+                $('.censcms-logo-toggle i').addClass('layui-icon-left');
+                $('.censcms-body').animate({'left':width});
+                $('.censcms-sidebar').animate({'left':'0'});
+            }
         }
-        return false;
-    }
+        $('.censcms-logo-toggle').on('click',function(){toggleCenscmsSidebar()});
+
+        //切换二级菜单
+        var toggleCenscmsSidebarChirdMenu = function (event,ele) {
+            //得到toggle值
+            var toggle = $(ele).data('toggle');
+            if(toggle === 'off'){
+                $(ele).data('toggle', 'on');
+                $(ele).addClass('censcms-show');
+                $(ele).children(".censcms-menu-child").addClass('layui-anim-upbit')
+            }else{
+                $(ele).data('toggle', 'off');
+                $(ele).removeClass('censcms-show');
+                $(ele).children(".censcms-menu-child").removeClass('layui-anim-upbit')
+            }
+            event.stopPropagation();
+            return false;
+        };
+        $('.censcms-menu-item-hasChird').on('click',function(event){toggleCenscmsSidebarChirdMenu(event,this)});
+
+        //点击菜单，使用本地存储id，进行匹配，并添加样式
+        //新方案，使用前端路由，路由后，ajax获取html内容，向主体中进行刷新
+        var clickCenscmsSidebarMenuItem = function (event,ele){
+            $('.censcms-this').removeClass('censcms-this');
+            $(ele).addClass("censcms-this");
+            event.stopPropagation();
+            return false;
+        };
+        $('.censcms-menu-item-a').on('click',function(event,ele){clickCenscmsSidebarMenuItem(event,this)});
+
+        //切换导航面板
+        function toggleNavListPanel(ele){
+            var toggle = $(ele).data('toggle');
+            console.log(toggle);
+            if(toggle === 'off'){
+                $(ele).data('toggle', 'on');
+                console.log($(ele).parent());
+                $(ele).parent().addClass('censcms-show');
+            }else{
+                $(ele).data('toggle', 'off');
+                $(ele).parent().removeClass('censcms-show');
+            }
+            return false;
+        }
 //    $(".censcms-nav-hasChildItem").bind('click',this,toggleNavListPanel)
+    })
 </script>
 </html>
 

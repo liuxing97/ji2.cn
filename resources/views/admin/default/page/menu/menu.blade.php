@@ -114,7 +114,7 @@
 
                             </select>
                         </div>
-                        <table class="layui-table" lay-data="{id:'menu_group_item'}" lay-filter="menu_group_item">
+                        <table class="layui-table" lay-data="{id:'menu_group_item','page':'true'}" lay-filter="menu_group_item">
                             <colgroup>
                                 <col>
                                 <col>
@@ -195,7 +195,7 @@
                                 </div>
                             </div>
                         </div>
-                        <table class="layui-table" lay-data="{id:'menu_group'}" lay-filter="menu_group">
+                        <table class="layui-table" lay-data="{id:'menu_group','page':'true'}" lay-filter="menu_group">
                             <colgroup>
                                 <col>
                                 <col>
@@ -234,6 +234,7 @@
     </div>
 </div>
 <script>
+    $(document).ready(function (){
         table.init();
         form.render('select')
         //切换新建菜单
@@ -404,18 +405,18 @@
         form.on('select(menu_group_select)',function (data) {
             console.log(data);
             var menuId = data.value;
-                var url = '/admin/default/route'+'/menu';
-                console.log("要开始请求了")
-                //开始请求
-                http.getPage(url,{
-                    menuId: menuId
-                }).then(function (res) {
-                    //处理结果
-                    console.log(res);
-                    $('#page-main').html(res);
-                }).catch(function (res) {
-                    $('#page-main').html('找不到页面');
-                });
+            var url = '/admin/default/route'+'/menu';
+            console.log("要开始请求了")
+            //开始请求
+            http.getPage(url,{
+                menuId: menuId
+            }).then(function (res) {
+                //处理结果
+                console.log(res);
+                $('#page-main').html(res);
+            }).catch(function (res) {
+                $('#page-main').html('找不到页面');
+            });
         });
         //切换新建菜单项
         function toggleCreateItem(){
@@ -573,4 +574,5 @@
         }
         //绑定删除
         $('.menu-item-btn-delete').bind('click',delGroupItem);
+    })
 </script>

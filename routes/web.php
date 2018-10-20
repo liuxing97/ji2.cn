@@ -164,100 +164,119 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
                 'menuItemsArray' => $menuItemsArray,
             ]);
         });
-        Route::get('/cms/archive',function (){
-            return view('admin/default/page/cms/archive');
-        });
-        Route::get('/cms/article',function (\Illuminate\Http\Request $request){
+        Route::group(['prefix' =>'/cms'],function (){
+            //分类
+            Route::get('/archive',function (){
+                return view('admin/default/page/cms/archive');
+            });
+            //文章
+            Route::get('/article',function (\Illuminate\Http\Request $request){
 
-            //本算法已达到目的，但算法结构产生了冗余，需进行优化-暂时忽略
+                //本算法已达到目的，但算法结构产生了冗余，需进行优化-暂时忽略
 
-            //得到要加载的分类信息id
-            $archiveId = $request -> input('archiveId');
-//        dump($archiveId);
-            if(!$archiveId){
-                //没有指定加载哪个分类
-                $archiveId = 'all';
-            }
-            if($archiveId == 'all'){
-                //当前要访问的分类
-                $thisArchiveArray = [
-                    'id' => 'all',
-                    'title' => '所有分类',
-                    'describe' => '所有分类',
-                    'running' => '1',
-                    'acticles' => 'Nah',
-                    'created_at' => '0000-00-00 00:00:00',
-                    'updated_at' => '0000-00-00 00:00:00'
-                ];
-                $obj = new \App\CmsArticle();
-                $objData = $obj -> get();
-                if($objData){
-                    $articlesArray = $objData -> toArray();
-                }else{
-                    $articlesArray = null;
+                //得到要加载的分类信息id
+                $archiveId = $request -> input('archiveId');
+                if(!$archiveId){
+                    //没有指定加载哪个分类
+                    $archiveId = 'all';
                 }
-            }
-            else{
-                //查询要加载的分类情况
-                $obj = new \App\CmsArchive();
-                //如果是加载默认分类
-                if($archiveId == 'none'){
-                    //查询所有分类，并输出第一个
-                    $archiveData = $obj -> first();
-                }else{
-                    $archiveData = $obj -> find($archiveId);
-                }
-                //如果不存在要加载的分类
-                if($archiveData){
-                    $thisArchiveArray = $archiveData -> toArray();
-                }else{
-                    $thisArchiveArray = null;
-                }
-                //传入一个参数，是当前要访问的分类数据，如果不存在该分类数据（即访问的分类不存在，则返回空）
-                //第二个参数，当前分类中的文章数据
-                //得到第二个参数，查询要访问的分类的文章数据
-                if($thisArchiveArray){
-                    $itemObj = new \App\CmsArticle();
-                    $itemObj = $itemObj -> where('archive',$thisArchiveArray['id']) -> get();
-                    if($itemObj){
-                        $articlesArray = $itemObj -> toArray();
+                if($archiveId == 'all'){
+                    //当前要访问的分类
+                    $thisArchiveArray = [
+                        'id' => 'all',
+                        'title' => '所有分类',
+                        'describe' => '所有分类',
+                        'running' => '1',
+                        'acticles' => 'Nah',
+                        'created_at' => '0000-00-00 00:00:00',
+                        'updated_at' => '0000-00-00 00:00:00'
+                    ];
+                    $obj = new \App\CmsArticle();
+                    $objData = $obj -> orderBy('id','desc') -> get();
+                    if($objData){
+                        $articlesArray = $objData -> toArray();
                     }else{
                         $articlesArray = null;
                     }
-                }else{
-                    $articlesArray = null;
                 }
-            }
+                else{
+                    //查询要加载的分类情况
+                    $obj = new \App\CmsArchive();
+                    //如果是加载默认分类
+                    if($archiveId == 'none'){
+                        //查询所有分类，并输出第一个
+                        $archiveData = $obj -> first();
+                    }else{
+                        $archiveData = $obj -> find($archiveId);
+                    }
+                    //如果不存在要加载的分类
+                    if($archiveData){
+                        $thisArchiveArray = $archiveData -> toArray();
+                    }else{
+                        $thisArchiveArray = null;
+                    }
+                    //传入一个参数，是当前要访问的分类数据，如果不存在该分类数据（即访问的分类不存在，则返回空）
+                    //第二个参数，当前分类中的文章数据
+                    //得到第二个参数，查询要访问的分类的文章数据
+                    if($thisArchiveArray){
+                        $itemObj = new \App\CmsArticle();
+                        $itemObj = $itemObj -> where('archive',$thisArchiveArray['id']) -> get();
+                        if($itemObj){
+                            $articlesArray = $itemObj -> toArray();
+                        }else{
+                            $articlesArray = null;
+                        }
+                    }else{
+                        $articlesArray = null;
+                    }
+                }
 
-            //得到所有分类
-            $archiveObj = new \App\CmsArchive();
-            $archiveData = $archiveObj -> get();
-            if($archiveData){
-                $archiveListArray = $archiveData -> toArray();
-                //追加一个分类,所有分类
-                array_unshift($archiveListArray,[
-                    'id' => 'all',
-                    'title' => '所有分类',
-                    'describe' => '所有分类',
-                    'running' => '1',
-                    'acticles' => 'Nah',
-                    'created_at' => '0000-00-00 00:00:00',
-                    'updated_at' => '0000-00-00 00:00:00'
+                //得到所有分类
+                $archiveObj = new \App\CmsArchive();
+                $archiveData = $archiveObj -> get();
+                if($archiveData){
+                    $archiveListArray = $archiveData -> toArray();
+                    //追加一个分类,所有分类
+                    array_unshift($archiveListArray,[
+                        'id' => 'all',
+                        'title' => '所有分类',
+                        'describe' => '所有分类',
+                        'running' => '1',
+                        'acticles' => 'Nah',
+                        'created_at' => '0000-00-00 00:00:00',
+                        'updated_at' => '0000-00-00 00:00:00'
+                    ]);
+                }else{
+                    $archiveListArray = null;
+                }
+                return view('admin/default/page/cms/article',[
+                    //当前选择的分类的数据，如果值为null，有两种可能
+                    //1、当前访问的分类不存在
+                    //2、还没有创建任何分类
+                    //解决方案，在输出内容前，先判断是否存在分类
+                    'thisArchiveArray' => $thisArchiveArray,
+                    //当前分类下的文章内容
+                    'articlesArray' => $articlesArray,
+                    //所有分类
+                    'archiveListArray' => $archiveListArray
                 ]);
-            }else{
-                $archiveListArray = null;
-            }
-            return view('admin/default/page/cms/article',[
-                //当前选择的分类的数据，如果值为null，有两种可能
-                //1、当前访问的分类不存在
-                //2、还没有创建任何分类
-                //解决方案，在输出内容前，先判断是否存在分类
-                'thisArchiveArray' => $thisArchiveArray,
-                //当前分类下的文章内容
-                'articlesArray' => $articlesArray,
-                //所有分类
-                'archiveListArray' => $archiveListArray
-            ]);
+            });
+            Route::get('/article/page',function (\Illuminate\Http\Request $request){
+                //得到当前页码及记录条数,以及查询哪个分类
+                $data = $request -> only('page','limit','archive');
+                //查询数据
+            });
+            //图片
+            Route::group(['prefix' =>'/photo'],function (){
+                //分类管理
+                Route::get('/archive',function (){
+                    return view('admin/default/page/cms/photo/archive');
+                });
+                //图片管理
+                Route::get('/list',function (){
+                    return view('admin/default/page/cms/photo/photo');
+                });
+            });
         });
         Route::get('/aboutus',function (){
             return view('/admin/default/page/aboutUs');
@@ -312,6 +331,17 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
                 Route::post('/del','Admin\CmsArticleController@delList');
                 //更改
                 Route::post('/change','Admin\CmsArticleController@update');
+            });
+            Route::group(['prefix' => 'photo'],function (){
+                //图片分类
+                Route::group(['prefix' => 'archive'],function (){
+                    //新建
+                    Route::post('/create','Admin\CmsPhotoArchiveController@create');
+                    //删除
+                    Route::post('/del','Admin\CmsPhotoArchiveController@delList');
+                    //更改
+                    Route::post('/change','Admin\CmsPhotoArchiveController@update');
+                });
             });
         });
         //更新密码

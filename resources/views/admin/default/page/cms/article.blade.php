@@ -40,7 +40,7 @@
                         </div>
                     </div>
                     {{--文章列表,layui中的table 必须有lay-data的id配置才可以对于复选框生效--}}
-                    <table class="layui-table censcms-article-list" lay-data="{id:'article_list'}" lay-filter="article_list">
+                    <table class="layui-table censcms-article-list" lay-data="{id:'article_list',page:true,limit:20}" lay-filter="article_list">
                         <thead>
                             <tr>
                                 <th lay-data="{type:'checkbox'}"></th>
@@ -158,6 +158,7 @@
     </div>
 </div>
 <script>
+$(document).ready(function (){
     form.render();
     table.init();
     //获取方法editor.txt.html()
@@ -235,10 +236,16 @@
             archiveId: archiveId
         }).then(function (res) {
             //处理结果
-            console.log(res);
             $('#page-main').html(res);
+            setTimeout(function () {
+                layer.close(layer.index);
+                layer.msg('切换分类成功');
+            },1000);
         }).catch(function (res) {
-            $('#page-main').html('找不到页面');
+            setTimeout(function () {
+                layer.close(layer.index);
+                layer.msg('切换分类失败');
+            },1000);
         });
     });
     //切换批量删除
@@ -344,7 +351,7 @@
             }
         })
     });
-    //检测剪贴板，得到内容，如果是链接，询问是否插入。
+    //检测插入链接的标题是否是链接，如果是，直接在链接表单中进行同步。
     function listenLink(){
         //给编辑器的插入链接功能绑定更改
         $('.w-e-panel-tab-content div input').eq(0).on('change',function (){
@@ -356,6 +363,6 @@
             }
         });
     }
-    console.log(editor);
+})
 
 </script>
