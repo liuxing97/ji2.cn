@@ -20,7 +20,7 @@ Route::group(['middleware' => ['client.visit','ui.checkdata']], function (){
             $archiveArray = $archiveData -> toArray();
             //查询这个分类下的所有文章
             $obj = new \App\CmsArticle();
-            $data = $obj -> where('archive',$archiveData->id) -> where('state','1') -> orderBy('id','desc') -> simplePaginate(5);
+            $data = $obj -> where('archive',$archiveData->id) -> where('state','1') -> orderBy('id','desc') -> simplePaginate(10);
             $dataListArray = $data -> toArray();
             return view('fanbo/pages/archive',[
                 'dataListArray' => $dataListArray,
@@ -41,7 +41,7 @@ Route::group(['middleware' => ['client.visit','ui.checkdata']], function (){
             $archiveArray = $archiveData -> toArray();
             //查询这个分类下的所有文章
             $obj = new \App\CmsArticle();
-            $data = $obj -> where('archive',$archiveData->id) -> where('state','1') -> orderBy('id','desc') -> simplePaginate(5);
+            $data = $obj -> where('archive',$archiveData->id) -> where('state','1') -> orderBy('id','desc') -> simplePaginate(10);
             $dataListArray = $data -> toArray();
             return view('fanbo/pages/archive',[
                 'dataListArray' => $dataListArray,
@@ -62,7 +62,7 @@ Route::group(['middleware' => ['client.visit','ui.checkdata']], function (){
             return '禁止访问文章';
         }
         //推荐文章
-        $articleShowArray = $articleObj -> orderBy('id','desc') -> take(5) -> get() -> toArray();
+        $articleShowArray = $articleObj -> orderBy('id','desc') -> take(10) -> get() -> toArray();
         return view('fanbo/pages/article',[
             'articleData' => $articleData,
             'articleShow' => $articleShowArray
@@ -77,7 +77,7 @@ Route::group(['middleware' => ['client.visit','ui.checkdata']], function (){
         $archiveArray['created_at'] = time();
         $archiveArray['updated_at'] = time();
         $obj = new \App\CmsArticle();
-        $data = $obj -> where('state','1') -> orderBy('id','desc') -> simplePaginate(5);
+        $data = $obj -> where('state','1') -> orderBy('id','desc') -> simplePaginate(10);
         $dataListArray = $data -> toArray();
         return view('fanbo/pages/archive',[
             'dataListArray' => $dataListArray,

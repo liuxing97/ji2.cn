@@ -94,6 +94,7 @@
 <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
 <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
 <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+{{--<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>--}}
 
 <script>
     layui.use('element', function(){
@@ -104,3 +105,28 @@
         });
     });
 </script>
+
+
+{{--<script>--}}
+    {{--wx.config({--}}
+        {{--debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。--}}
+        {{--appId: 'wxe62be1f1e4f7f615', // 必填，公众号的唯一标识--}}
+        {{--timestamp: '', // 必填，生成签名的时间戳--}}
+        {{--nonceStr: '', // 必填，生成签名的随机串--}}
+        {{--signature: '',// 必填，签名--}}
+        {{--jsApiList: [] // 必填，需要使用的JS接口列表--}}
+    {{--});--}}
+    {{--wx.ready(function () {--}}
+        {{--var shareData = {--}}
+            {{--title: '标题',    //  标题--}}
+            {{--desc: '描述', //  描述--}}
+            {{--link: '链接', //  分享的URL，必须和当前打开的网页的URL是一样的--}}
+            {{--imgUrl: '缩略图完整路径'   //  缩略图地址--}}
+        {{--};--}}
+        {{--wx.onMenuShareAppMessage(shareData);--}}
+        {{--wx.onMenuShareTimeline(shareData);--}}
+    {{--});--}}
+    {{--wx.error(function (res) {--}}
+        {{--//alert(res.errMsg);//错误提示--}}
+    {{--});--}}
+{{--</script>--}}
