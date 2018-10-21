@@ -85,6 +85,10 @@ Route::group(['middleware' => ['client.visit','ui.checkdata']], function (){
         ]);
     });
 });
+//工具路由
+Route::group(['prefix' => 'tool'],function (){
+    $this -> post('tongji','Tool\Tongji@visit');
+});
 // 登录登出路由
 $this->get('login', 'Auth\LoginController@showLoginForm')->name('auth.login');
 $this->post('login', 'Auth\LoginController@login')->name('auth.login');

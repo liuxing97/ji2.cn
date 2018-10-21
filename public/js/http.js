@@ -69,5 +69,8 @@ var http = {
             })
         });
         return this.request(url,'getpage',data)
+    },
+    hidePost: function (url,data){
+        return this.request(url,'post',data)
     }
 };

@@ -16,6 +16,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta property="og:image" content="/share.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <script>
         var _hmt = _hmt || [];
         (function() {
@@ -65,6 +66,7 @@
 </style>
 
 <body>
+
     {{--头部--}}
     <div class="header">
         <a href="/"><img class="logo" src="/pages/img/logo.png" /></a>
@@ -101,6 +103,7 @@
 <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
 <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
 <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+<script src="/js/http.js"></script>
 {{--<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>--}}
 
 <script>
@@ -111,6 +114,8 @@
             console.log(elem); //得到当前点击的DOM对象
         });
     });
+    //请求统计
+    http.hidePost('/tool/tongji');
 </script>
 
 

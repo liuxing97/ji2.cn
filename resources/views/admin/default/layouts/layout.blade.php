@@ -12,7 +12,8 @@
 </head>
 
 
-<body async="true" class="censcms-layout-admin">
+{{--<body async="true" class="censcms-layout-admin">--}}
+<body class="censcms-layout-admin">
 <input id="csrf" type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
 <style>
     /**
@@ -656,35 +657,35 @@
         form = layui.form;
         element = layui.element;
     });
-    $(document).ready(function (){
-        //切换边栏
-        var toggleCenscmsSidebar = function () {
-            var toggle = $(".censcms-logo-toggle").data('toggle');
-            //得到侧边栏宽度
-            var width = $('.censcms-sidebar').css('width');
-            console.log(width);
+    //切换边栏
+    var toggleCenscmsSidebar = function () {
+        var toggle = $(".censcms-logo-toggle").data('toggle');
+        //得到侧边栏宽度
+        var width = $('.censcms-sidebar').css('width');
+        console.log(width);
 //        alert(toggle);
-            if(toggle === 'on'){
-                $('.censcms-logo-toggle').data('toggle','off');
-                $('.censcms-logo-toggle i').removeClass('layui-icon-left');
-                $('.censcms-logo-toggle i').addClass('layui-icon-right');
-                $('.censcms-body').animate({'left':'0'});
-                //如果菜单的宽度属性是100%，则左移整个窗口
-                if(width !== '220px'){
-                    $('.censcms-sidebar').animate({'left':'-'+width});
-                }else{
-                    $('.censcms-sidebar').animate({'left':'-220px'});
-                }
+        if(toggle === 'on'){
+            $('.censcms-logo-toggle').data('toggle','off');
+            $('.censcms-logo-toggle i').removeClass('layui-icon-left');
+            $('.censcms-logo-toggle i').addClass('layui-icon-right');
+            $('.censcms-body').animate({'left':'0'});
+            //如果菜单的宽度属性是100%，则左移整个窗口
+            if(width !== '220px'){
+                $('.censcms-sidebar').animate({'left':'-'+width});
             }else{
-                $('.censcms-logo-toggle').data('toggle','on');
-                $('.censcms-logo-toggle i').removeClass('layui-icon-right');
-                $('.censcms-logo-toggle i').addClass('layui-icon-left');
-                $('.censcms-body').animate({'left':width});
-                $('.censcms-sidebar').animate({'left':'0'});
+                $('.censcms-sidebar').animate({'left':'-220px'});
             }
+        }else{
+            $('.censcms-logo-toggle').data('toggle','on');
+            $('.censcms-logo-toggle i').removeClass('layui-icon-right');
+            $('.censcms-logo-toggle i').addClass('layui-icon-left');
+            $('.censcms-body').animate({'left':width});
+            $('.censcms-sidebar').animate({'left':'0'});
         }
-        $('.censcms-logo-toggle').on('click',function(){toggleCenscmsSidebar()});
+    }
+    $('.censcms-logo-toggle').on('click',function(){toggleCenscmsSidebar()});
 
+    $(document).ready(function (){
         //切换二级菜单
         var toggleCenscmsSidebarChirdMenu = function (event,ele) {
             //得到toggle值
@@ -727,7 +728,6 @@
             }
             return false;
         }
-//    $(".censcms-nav-hasChildItem").bind('click',this,toggleNavListPanel)
     })
 </script>
 </html>
