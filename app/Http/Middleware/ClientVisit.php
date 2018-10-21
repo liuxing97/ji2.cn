@@ -19,7 +19,6 @@ class ClientVisit
      */
     public function handle($request, Closure $next)
     {
-        dump(time());
         $obj = new Tongji();
         $obj -> logIp();
         //写入头部，声明已访问一次
