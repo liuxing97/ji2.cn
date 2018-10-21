@@ -47,7 +47,7 @@ class Tongji extends Controller
         $visitId = session('visit_id');
         $visitLogObj = $visitLogObj -> find($visitId);
         $visitLogObj -> type = 'visit';
-        $visitLogObj -> save();
+        $visitLogObj -> update();
         return [
             'time' => $time,
             'msg' => 'statistics success',
