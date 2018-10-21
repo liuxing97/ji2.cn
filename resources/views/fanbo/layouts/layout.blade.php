@@ -114,8 +114,45 @@
             console.log(elem); //得到当前点击的DOM对象
         });
     });
+    function getCookie(c_name)
+    {
+        if (document.cookie.length>0)
+        {
+            c_start=document.cookie.indexOf(c_name + "=")
+            if (c_start!=-1)
+            {
+                c_start=c_start + c_name.length+1
+                c_end=document.cookie.indexOf(";",c_start)
+                if (c_end==-1) c_end=document.cookie.length
+                return unescape(document.cookie.substring(c_start,c_end))
+            }
+        }
+        return ""
+    }
+    function setCookie(c_name,value,expiredays)
+    {
+        var exdate=new Date()
+        exdate.setDate(exdate.getDate()+expiredays)
+        document.cookie=c_name+ "=" +escape(value)+
+            ((expiredays==null) ? "" : ";expires="+exdate.toGMTString())
+    }
     //请求统计
-    http.hidePost('/tool/tongji');
+    function fangwenTongji(){
+        //得到是否是本日第一次访问站点
+        var isFirst = getCookie('dayVisit');
+        console.log('dayVisit值是'+isFirst);
+        if(isFirst === ''){
+            console.log('是空');
+            isFirst = 'fasle';
+        }
+        //cookie过期时间设置为本日最后一秒
+        var x = new Date(new Date(new Date().toLocaleDateString()).getTime()+24*60*60*1000-1);
+        //设置为已第一次访问
+        setCookie('dayVisit','true',x);
+        //请求统计
+        http.hidePost('/tool/tongji',{'isFirst':isFirst});
+    }
+    fangwenTongji();
 </script>
 
 

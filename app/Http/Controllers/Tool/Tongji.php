@@ -10,8 +10,13 @@ use App\Http\Controllers\Controller;
 class Tongji extends Controller
 {
     //访问统计，如果没有cookie标识，则uv+1,pv+1，如果有，则仅将pv+1
-    function visit(){
+    //这里进行对访问的情况进行分析，确认是通过浏览器访问的
+    //这里是通过ajax加载的，所以没有任何输出
+    //通过前端确认是否是本日第一次访问
+    function visit(Request $request){
         $time = date('Y-m-d H:i:s');
+        //是否是本日第一次访问
+        $isfirst = $request -> input('isFirst');
         //访问者详细记录模型
         $visitLogObj = new VisitLog();
         //访问者统计模型
@@ -27,16 +32,19 @@ class Tongji extends Controller
             $visitNumber -> save();
         }
         else{
-            //如果有记录，判断是否是当日
+
+            //如果有记录，是否是今天的统计记录
             if($log -> time == mktime(0,0,0,date('m'),date('d'),date('Y'))){
                 //判断进行pv还是uv增加操作
-                if(!isset($_COOKIE['visited'])){
+                if($isfirst == 'true'){
+
+                }else{
                     $log -> uv = $log -> uv + 1;
                 }
                 $log -> pv = $log -> pv + 1;
                 $log -> save();
             }else{
-                //写入本日开始时间戳
+                //不是今天的统计记录，写入本日开始时间戳
                 $visitNumber -> time = mktime(0,0,0,date('m'),date('d'),date('Y'));
                 $visitNumber -> uv = 1;
                 $visitNumber -> pv = 1;

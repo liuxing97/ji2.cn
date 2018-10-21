@@ -19,10 +19,9 @@ class ClientVisit
      */
     public function handle($request, Closure $next)
     {
+        //这里只记录ip，及访问的路径
         $obj = new Tongji();
         $obj -> logIp();
-        //写入头部，声明已访问一次
-        setcookie("visited", "isset", time()+3600*6,'/');
         return $next($request);
     }
 }
