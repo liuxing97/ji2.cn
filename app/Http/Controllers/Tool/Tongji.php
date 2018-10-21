@@ -73,7 +73,7 @@ class Tongji extends Controller
 
     function getSiteUrl() {
         $uri=$_SERVER['REQUEST_URI']?$_SERVER['REQUEST_URI']:($_SERVER['PHP_SELF']?$_SERVER['PHP_SELF']:$_SERVER['SCRIPT_NAME']);
-        return 'http://'.$_SERVER['HTTP_HOST'].'/'.substr($uri, 0, strrpos($uri, '/')+1);
+        return 'http://'.$_SERVER['HTTP_HOST'].'/'.$uri;
     }
 
     //获取IP
