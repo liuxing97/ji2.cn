@@ -16,10 +16,6 @@ class Tongji extends Controller
         $visitLogObj = new VisitLog();
         //访问者统计模型
         $visitNumber = new VisitNumber();
-        //获取访问ip
-        $ip = $this->getIp();
-        //访问类型是拜访者
-        $type = 'visit';
         //记录到访问表//查询上一天访问者统计模型，写本日访问
         $log = $visitNumber -> orderBy('time','desc') -> first();
         //如果没有记录
@@ -29,7 +25,8 @@ class Tongji extends Controller
             $visitNumber -> uv = 1;
             $visitNumber -> pv = 1;
             $visitNumber -> save();
-        }else{
+        }
+        else{
             //如果有记录，判断是否是当日
             if($log -> time == mktime(0,0,0,date('m'),date('d'),date('Y'))){
                 //判断进行pv还是uv增加操作
@@ -76,7 +73,7 @@ class Tongji extends Controller
 
     function getSiteUrl() {
         $uri=$_SERVER['REQUEST_URI']?$_SERVER['REQUEST_URI']:($_SERVER['PHP_SELF']?$_SERVER['PHP_SELF']:$_SERVER['SCRIPT_NAME']);
-        return 'http://'.$_SERVER['HTTP_HOST'].substr($uri, 0, strrpos($uri, '/')+1);
+        return 'http://'.$_SERVER['HTTP_HOST'].'/'.substr($uri, 0, strrpos($uri, '/')+1);
     }
 
     //获取IP
