@@ -240,7 +240,7 @@
                 </div>
             </div>
         </div>
-        <div style="margin-bottom: 16px" class="more_article_help">左右滑动，挑选心仪商品哦~</div>
+        <div style="margin-bottom: 16px" class="more_article_help">点击切换，挑选心仪商品哦~</div>
     </div>
     {{--更多资讯-文章--}}
     <div class="more_article">
