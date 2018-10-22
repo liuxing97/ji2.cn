@@ -15,7 +15,7 @@
     <link rel="shortcut icon" href="/ji2_favicon.ico" type="image/x-icon"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta property="og:image" content="/share.png">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0,user-scalable=0;"/>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <script>
         var _hmt = _hmt || [];
