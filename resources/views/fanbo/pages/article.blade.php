@@ -202,7 +202,7 @@
     </div>
     {{--更多资讯-图片--}}
     <div class="more_article">
-        <div class="more_article_title">情报乐划</div>
+        <div class="more_article_title">点点情报</div>
         <div class="more_article_help">长按保存图片，或直接识别，进入详情页哦~</div>
         {{--关于本模块
             本模块随机获取图片，从近期15天发布的图片中进行抽取调用
@@ -355,7 +355,7 @@
                     //进行数据偏移处理，
                     //进行数据偏移处理，第一个lehuaModel为最后一个数据(last)，第二个+1(thisCard)，第三个+1(thisCard+1)
 //                    lehuaModel.eq(0).attr('src',datas.eq(thisCard-1).html());
-                    lehuaModel.eq(1).attr('src',datas.eq(thisCard).html());
+                    lehuaModel.eq(1).attr('src',datas.eq(datasLength-1).html());
 //                    lehuaModel.eq(2).attr('src',datas.eq(thisCard+1).html());
                 }else{
                     //先做加一处理
