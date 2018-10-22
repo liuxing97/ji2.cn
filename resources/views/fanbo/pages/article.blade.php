@@ -384,12 +384,13 @@
                 var startx;//让startx在touch事件函数里是全局性变量。
                 var endx;
                 var el = document.getElementById('more_article_huadong_box');//触摸区域。
-                function cons() {   //独立封装这个事件可以保证执行顺序，从而能够访问得到应该访问的数据。
-                    if (startx > endx) {  //判断左右移动程序
+                function cons() {
+                    //独立封装这个事件可以保证执行顺序，从而能够访问得到应该访问的数据。
+                    if (startx-60 > endx) {  //判断左右移动程序
                         //这是左滑，下一个，如果数据量大于三个，进行数据向下偏移，考虑循环显示
                         nextOne();
 
-                    } else {
+                    } else if(startx+60 < endx) {
                         //这是右滑，上一个，如果数据量大于三个，进行数据向上偏移
                         lastOne();
                     }
