@@ -217,21 +217,21 @@
             </div>
             {{--遍历，三个--}}
             <div class="more_article_huadong_box" id="more_article_huadong_box">
-                <div onclick="" class="more_article_huadong_box_main-main">
+                <div onmouseup="nextOne()" class="more_article_huadong_box_main-main">
                     <div class="more_article_huadong_box_main">
                         <div class="more_article_huadong_box_main_img">
                             <img src="/pages/img/logo.png"/>
                         </div>
                     </div>
                 </div>
-                <div onclick="" class="more_article_huadong_box_main-main">
+                <div onmouseup="nextOne()" class="more_article_huadong_box_main-main">
                     <div class="more_article_huadong_box_main">
                         <div class="more_article_huadong_box_main_img">
                             <img src="/pages/img/logo.png"/>
                         </div>
                     </div>
                 </div>
-                <div onclick="" class="more_article_huadong_box_main-main">
+                <div onmouseup="nextOne()" class="more_article_huadong_box_main-main">
                     <div class="more_article_huadong_box_main">
                         <div class="more_article_huadong_box_main_img">
                             <img src="/pages/img/logo.png"/>
@@ -408,7 +408,7 @@
                     cons();  //startx endx 的数据收集应该放在touchend事件后执行，而不是放在touchstart事件里执行，这样才能访问到touchstart和touchend这2个事件产生的startx和endx数据。另外startx和endx在_touch事件函数里是全局性的，所以在此函数中都可以访问得到，所以只需要注意事件执行的先后顺序即可。
                 });
             }
-            judge();
+//            judge();
         });
 
         //初始化情报乐划
