@@ -217,21 +217,21 @@
             </div>
             {{--遍历，三个--}}
             <div class="more_article_huadong_box" id="more_article_huadong_box">
-                <div onmouseup="nextOne()" class="more_article_huadong_box_main-main">
+                <div onmouseup="lastOne()" class="more_article_huadong_box_main-main">
                     <div class="more_article_huadong_box_main">
                         <div class="more_article_huadong_box_main_img">
                             <img src="/pages/img/logo.png"/>
                         </div>
                     </div>
                 </div>
-                <div onmouseup="nextOne()" class="more_article_huadong_box_main-main">
+                <div onmouseup="lastOne()" class="more_article_huadong_box_main-main">
                     <div class="more_article_huadong_box_main">
                         <div class="more_article_huadong_box_main_img">
                             <img src="/pages/img/logo.png"/>
                         </div>
                     </div>
                 </div>
-                <div onmouseup="nextOne()" class="more_article_huadong_box_main-main">
+                <div onmouseup="lastOne()" class="more_article_huadong_box_main-main">
                     <div class="more_article_huadong_box_main">
                         <div class="more_article_huadong_box_main_img">
                             <img src="/pages/img/logo.png"/>
@@ -262,7 +262,7 @@
             var prev_li = cur_li.prev();
             cur_li.animate({
                 height:'310px',
-                width:'220px',
+                width:'220px'
 
             });
             // 获取当前节点的上一个节点
