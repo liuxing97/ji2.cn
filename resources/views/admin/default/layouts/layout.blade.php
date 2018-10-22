@@ -651,11 +651,13 @@
     var table = undefined;
     var layer = undefined;
     var form = undefined;
-    layui.use(['table','layer','form','element'], function(){
+    var upload = undefined;
+    layui.use(['table','layer','form','element','upload'], function(){
         table = layui.table;
         layer = layui.layer;
         form = layui.form;
         element = layui.element;
+        upload = layui.upload;
     });
     //切换边栏
     var toggleCenscmsSidebar = function () {

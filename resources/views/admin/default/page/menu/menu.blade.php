@@ -414,8 +414,15 @@
                 //处理结果
                 console.log(res);
                 $('#page-main').html(res);
+                setTimeout(function () {
+                    layer.close(layer.index);
+                    layer.msg('切换分类成功');
+                },1000);
             }).catch(function (res) {
-                $('#page-main').html('找不到页面');
+                setTimeout(function () {
+                    layer.close(layer.index);
+                    layer.msg('切换分类失败');
+                },1000);
             });
         });
         //切换新建菜单项

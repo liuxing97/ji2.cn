@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\CmsPhotoArchive;
+use App\CmsPhotoItem;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
@@ -52,9 +53,19 @@ class CmsPhotoArchiveController extends Controller
                     'time' => $date
                 ];
             }
-            //删除后删除所有此分类的文章
-//            $acticleObj = new CmsArticle();
-//            $acticleObj -> where('archive',$keyItem) -> delete();
+            //删除后删除所有此分类的图片
+            $photoItemObj = new CmsPhotoItem();
+            //得到该分类所有图片记录
+            $photoItemObj = $photoItemObj -> where('archive',$keyItem) -> get();
+            //遍历并删除
+            foreach ($photoItemObj as $photoItem){
+                //得到路径
+                $path = substr($photoItem -> path,1);
+                //删除记录
+                $photoItem -> delete();
+                //删除图片
+                unlink($path);
+            }
         }
         //判断是否删除成功
         if($data['msg'] == 'delete success'){

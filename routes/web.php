@@ -276,9 +276,96 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
                 Route::get('/archive',function (){
                     return view('admin/default/page/cms/photo/archive');
                 });
+
+
                 //图片管理
-                Route::get('/list',function (){
-                    return view('admin/default/page/cms/photo/photo');
+                Route::get('/list',function (\Illuminate\Http\Request $request){
+                    //得到要加载的分类信息id
+                    $photoArchiveId = $request -> input('photoArchiveId');
+                    if(!$photoArchiveId){
+                    //没有指定加载哪个分类
+                        $photoArchiveId = 'all';
+                    }
+                    if($photoArchiveId == 'all'){
+                    //当前要访问的分类
+                        $thisPhotoArchiveArray = [
+                            'id' => 'all',
+                            'title' => '所有分类',
+                            'describe' => '所有分类',
+                            'running' => '1',
+                            'acticles' => 'Nah',
+                            'created_at' => '0000-00-00 00:00:00',
+                            'updated_at' => '0000-00-00 00:00:00'
+                        ];
+                        $obj = new \App\CmsPhotoItem();
+                        $objData = $obj -> orderBy('id','desc') -> get();
+                        if($objData){
+                            $photosArray = $objData -> toArray();
+                        }else{
+                            $photosArray = null;
+                        }
+                    }
+                    else{
+                    //查询要加载的分类情况
+                        $obj = new \App\CmsPhotoArchive();
+                    //如果是加载默认分类
+                        if($photoArchiveId == 'none'){
+                    //查询所有分类，并输出第一个
+                            $photoArchiveData = $obj -> first();
+                        }else{
+                            $photoArchiveData = $obj -> find($photoArchiveId);
+                        }
+                    //如果不存在要加载的分类
+                        if($photoArchiveData){
+                            $thisPhotoArchiveArray = $photoArchiveData -> toArray();
+                        }else{
+                            $thisPhotoArchiveArray = null;
+                        }
+                    //传入一个参数，是当前要访问的分类数据，如果不存在该分类数据（即访问的分类不存在，则返回空）
+                    //第二个参数，当前分类中的文章数据
+                    //得到第二个参数，查询要访问的分类的文章数据
+                        if($thisPhotoArchiveArray){
+                            $itemObj = new \App\CmsPhotoItem();
+                            $itemObj = $itemObj -> where('archive',$thisPhotoArchiveArray['id']) -> get();
+                            if($itemObj){
+                                $photosArray = $itemObj -> toArray();
+                            }else{
+                                $photosArray = null;
+                            }
+                        }else{
+                            $photosArray = null;
+                        }
+                    }
+
+                    //得到所有分类
+                    $photoArchiveObj = new \App\CmsPhotoArchive();
+                    $photoArchiveData = $photoArchiveObj -> get();
+                    if($photoArchiveData){
+                        $photoArchiveListArray = $photoArchiveData -> toArray();
+                    //追加一个分类,所有分类
+                        array_unshift($photoArchiveListArray,[
+                            'id' => 'all',
+                            'title' => '所有分类',
+                            'describe' => '所有分类',
+                            'running' => '1',
+                            'photos' => 'Nah',
+                            'created_at' => '0000-00-00 00:00:00',
+                            'updated_at' => '0000-00-00 00:00:00'
+                        ]);
+                    }else{
+                        $photoArchiveListArray = null;
+                    }
+                    return view('admin/default/page/cms/photo/photo',[
+                    //当前选择的分类的数据，如果值为null，有两种可能
+                    //1、当前访问的分类不存在
+                    //2、还没有创建任何分类
+                    //解决方案，在输出内容前，先判断是否存在分类
+                        'thisPhotoArchiveArray' => $thisPhotoArchiveArray,
+                    //当前分类下的图片内容
+                        'photosArray' => $photosArray,
+                    //所有图片分类
+                        'photoArchiveListArray' => $photoArchiveListArray
+                    ]);
                 });
             });
         });
@@ -337,6 +424,98 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
                 Route::post('/change','Admin\CmsArticleController@update');
             });
             Route::group(['prefix' => 'photo'],function (){
+                //上传
+                Route::post('/upload',function (\Illuminate\Http\Request $request){
+                    $data['time'] = date('Y-m-d H:i:s');
+                    $photoArchiveValue = $request -> input('photoArchiveValue');
+                    if($photoArchiveValue == 'none'){
+                        $data['msg'] = 'please select photo archive';
+                        return $data;
+                    }
+                    if ((($_FILES["file"]["type"] == "image/gif")
+                            || ($_FILES["file"]["type"] == "image/jpeg")
+                            || ($_FILES["file"]["type"] == "image/pjpeg")
+                            || ($_FILES["file"]["type"] == "image/png")
+                        )
+                        && ($_FILES["file"]["size"] < 1024*1024*2))
+                    {
+                        if ($_FILES["file"]["error"] > 0)
+                        {
+                            $data['error'] = "Return Code: " . $_FILES["file"]["error"] . "<br />";
+                        }
+                        //得到文件后缀名
+                        $type = substr($_FILES['file']['name'], strrpos($_FILES['file']['name'], '.')+1);
+//                        dump($type);
+                    }
+                    else
+                    {
+                       return  $data['msg'] = "Invalid file";
+                    }
+                    //量级：图片应为十万级，但一次只读最新的，所以还是需要放入数据库，好进行排列
+                    //写入数据库，使用id记录对应的路径。
+                    \Illuminate\Support\Facades\DB::beginTransaction();
+                    $obj = new \App\CmsPhotoItem();
+                    $obj -> archive = $photoArchiveValue;
+                    //路径是/uploadImg/月份/id.type
+                    $path ='uploadImg/';
+                    $obj -> path = $path;
+                    $obj -> save();
+                    $path = 'uploadImg/'.date('Y-m').'/'.$obj->id.'.'.$type;
+                    $obj -> path = '/'.$path;
+                    $obj -> save();
+                    if (file_exists($path))
+                    {
+                        $data['msg'] = 'create already exists';
+                        $data['error'] = $_FILES["file"]["name"] . " already exists. ";
+                    }
+                    else
+                    {
+                        if(!file_exists('uploadImg/'.date('Y-m'))){
+                            mkdir('uploadImg/'.date('Y-m'),0777,true);
+                        }
+                        move_uploaded_file($_FILES["file"]["tmp_name"],
+                            $path);
+                        if (file_exists($path))
+                        {
+                            \Illuminate\Support\Facades\DB::commit();
+                            $data['msg'] = 'create success';
+                        }else{
+                            \Illuminate\Support\Facades\DB::rollBack();
+                            $data['msg'] = 'created fail';
+                            $data['error'] = 'write file fail';
+                        }
+                    }
+                    return $data;
+                });
+                Route::post('/del',function (\Illuminate\Http\Request $request){
+                    \Illuminate\Support\Facades\DB::beginTransaction();
+                    $data['time'] = date('Y-m-d H:i:s');
+                    $id = $request -> input('id');
+                    $obj = new \App\CmsPhotoItem();
+                    $objRes = $obj -> find($id);
+
+//                    dump($objRes -> path);
+                    if(!$objRes){
+                        $data['msg'] = 'photo not find';
+                        return $data;
+                    }
+                    //得到路径
+                    $path = substr($objRes -> path,1);
+                    //删除记录
+                    $objRes -> delete();
+                    //删除图片
+                    $ret = unlink($path);
+                    if($ret){
+                        \Illuminate\Support\Facades\DB::commit();
+                        $data['msg'] = 'photo delete success';
+                    }else{
+                        \Illuminate\Support\Facades\DB::rollBack();
+                        $data['msg'] = 'photo delete fail';
+                    }
+                    return $data;
+                });
+            });
+            Route::group(['prefix' => 'photo'],function (){
                 //图片分类
                 Route::group(['prefix' => 'archive'],function (){
                     //新建
@@ -351,9 +530,6 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
         //更新密码
         Route::post('/safaty/password/change','Admin\UsersPasswordController@update');
     });
-
-
-
     Route::resource('permissions', 'Admin\PermissionsController');
     Route::post('permissions_mass_destroy', ['uses' => 'Admin\PermissionsController@massDestroy', 'as' => 'permissions.mass_destroy']);
     Route::resource('roles', 'Admin\RolesController');

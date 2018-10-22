@@ -179,3 +179,5 @@
         {{--//alert(res.errMsg);//错误提示--}}
     {{--});--}}
 {{--</script>--}}
+@section('js')
+@show
