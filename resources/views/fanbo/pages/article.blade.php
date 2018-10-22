@@ -263,7 +263,6 @@
             cur_li.animate({
                 height:'310px',
                 width:'220px'
-
             });
             // 获取当前节点的上一个节点
             // 把当前节点插入到上一个节点之前，如果不存在上一个节点，说明已经到达顶部
@@ -320,10 +319,10 @@
             //移除中间元素
             var cur_li = $('.more_article_huadong_box_main-main:nth-child(2)');
             var prev_li = cur_li.next();
-            cur_li.animate({
-                height:'310px',
-                width:'220px',
-            });
+//            cur_li.animate({
+//                height:'310px',
+//                width:'220px',
+//            });
             // 获取当前节点的上一个节点
             // 把当前节点插入到上一个节点之前，如果不存在上一个节点，说明已经到达顶部
             if(prev_li.length != 0){
@@ -339,10 +338,10 @@
             if(prev_li.length != 0){
                 prev_li.after(cur_li);
             }
-            cur_li.css({
-                height:'342px',
-                width:'245px'
-            });
+//            cur_li.css({
+//                height:'342px',
+//                width:'245px'
+//            });
 
             var datas = $(".more_article_huadong_data p");
             var lehuaModel = $(".more_article_huadong_box_main_img img");
