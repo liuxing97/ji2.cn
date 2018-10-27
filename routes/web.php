@@ -270,6 +270,22 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
                 $data = $request -> only('page','limit','archive');
                 //查询数据
             });
+            //文章编辑-得到当前文档记录
+            Route::post('/article/edit/getdata',function (\Illuminate\Http\Request $request){
+                //得到是修改哪个文章
+                $articleId = $request -> input('article_id');
+                //查询
+                $obj = new \App\CmsArticle();
+                $data = $obj -> find($articleId) -> toArray();
+                if($data){
+                    return [
+                        'msg' => 'get success',
+                        'data' => $data,
+                        'time' => date('Y-m-d H:i:s')
+                    ];
+                }
+            });
+
             //图片
             Route::group(['prefix' =>'/photo'],function (){
                 //分类管理
@@ -422,6 +438,8 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
                 Route::post('/del','Admin\CmsArticleController@delList');
                 //更改
                 Route::post('/change','Admin\CmsArticleController@update');
+                //编辑
+                Route::post('/edit','Admin\CmsArticleController@edit');
             });
             Route::group(['prefix' => 'photo'],function (){
                 //上传

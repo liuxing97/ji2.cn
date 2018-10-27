@@ -184,19 +184,58 @@
 
     </style>
     <div class="content">
+        <style>
+            .article-icon{
+                margin-top: 16px;
+                border: 1px solid #e5e5e5;
+                padding: 20px;
+            }
+            .article-icon-main{
+                width: 100%;
+                text-align: center;
+            }
+            .article-icon-main img{
+                max-width: 100%;
+                max-height: 100%;
+            }
+        </style>
         <div class="content-header">
             <h3 class="articletitle"><i class="layui-icon layui-icon-read"></i>{{$articleData['title']}}</h3>
             <div class="release_time">{{$articleData['created_at']}}</div>
-            <hr class="articletitle_hr">
+            {{--<hr class="articletitle_hr">--}}
         </div>
         <div class="content-words">
             <div class="describe"><span>描述：</span>
                 {{$articleData['describe']}}
-                <hr>
             </div>
-            <div class="content_main">
+            @if($articleData['icon'])
+                <div class="article-icon">
+                    <div class="article-icon-main">
+                        <img src="{{$articleData['icon']}}">
+                    </div>
+                </div>
+                @else
+                <hr>
+            @endif
+            <div style="margin-top: 1rem" class="content_main">
                 <span class="content_main_title">正文：</span>
-                {!! $articleData['content'] !!}
+                <div class="articleContent">
+                    {!! $articleData['content'] !!}
+                </div>
+
+                <a style="display: none;" class="goBuyButton" target="_blank" href="">
+                    <div style="
+                    width: 100%;
+                    text-align: center;
+                    background: #FF5722;
+                    color: #fff;
+                    line-height: 38px;
+                    margin-top: 20px;
+                    border-radius: 3px;
+                    letter-spacing: 8px;
+                    ">Go！购买</div>
+                </a>
+
             </div>
         </div>
     </div>
@@ -449,8 +488,23 @@
                 }
             }
         }
+        //GoBuyButton
+        function goBuyButton(){
+            var dom = $('.articleContent a').eq(0);
+            var goBuyButton = $('.goBuyButton').eq(0);
+            console.log("GoBuyButton");
+            console.log(dom.attr('href'));
+            //显示按钮
+            goBuyButton.eq(0).attr('href',dom.attr('href'));
+            console.log(dom.attr('href'))
+            if(dom.attr('href') !== undefined){
+                goBuyButton.show();
+            }
+
+        }
         $(document).ready(function (){
             initLehua();
+            goBuyButton();
         });
     </script>
     @endsection

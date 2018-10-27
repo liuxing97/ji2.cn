@@ -102,32 +102,28 @@
         </div>
 
     <div class="articleList">
+        <style>
+            .article-icon{}
+            .article-icon-main{
+                width: 100%;
+                text-align: center;
+            }
+            .article-icon-main img{
+                max-width: 100%;
+                max-height: 100%;
+            }
+        </style>
         @if($dataListArray['data'])
             @foreach($dataListArray['data'] as $item)
                 {{--如果是纯文字，无缩略图--}}
                 @if(!$item['icon'])
                     <a href="/article/{{$item['id']}}">
-                        <div class="article">
+                    <div class="article">
                             <div class="article-header">
                                 <h3 class="articletitle"><i class="layui-icon layui-icon-read"></i>{{$item['title']}}</h3>
                                 <div class="release_time">{{$item['created_at']}}</div>
                                 <hr class="articletitle_hr">
                             </div>
-                            <div class="article-words">
-                                <div class="describe">
-                                    <span>描述：</span>
-                                    {{$item['describe']}}
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                @else
-                    <div class="article">
-                        <div class="article-header">
-                            <h3 class="articletitle"><i class="layui-icon layui-icon-read"></i>{{$item['title']}}</h3>
-                            <div class="release_time">{{$item['created_at']}}</div>
-                            <hr class="articletitle_hr">
-                        </div>
                         <div class="article-words">
                             <div class="describe">
                                 <span>描述：</span>
@@ -135,6 +131,28 @@
                             </div>
                         </div>
                     </div>
+                    </a>
+                @else
+                    <a href="/article/{{$item['id']}}">
+                    <div class="article">
+                        <div class="article-icon">
+                            <div class="article-icon-main">
+                                <img src="{{$item['icon']}}">
+                            </div>
+                        </div>
+                            <div class="article-header">
+                                <h3 class="articletitle"><i class="layui-icon layui-icon-read"></i>{{$item['title']}}</h3>
+                                <div class="release_time">{{$item['created_at']}}</div>
+                                <hr class="articletitle_hr">
+                            </div>
+                        <div class="article-words">
+                            <div class="describe">
+                                <span>描述：</span>
+                                {{$item['describe']}}
+                            </div>
+                        </div>
+                    </div>
+                    </a>
                 @endif
             @endforeach
         @endif

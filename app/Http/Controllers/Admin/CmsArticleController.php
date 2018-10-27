@@ -97,4 +97,29 @@ class CmsArticleController extends Controller
         }
         return $data;
     }
+
+    //编辑
+    function edit(Request $request){
+        $data['time'] = date('Y-m-d H:i:s');
+        $article = $request -> input('article');
+        $title = $request -> input('title');
+        $archive = $request -> input('archive');
+        $icon = $request -> input('icon');
+        $describe = $request -> input('describe');
+        $content = $request -> input('content');
+        $obj = new CmsArticle();
+        $obj =$obj -> find($article);
+        $obj -> title = $title;
+        $obj -> archive = $archive;
+        $obj -> icon = $icon;
+        $obj -> describe = $describe;
+        $obj -> content = $content;
+        $res = $obj -> save();
+        if($res){
+            $data['msg'] = 'edit success';
+        }else{
+            $data['msg'] = 'edit fail';
+        }
+        return $data;
+    }
 }
