@@ -46,6 +46,7 @@ Route::get('/huodong/wechat/2018/11/11',function (\Illuminate\Http\Request $requ
         //测试发送红包
         $payObj = new \App\Http\Controllers\WeChat\Pay();
         $payObj -> payToUser($code);
+        echo "123";
     }else{
         //判断是否已授权(已将用户信息保存到session中)，如果没有授权，跳转到授权页面
         $userInfo = session('wechat_web_userinfor');
