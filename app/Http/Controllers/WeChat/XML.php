@@ -8,10 +8,12 @@ use App\Http\Controllers\Controller;
 class XML extends Controller
 {
     //
-    public static function arr2xml($data, $root = true){
+    function arr2xml($data, $root = true){
         $str="";
         if($root)$str .= "<xml>";
         foreach($data as $key => $val){
+            //去掉key中的下标[]
+            $key = preg_replace('/\[\d*\]/', '', $key);
             if(is_array($val)){
                 $child = arr2xml($val, false);
                 $str .= "<$key>$child</$key>";
