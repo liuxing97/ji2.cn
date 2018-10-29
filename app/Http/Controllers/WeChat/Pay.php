@@ -46,7 +46,7 @@ class Pay extends Controller
         $sign = strtoupper($sign);
         $data=[
             'mch_appid'=>$mch_appid,
-            'mchild'=>$mchid,
+            'mchid'=>$mchid,
             'nonce_str'=>$nonce_str,
             'partner_trade_no'=>$partner_trade_no,
             'openid' => $openid,
