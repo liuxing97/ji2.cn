@@ -7,8 +7,12 @@ use App\Http\Controllers\Controller;
 
 class Client extends Controller
 {
+
     //获取用户OPENID
     function openid(){
-        
+
     }
+
+
+
 }

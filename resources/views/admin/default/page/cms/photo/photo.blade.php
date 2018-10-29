@@ -92,7 +92,19 @@
                             cursor: pointer;
                         }
                         .photo-list-itembox:hover .photo-list-itembox-del{
-                            display: inline-block;
+                            display: block;
+                        }
+                        .photo-list-itembox:hover .photo-list-itembox-describe-change{
+                            top:6px;
+                        }
+                        .photo-list-itembox-describe-change{
+                            position: relative;
+                            top:-2000px;
+                        }
+                        .photo-list-itembox-describe{
+                            text-align: center;
+                            margin-top: 12px;
+                            color: #9a9a9a;
                         }
                     </style>
                     {{--图片列表--}}
@@ -107,10 +119,14 @@
                                         <img src="{{$item['path']}}" />
                                     </div>
                                 </div>
-                                <div class="photo-list-itembox-id">图片ID：{{$item['id']}}</div>
+                                <div class="photo-list-itembox-id">
+                                    <span>图片ID：{{$item['id']}}</span>
+                                    <div onclick="changePhotoDescribe({{$item['id']}})" class="photo-list-itembox-describe-change" style="color: #5FB878">修改描述</div>
+                                </div>
                                 <div class="photo-list-itembox-del" onclick="
                                         actionPhotoId={{$item['id']}};confirmPanel()
                                         ">删除图片</div>
+                                <div class="photo-list-itembox-describe photo-list-itembox-describe-{{$item['id']}}">@if($item['describe']){{$item['describe']}}@else该图片还没有描述@endif</div>
                             </div>
                         @endforeach
                     </div>
@@ -363,4 +379,59 @@
             layer.close(index);
         });
     }
+    var photoId = undefined;
+    //更改图片描述操作
+    function changePhotoDescribe(id){
+        var describe = $('.photo-list-itembox-describe-'+id).html();
+        if(describe === '该图片还没有描述'){
+            describe = ''
+        }
+        //得到描述的值
+        layer.prompt({
+            title: '修改描述 图片ID:'+id,
+            formType: 0, //输入框类型，支持0（文本）默认1（密码）2（多行文本）
+            value: describe, //初始时的值，默认空字符
+            maxlength: 140 //可输入文本的最大长度，默认500
+        },function (value){
+            //请求修改
+            http.post('/admin/setting/cms/photo/describe/change',{
+                photoId:id,
+                describe:value
+            }).then(function (res){
+                console.log(res);
+                if(res.msg === 'change success'){
+                    setTimeout(function () {
+                        layer.close(layer.index);
+                        layer.msg('更改成功');
+                        location.reload(true);
+                    },1000)
+                }else if(res.msg === 'change fail'){
+                    setTimeout(function () {
+                        layer.close(layer.index);
+                        layer.msg('上传失败,'+res.error)
+                    },1000)
+                }else if(res.msg === 'create already exists'){
+                    setTimeout(function () {
+                        layer.close(layer.index);
+                        layer.msg('异常的重复上传')
+                    },1000)
+                }else{
+                    setTimeout(function () {
+                        layer.close(layer.index);
+                        layer.msg('上传异常')
+                    },1000)
+                }
+            });
+        });
+    }
+    //确认更改
+    function changePhotoDescribeAction(){
+
+    }
 </script>
+
+
+
+
+
+

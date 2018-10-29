@@ -210,27 +210,22 @@
                 http.post('/admin/setting/cms/photo/archive/del',{
                     keylist:temp
                 }).then(function (res) {
-                    if(res.msg === 'delete success'){
+                    if(res.msg === 'change success'){
                         setTimeout(function () {
                             layer.close(layer.index);
-                            layer.msg('分类删除成功');
+                            layer.msg('图片描述更改成功');
                             location.reload(true);
                         },1000)
-                    }else if(res.msg === 'delete item has fail'){
+                    }else if(res.msg === 'change fail'){
                         setTimeout(function () {
                             layer.close(layer.index);
-                            layer.msg('分类删除失败');
-                        },1000)
-                    }else if(res.msg === 'delete item not find'){
-                        setTimeout(function () {
-                            layer.close(layer.index);
-                            layer.msg('分类数据未找到');
+                            layer.msg('图片描述更改失败');
                         },1000)
                     }else
                     {
                         setTimeout(function () {
                             layer.close(layer.index);
-                            layer.msg('分类删除异常，请刷新页面重试');
+                            layer.msg('图片描述更改异常，请刷新页面重试');
                         },1000)
                     }
                 })
