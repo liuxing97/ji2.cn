@@ -50,18 +50,15 @@ class Pay extends Controller
             'nonce_str'=>$nonce_str,
             'partner_trade_no'=>$partner_trade_no,
             'openid' => $openid,
-
-
-
-
             'check_name'=>$check_name,
             'amount'=>$amount,
             'desc'=>$desc,
             'spbill_create_ip'=>$spbill_create_ip,
             'sign'=>$sign,
         ];
+        dump($data);
         $url = 'https://api.mch.weixin.qq.com/mmpaymkttransfers/promotion/transfers';
-        $xml = XML::ToXml($data);
+        $xml = XML::arr2xml($data);
         dump($xml);
         $ch = curl_init();
         $second=30;

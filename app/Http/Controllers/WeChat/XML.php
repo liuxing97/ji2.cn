@@ -8,22 +8,18 @@ use App\Http\Controllers\Controller;
 class XML extends Controller
 {
     //
-    public static function ToXml($arr)
-    {
-        if(!is_array($arr) || count($arr) <= 0)
-        {
-            echo '数据异常';
-        }
-        $xml = "<xml>";
-        foreach ($arr as $key=>$val)
-        {
-            if (is_numeric($val)){
-                $xml.="<".$key.">".$val."</".$key.">";
+    public static function arr2xml($data, $root = true){
+        $str="";
+        if($root)$str .= "<xml>";
+        foreach($data as $key => $val){
+            if(is_array($val)){
+                $child = arr2xml($val, false);
+                $str .= "<$key>$child</$key>";
             }else{
-                $xml.="<".$key."><![CDATA[".$val."]]></".$key.">";
+                $str.= "<$key><![CDATA[$val]]></$key>";
             }
         }
-        $xml.="</xml>";
-        return $xml;
+        if($root)$str .= "</xml>";
+        return $str;
     }
 }
