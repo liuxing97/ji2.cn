@@ -58,7 +58,8 @@ class Pay extends Controller
         ];
         dump($data);
         $url = 'https://api.mch.weixin.qq.com/mmpaymkttransfers/promotion/transfers';
-        $xml = XML::arr2xml($data);
+        $xml = new XML();
+        $xml = $xml -> arrayToXml($data);
         dump($xml);
         $ch = curl_init();
         $second=30;
