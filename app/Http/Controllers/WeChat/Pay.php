@@ -29,14 +29,14 @@ class Pay extends Controller
         $desc = "测试";
         $spbill_create_ip = '111.230.231.164';
         $sign =
-            "mch_appid=".$mch_appid.
+            "amount=".$amount.
+            "&check_name=".$check_name.
+            "&desc=".$desc.
+            "&mch_appid=".$mch_appid.
             "&mchid=".$mchid.
             "&nonce_str=".$nonce_str.
-            "&partner_trade_no=".$partner_trade_no.
             "&openid=".$openid.
-            "&check_name=".$check_name.
-            "&amount=".$amount.
-            "&desc=".$desc.
+            "&partner_trade_no=".$partner_trade_no.
             "&spbill_create_ip=".$spbill_create_ip;
         //拼接,key为商户平台设置的密钥key
         $sign = $sign."&key=qOj0ITUBCqZMojVBuAE7UeVkDhvMytF7";
