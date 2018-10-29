@@ -28,14 +28,16 @@ class Pay extends Controller
         $amount = 0.36;
         $desc = "测试";
         $spbill_create_ip = '111.230.231.164';
-        $sign = "appid=".$appid.
-                "&openid=".$openid.
+        $sign =
+            "&mch_appid=".$mch_appid.
                 "&mchid=".$mchid.
-                "&mch_appid=".$mch_appid.
-                "&nonce_str=".$nonce_str.
-                "&partner_trade_no=".$partner_trade_no.
-                "&check_name=".$check_name.
-                "&amount=".$amount.
+            "&nonce_str=".$nonce_str.
+            "&partner_trade_no=".$partner_trade_no.
+            "&openid=".$openid.
+            "&check_name=".$check_name.
+            "&amount=".$amount.
+
+
                 "&desc=".$desc.
                 "&spbill_create_ip=".$spbill_create_ip;
         //拼接,key为商户平台设置的密钥key
@@ -43,12 +45,15 @@ class Pay extends Controller
         $sign = md5($sign);
         $sign = strtoupper($sign);
         $data=[
-            'appid'=>$appid,
-            'openid' => $openid,
-            'mchild'=>$mchid,
             'mch_appid'=>$mch_appid,
+            'mchild'=>$mchid,
             'nonce_str'=>$nonce_str,
             'partner_trade_no'=>$partner_trade_no,
+            'openid' => $openid,
+
+
+
+
             'check_name'=>$check_name,
             'amount'=>$amount,
             'desc'=>$desc,
