@@ -30,8 +30,9 @@ class Pay extends Controller
         $spbill_create_ip = '111.230.231.164';
         $sign = "appid=".$appid.
                 "&openid=".$openid.
-                "&mch_appid=".$mch_appid.
                 "&mchid=".$mchid.
+                "&mch_appid=".$mch_appid.
+
                 "&nonce_str=".$nonce_str.
                 "&partner_trade_no=".$partner_trade_no.
                 "&check_name=".$check_name.
@@ -45,8 +46,8 @@ class Pay extends Controller
         $data=[
             'appid'=>$appid,
             'openid' => $openid,
-            'mch_appid'=>$mch_appid,
             'mchild'=>$mchid,
+            'mch_appid'=>$mch_appid,
             'nonce_str'=>$nonce_str,
             'partner_trade_no'=>$partner_trade_no,
             'check_name'=>$check_name,
