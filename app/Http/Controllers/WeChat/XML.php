@@ -16,7 +16,8 @@ class XML extends Controller
             if (is_numeric($val)){
                 $xml.="<".$key.">".$val."</".$key.">";
             }else{
-                $xml.="<".$key."><![CDATA[".$val."]]></".$key.">";
+//                $xml.="<".$key."><![CDATA[".$val."]]></".$key.">";
+                $xml.="<".$key.">".$val."</".$key.">";
             }
         }
         $xml.="</xml>";
