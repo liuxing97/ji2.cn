@@ -54,7 +54,8 @@ Route::get('/huodong/wechat/2018/11/11',function (\Illuminate\Http\Request $requ
             //参与活动链接
             $appid = \App\WechatConfig::where('key','appid')->first();
             $appid = $appid -> value;
-            $huodongUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid={$appid}&redirect_uri=http://www.ji2.cn/huodong/wechat/2019/11/11&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
+            $thisUrl = "http://www.ji2.cn/huodong/wechat/2018/11/11";
+            $huodongUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid={$appid}&redirect_uri=".$thisUrl."&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
 
             echo "输出视图，且告诉前端未授权,显示微信授权按钮<br>";
             echo "<a href='{$huodongUrl}'>参与活动</a>";
