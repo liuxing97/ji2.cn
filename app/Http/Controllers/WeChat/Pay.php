@@ -25,7 +25,7 @@ class Pay extends Controller
         $nonce_str = md5(rand(0,999999999));
         $partner_trade_no = time();
         $check_name = 'NO_CHECK';
-        $amount = 0.36;
+        $amount = 36;
         $desc = "测试";
         $spbill_create_ip = '111.230.231.164';
         $sign =
