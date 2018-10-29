@@ -1,7 +1,13 @@
 <?php
 use Illuminate\Support\Facades\Route;
 
-
+Route::get('/getcode',function (\Illuminate\Http\Request $request){
+    echo $request -> input('code');
+});
+Route::get('/wechat/get/accesstoken',function (){
+   $obj = new \App\Http\Controllers\WeChat\AccessToken();
+   $obj -> get();
+});
 //该路径不可使用ui.checkdata中间件
 Route::get('/', function () { return redirect('/index'); });
 //两种首页路由，此时开启的是自动寻址模式
@@ -442,6 +448,21 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
                 Route::post('/edit','Admin\CmsArticleController@edit');
             });
             Route::group(['prefix' => 'photo'],function (){
+                //修改图片描述
+                Route::post('/describe/change',function (\Illuminate\Http\Request $request){
+                    $data['time'] = date('Y-m-d H:i:s');
+                    $value = $request -> only('photoId','describe');
+                    $obj = new \App\CmsPhotoItem();
+                    $obj = $obj -> find($value['photoId']);
+                    $obj -> describe = $value['describe'];
+                    $ret = $obj -> save();
+                    if($ret){
+                        $data['msg'] = 'change success';
+                    }else{
+                        $data['msg'] = 'change fail';
+                    }
+                    return $data;
+                });
                 //上传
                 Route::post('/upload',function (\Illuminate\Http\Request $request){
                     $data['time'] = date('Y-m-d H:i:s');
