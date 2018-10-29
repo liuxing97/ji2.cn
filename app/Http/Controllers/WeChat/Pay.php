@@ -76,6 +76,7 @@ class Pay extends Controller
         $data = curl_exec($ch);
         if($data){
             curl_close($ch);
+            dump($data);
             return $data;
         }else{
             $error = curl_errno($ch);
