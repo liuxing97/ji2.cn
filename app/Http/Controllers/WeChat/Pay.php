@@ -32,7 +32,6 @@ class Pay extends Controller
                 "&openid=".$openid.
                 "&mchid=".$mchid.
                 "&mch_appid=".$mch_appid.
-
                 "&nonce_str=".$nonce_str.
                 "&partner_trade_no=".$partner_trade_no.
                 "&check_name=".$check_name.
@@ -58,6 +57,7 @@ class Pay extends Controller
         ];
         $url = 'https://api.mch.weixin.qq.com/mmpaymkttransfers/promotion/transfers';
         $xml = XML::ToXml($data);
+        dump($xml);
         $ch = curl_init();
         $second=30;
         curl_setopt($ch,CURLOPT_TIMEOUT,$second);
