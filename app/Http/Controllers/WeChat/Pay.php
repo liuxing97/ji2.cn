@@ -29,7 +29,7 @@ class Pay extends Controller
         $desc = "测试";
         $spbill_create_ip = '111.230.231.164';
         $sign =
-            "&mch_appid=".$mch_appid.
+            "mch_appid=".$mch_appid.
             "&mchid=".$mchid.
             "&nonce_str=".$nonce_str.
             "&partner_trade_no=".$partner_trade_no.
