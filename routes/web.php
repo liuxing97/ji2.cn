@@ -29,7 +29,7 @@ Route::get('/huodong/wechat/2018/11/11',function (\Illuminate\Http\Request $requ
     }else{
         //判断是否已授权(已将用户信息保存到session中)，如果没有授权，跳转到授权页面
         $weUserInfo = session('wechat_web_userinfor');
-        dump($weUserInfo);
+//        dump($weUserInfo);
         //从来没有进行过授权
         if(!$weUserInfo){
             //输出视图，且告诉前端未授权,显示微信授权按钮
