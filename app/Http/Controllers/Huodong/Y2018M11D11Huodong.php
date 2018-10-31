@@ -79,7 +79,7 @@ class Y2018M11D11Huodong extends Controller
             //如果有授权过，则可能是申请活动授权的情况
             if($weUserInfo){
                 if($openid == $weUserInfo -> openid){
-                    $this -> wechatClientWrite($openid,$weUserInfo,'true');
+                    $this -> wechatClientWrite(null,$weUserInfo,'true');
                 }
                 //如果授权过，访问的活动又不存在，我们认为其是非法访问
                 else{
