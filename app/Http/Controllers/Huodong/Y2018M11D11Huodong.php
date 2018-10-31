@@ -57,7 +57,7 @@ class Y2018M11D11Huodong extends Controller
         $originatorData = [];
         //参数初始化9    ·当前登录用户，不一定授权过，但是申请抢红包的用户，是一定授权过的
         $weUserInfo = session('wechat_web_userinfor');
-
+        $zhuli=0;
 
 
 
@@ -170,6 +170,7 @@ class Y2018M11D11Huodong extends Controller
             //如果已记录助力，直接进入
             $visitLog = $visitLogObj-> where('openid',$weUserInfo -> openid) -> where('visit',$openid) -> first();
             if($visitLog){
+                $zhuli =1;
                 echo "已记录助力，直接进入<br>";
             }else{
                 //助力
@@ -201,7 +202,8 @@ class Y2018M11D11Huodong extends Controller
             'huodongUrl' => $huodongUrl,
             'helpListArray' => $helpListArray,
             'helperNum' => $helperNum,
-            'originatorData' => $originatorData
+            'originatorData' => $originatorData,
+            'zhuli' => $zhuli
         ]);
     }
 

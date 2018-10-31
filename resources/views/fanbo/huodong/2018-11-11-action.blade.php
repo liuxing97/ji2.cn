@@ -154,8 +154,15 @@
                                 echo $num;
                             }
                     @endphp个人助力他，点击下方，助力他吧！</p>
-                    <a href="{{$applyShouquanUrl}}"><div class="btn-zhuli">为他助力</div></a>
-                    <a href="{{$huodongUrl}}"><div class="btn-qiang">我也要抢红包</div></a>
+                    @if($zhuli)
+                        @else
+                        <a href="{{$applyShouquanUrl}}"><div class="btn-zhuli">为他助力</div></a>
+                    @endif
+                    @if($zhuli)
+                        <a href="{{$huodongUrl}}"><div class="btn-qiang">已助力，我也要抢红包</div></a>
+                    @else
+                        <a href="{{$huodongUrl}}"><div class="btn-qiang">我也要抢红包</div></a>
+                    @endif
                 </div>
             </div>
             @else
