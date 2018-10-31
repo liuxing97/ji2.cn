@@ -18,13 +18,6 @@ Route::get('/huodong/wechat/2018/11/11',function (\Illuminate\Http\Request $requ
         //再进行跳转至活动详情页面，该页面携带活动发起人的openid
         //然后要求用户点击转发
 
-    //活动详情页面
-        //获取用户信息
-        //判断用户是否为发起人，与携带的发起人openid进行比对。
-        //如果是发起人，显示还插几个助力，显示返回活动介绍页面按钮（页面一）
-        //如果不是发起人，显示助力成功界面，同时显示抢红包按钮，抢红包按钮退回活动介绍页面，（页面二）
-        //如果不是发起人，检测是否是第八个人，如果是，补充显示，您的好友红包已入账。（页面三）
-
     //判断授权的原则，先看是否是从授权页面过来的，即携带了code，再看是否已授权过
 
     //判断是否存在code
@@ -41,12 +34,20 @@ Route::get('/huodong/wechat/2018/11/11',function (\Illuminate\Http\Request $requ
         //参与活动链接
         $appid = \App\WechatConfig::where('key','appid')->first();
         $appid = $appid -> value;
-        $huodongUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid={$appid}&redirect_uri=http://www.ji2.cn/huodong/wechat/2019/11/11&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
-        echo "输出视图，且告诉前端已授权，直接显示参与活动按钮";
-        //测试发送红包
-        $payObj = new \App\Http\Controllers\WeChat\Pay();
-        $payObj -> payToUser($weUserInfo->openid);
-        echo "123";
+        //参与活动实际地址
+        $jumpSrc = "http://www.ji2.cn/huodong/wechat/2019/11/11/action";
+        $huodongUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid={$appid}&redirect_uri=".$jumpSrc."&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
+
+
+        //        echo "输出视图，且告诉前端已授权，直接显示参与活动按钮";
+        //        测试发送红包
+        //        $payObj = new \App\Http\Controllers\WeChat\Pay();
+        //        $payObj -> payToUser($weUserInfo->openid);
+        //        echo "123";
+
+
+
+
     }else{
         //判断是否已授权(已将用户信息保存到session中)，如果没有授权，跳转到授权页面
         $userInfo = session('wechat_web_userinfor');
@@ -61,11 +62,12 @@ Route::get('/huodong/wechat/2018/11/11',function (\Illuminate\Http\Request $requ
             $thisUrl = "http://www.ji2.cn/huodong/wechat/2018/11/11";
             $huodongUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid={$appid}&redirect_uri=".$thisUrl."&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
 
-            echo "输出视图，且告诉前端未授权,显示微信授权按钮<br>";
-            echo "<a href='{$huodongUrl}'>参与活动</a>";
+//            echo "输出视图，且告诉前端未授权,显示微信授权按钮<br>";
+//            echo "<a href='{$huodongUrl}'>参与活动</a>";
         }else{
+
             //直接进入(已在其他页面授权)
-            echo "直接进入，已再其他页面授权";
+//            echo "直接进入，已再其他页面授权";
         }
     }
     //测试时，直接界面输出未授权/活动跳转链接
@@ -74,7 +76,7 @@ Route::get('/huodong/wechat/2018/11/11',function (\Illuminate\Http\Request $requ
         'userInfo' => $weUserInfo,
         'huodongUrl' => $huodongUrl
     ]);
-});
+})->middleware('ui.checkdata');
 //活动详情页面
 Route::get('/huodong/wechat/2018/11/11/action',function (\Illuminate\Http\Request $request){
     //获取用户信息
