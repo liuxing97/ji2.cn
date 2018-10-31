@@ -264,6 +264,19 @@
     <div class="helperList">
         <div class="helperListTitle">好友助力列表</div>
         <div class="helperListMain">
+            <div class="helperItem">
+                <div class="helperItemIcon">
+                    {{--<img src="http://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eoAActpA8Yt8MVEhDy4e5icKxTJqZMg4ybZ8GhrH1BxsEEVIibDeyickYib8ic133h1WYVmFvJqpOibBibiaQ/132" alt="">--}}
+                    <img src="{{$originatorData['headimgurl']}}" alt="">
+                </div>
+                <div class="helperItemMore">
+                    <div class="helperItemNickname">{{$originatorData['nickname']}}(发起人)</div>
+                    <div class="helperHelpTime">
+                        <span class="t">发起时间：</span>
+                        <span class="v">{{$originatorData['created_at']}}</span>
+                    </div>
+                </div>
+            </div>
             {{--一个示例--}}
             @foreach($helpListArray as $item)
             <div class="helperItem">
