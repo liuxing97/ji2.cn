@@ -167,6 +167,7 @@ class Y2018M11D11Huodong extends Controller
 
         //如果是访问者
         if($userIdentity == 'visitor'){
+            dump($weUserInfo);
             //如果已记录助力，直接进入
             $visitLog = $visitLogObj-> where('openid',$weUserInfo -> openid) -> where('visit',$openid) -> first();
             if($visitLog){
