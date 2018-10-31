@@ -136,7 +136,9 @@
             }
         </style>
         @if($userIdentity == 'visitor')
-            @php(echo $userIdentity;)
+            @php
+                echo $userIdentity;
+            @endphp
             {{--助力者显示--}}
             <div class="visitorShow">
                 <div class="originatorIcon">
