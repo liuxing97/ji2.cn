@@ -15,6 +15,10 @@ Route::get('/huodong/wechat/2018/11/11',function (\Illuminate\Http\Request $requ
 
     //判断是否存在code
     $code = $request -> input('code');
+    $applyShouquanUrl = false;
+    $weUserInfo = false;
+    $grent =false;
+    $huodongUrl = false;
     if($code){
         //输出视图，且告诉前端已授权，直接显示参与活动按钮
         $grent = true;
@@ -29,9 +33,8 @@ Route::get('/huodong/wechat/2018/11/11',function (\Illuminate\Http\Request $requ
         $appid = $appid -> value;
         //参与活动实际地址
         $jumpSrc = "http://www.ji2.cn/huodong/wechat/2019/11/11/action?openid=".$weUserInfo->openid;
-        dump($jumpSrc);
+//        dump($jumpSrc);
         $huodongUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid={$appid}&redirect_uri=".$jumpSrc."&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
-
 
         //        echo "输出视图，且告诉前端已授权，直接显示参与活动按钮";
         //        测试发送红包
