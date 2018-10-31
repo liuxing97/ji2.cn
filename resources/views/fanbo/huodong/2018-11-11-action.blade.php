@@ -139,12 +139,19 @@
             {{--助力者显示--}}
             <div class="visitorShow">
                 <div class="originatorIcon">
-                    <img src="http://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eoAActpA8Yt8MVEhDy4e5icKxTJqZMg4ybZ8GhrH1BxsEEVIibDeyickYib8ic133h1WYVmFvJqpOibBibiaQ/132" alt="">
+                    <img src="{{$originatorData['headimgurl']}}" alt="">
                 </div>
                 <div class="originatorInfo">
-                    <p style="color: brown;">您的好友【 泡沫 】正在抢红包！</p>
-                    <p style="margin-top: 1rem;">还需要2个人助力他，点击下方，助力他吧！</p>
-                    <a href="{{$applyShouquanUrl}}"><div class="btn-zhuli">为【 泡沫 】助力</div></a>
+                    <p style="color: brown;">您的好友【 {{$originatorData['nickname']}} 】正在抢红包！</p>
+                    <p style="margin-top: 1rem;">还需要@php
+                            $num = 2-$helperNum;
+                            if($num <0){
+                                echo "0";
+                            }else{
+                                echo $num;
+                            }
+                    @endphp个人助力他，点击下方，助力他吧！</p>
+                    <a href="{{$applyShouquanUrl}}"><div class="btn-zhuli">为【 {{$originatorData['nickname']}} 】助力</div></a>
                     <a href="{{$huodongUrl}}"><div class="btn-qiang">我也要抢红包</div></a>
                 </div>
             </div>
@@ -155,29 +162,23 @@
                 </div>
                 <div class="originatorInfo">
                     <p style="color: brown;">成功参与抢红包啦！</p>
-                    <p style="margin-top: 1rem;">还需要6个人助力，分享本页面，让小伙伴们助力吧！</p>
+                    <p style="margin-top: 1rem;">还需要@php
+                            $num = 2-$helperNum;
+                            if($num <0){
+                                echo "0";
+                            }else{
+                                echo $num;
+                            }
+                        @endphp个人助力，分享本页面，让小伙伴们助力吧！</p>
                 </div>
                 <div class="helperIconListTitle">都有哪些小伙伴为你助力了：</div>
                 {{--已经助力的小伙伴/图标方式--}}
                 <div class="helperIconList">
-                    <div class="helperIconItem">
-                        <img src="http://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eoAActpA8Yt8MVEhDy4e5icKxTJqZMg4ybZ8GhrH1BxsEEVIibDeyickYib8ic133h1WYVmFvJqpOibBibiaQ/132" alt="">
-                    </div>
-                    <div class="helperIconItem">
-                        <img src="http://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eoAActpA8Yt8MVEhDy4e5icKxTJqZMg4ybZ8GhrH1BxsEEVIibDeyickYib8ic133h1WYVmFvJqpOibBibiaQ/132" alt="">
-                    </div>
-                    <div class="helperIconItem">
-                        <img src="http://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eoAActpA8Yt8MVEhDy4e5icKxTJqZMg4ybZ8GhrH1BxsEEVIibDeyickYib8ic133h1WYVmFvJqpOibBibiaQ/132" alt="">
-                    </div>
-                    <div class="helperIconItem">
-                        <img src="http://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eoAActpA8Yt8MVEhDy4e5icKxTJqZMg4ybZ8GhrH1BxsEEVIibDeyickYib8ic133h1WYVmFvJqpOibBibiaQ/132" alt="">
-                    </div>
-                    <div class="helperIconItem">
-                        <img src="http://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eoAActpA8Yt8MVEhDy4e5icKxTJqZMg4ybZ8GhrH1BxsEEVIibDeyickYib8ic133h1WYVmFvJqpOibBibiaQ/132" alt="">
-                    </div>
-                    <div class="helperIconItem">
-                        <img src="http://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eoAActpA8Yt8MVEhDy4e5icKxTJqZMg4ybZ8GhrH1BxsEEVIibDeyickYib8ic133h1WYVmFvJqpOibBibiaQ/132" alt="">
-                    </div>
+                    @foreach($helpListArray as $item)
+                        <div class="helperIconItem">
+                            <img src="{{$item['headimgurl']}}" alt="">
+                        </div>
+                        @endforeach
                 </div>
             </div>
             @endif
@@ -262,7 +263,7 @@
         }
     </style>
     <div class="helperList">
-        <div class="helperListTitle">好友助力列表</div>
+        <div class="helperListTitle">好友助力列表，已有{{$helperNum}}个助力</div>
         <div class="helperListMain">
             <div class="helperItem">
                 <div class="helperItemIcon">
