@@ -1,5 +1,5 @@
 @php
-    $userIdentity = 'visitor';
+{{--    $userIdentity = 'visitor';--}}
 @endphp
 @extends('fanbo/layouts/layout')
 @section('web-title')
