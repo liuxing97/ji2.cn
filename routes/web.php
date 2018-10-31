@@ -32,7 +32,7 @@ Route::get('/huodong/wechat/2018/11/11',function (\Illuminate\Http\Request $requ
         $weUserInfo = $webPageObj -> getUserInfo();
         //参与活动链接
         //参与活动实际地址
-        $jumpSrc = "http://www.ji2.cn/huodong/wechat/2019/11/11/action?openid=".$weUserInfo->openid;
+        $jumpSrc = "http://www.ji2.cn/huodong/wechat/2018/11/11/action?openid=".$weUserInfo->openid;
 //        dump($jumpSrc);
         $huodongUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid={$appid}&redirect_uri=".$jumpSrc."&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
 
@@ -57,7 +57,7 @@ Route::get('/huodong/wechat/2018/11/11',function (\Illuminate\Http\Request $requ
             //已授权，显示跳转链接
             //直接进入(已在其他页面授权)
 //            echo "直接进入，已再其他页面授权";
-            $jumpSrc = "http://www.ji2.cn/huodong/wechat/2019/11/11/action?openid=".$weUserInfo->openid;
+            $jumpSrc = "http://www.ji2.cn/huodong/wechat/2018/11/11/action?openid=".$weUserInfo->openid;
             $huodongUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid={$appid}&redirect_uri=".$jumpSrc."&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
 
         }
