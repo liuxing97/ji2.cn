@@ -20,6 +20,7 @@ Route::get('/huodong/wechat/2018/11/11',function (\Illuminate\Http\Request $requ
     $grent =false;
     $huodongUrl = false;
     $appid = \App\WechatConfig::where('key','appid')->first();
+    $appid = $appid -> value;
     if($code){
         //输出视图，且告诉前端已授权，直接显示参与活动按钮
         $grent = true;
@@ -30,7 +31,6 @@ Route::get('/huodong/wechat/2018/11/11',function (\Illuminate\Http\Request $requ
         //得到用户信息,后面交给前端
         $weUserInfo = $webPageObj -> getUserInfo();
         //参与活动链接
-        $appid = $appid -> value;
         //参与活动实际地址
         $jumpSrc = "http://www.ji2.cn/huodong/wechat/2019/11/11/action?openid=".$weUserInfo->openid;
 //        dump($jumpSrc);
@@ -51,7 +51,6 @@ Route::get('/huodong/wechat/2018/11/11',function (\Illuminate\Http\Request $requ
             $grent = false;
             $weUserInfo = false;
             $huodongUrl = false;
-            $appid = $appid -> value;
             $thisUrl = "http://www.ji2.cn/huodong/wechat/2018/11/11";
             //参与活动链接/申请授权，授权后刷新页面，刷新页面时，给跳转链接加入openid
             $applyShouquanUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid={$appid}&redirect_uri=".$thisUrl."&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
