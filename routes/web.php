@@ -68,16 +68,30 @@ Route::get('/huodong/wechat/2018/11/11/action',function (\Illuminate\Http\Reques
     $openid = $request -> input('openid');
     //授权地址
     $thisUrl = "http://www.ji2.cn/huodong/wechat/2018/11/11/action?openid=".$openid;
+    //活动介绍页
+    $huodongUrl = "http://www.ji2.cn/huodong/wechat/2018/11/11";
+    //助力者列表
+    $helpListArray = [];
+    //助力者数量
+    $helperNum = 0;
     //参与活动链接/申请授权，授权后刷新页面，刷新页面时，给跳转链接加入openid
     $appid = \App\WechatConfig::where('key','appid')->first();
     $appid = $appid -> value;
     $applyShouquanUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid={$appid}&redirect_uri=".$thisUrl."&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
     //访问记录模型
     $visitLogObj = new \App\Huodong20181111Log();
+    //默认身份
+    $userIdentity = 'visitor';
     //如果不存在openid，则重定向至活动介绍页面
     if(!$openid){
         return redirect('/huodong/wechat/2018/11/11');
     }
+    //得到发起人数据
+    $originatorObj = $visitLogObj -> where('originator',$openid) -> first();
+    if(!$originatorObj){
+        return redirect('/huodong/wechat/2018/11/11');
+    }
+    $originatorData = $originatorObj-> toArray();
     //这是刚刚进行授权的情况
     if($code){
         echo "刚刚授权<br>";
@@ -95,6 +109,13 @@ Route::get('/huodong/wechat/2018/11/11/action',function (\Illuminate\Http\Reques
                 //记录
                 $visitLogObj -> openid = $openid;
                 $visitLogObj -> originator = 'true';
+                $visitLogObj -> visit = 'self';
+                $visitLogObj -> nickname = $weUserInfo -> nickname;
+                $visitLogObj -> sex = $weUserInfo -> sex;
+                $visitLogObj -> city = $weUserInfo -> city;
+                $visitLogObj -> province = $weUserInfo -> province;
+                $visitLogObj -> country = $weUserInfo -> country;
+                $visitLogObj -> headimgurl = $weUserInfo -> headimgurl;
                 $ret = $visitLogObj -> save();
                 echo "保存发起人信息后的返回结果为：<br>";
                 dump($ret);
@@ -112,6 +133,12 @@ Route::get('/huodong/wechat/2018/11/11/action',function (\Illuminate\Http\Reques
                 $visitLogObj -> openid = $weUserInfo -> openid;
                 $visitLogObj -> originator = 'false';
                 $visitLogObj -> visit = $openid;
+                $visitLogObj -> nickname = $weUserInfo -> nickname;
+                $visitLogObj -> sex = $weUserInfo -> sex;
+                $visitLogObj -> city = $weUserInfo -> city;
+                $visitLogObj -> province = $weUserInfo -> province;
+                $visitLogObj -> country = $weUserInfo -> country;
+                $visitLogObj -> headimgurl = $weUserInfo -> headimgurl;
                 $ret = $visitLogObj -> save();
                 echo "保存助力人信息后的返回结果为：<br>";
                 dump($ret);
@@ -133,7 +160,6 @@ Route::get('/huodong/wechat/2018/11/11/action',function (\Illuminate\Http\Reques
                 }
             }
         }
-
         //进入页面
         return "进入页面，已授权1";
     }
@@ -143,6 +169,14 @@ Route::get('/huodong/wechat/2018/11/11/action',function (\Illuminate\Http\Reques
         //这是还没有进行授权的情况，即用户第一次进入页面为他人助力
         if(!$weUserInfo){
             //询问是否助力，点击是否助力，进入授权页面，授权后刷新
+            return view('/fanbo/huodong/2018-11-11-action',[
+                'userIdentity' => $userIdentity,
+                'applyShouquanUrl' => $applyShouquanUrl,
+                'huodongUrl' => $huodongUrl,
+                'helpListArray' => $helpListArray,
+                'helperNum' => $helperNum,
+                'originatorData' => $originatorData
+            ]);
             return "<a href='{$applyShouquanUrl}'>是否助力</a><br>";
         }
         //这是已经授权的情况
@@ -175,7 +209,7 @@ Route::get('/huodong/wechat/2018/11/11/action',function (\Illuminate\Http\Reques
                     $visitLogObj -> visit = $openid;
                     $ret = $visitLogObj -> save();
                     echo "保存助力人信息后的返回结果为：<br>";
-                    dump($ret);
+                    //dump($ret);
                     echo "<br>";
                     //得到所有该助力的数目
                     $helpList = $visitLogObj -> where('visit',$openid) -> get();
@@ -198,6 +232,15 @@ Route::get('/huodong/wechat/2018/11/11/action',function (\Illuminate\Http\Reques
         }
     }
     dump($weUserInfo);
+    //最后载入页面
+    return view('/fanbo/huodong/2018-11-11-action',[
+        'userIdentity' => $userIdentity,
+        'applyShouquanUrl' => $applyShouquanUrl,
+        'huodongUrl' => $huodongUrl,
+        'helpListArray' => $helpListArray,
+        'helperNum' => $helperNum,
+        'originatorData' => $originatorData
+    ]);
 })->middleware('ui.checkdata');
 Route::get('/wechat/get/accesstoken',function (){
    $obj = new \App\Http\Controllers\WeChat\AccessToken();
