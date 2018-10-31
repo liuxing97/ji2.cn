@@ -41,13 +41,10 @@ Route::get('/huodong/wechat/2018/11/11',function (\Illuminate\Http\Request $requ
         //        $payObj = new \App\Http\Controllers\WeChat\Pay();
         //        $payObj -> payToUser($weUserInfo->openid);
         //        echo "123";
-
-
-
-
     }else{
         //判断是否已授权(已将用户信息保存到session中)，如果没有授权，跳转到授权页面
         $userInfo = session('wechat_web_userinfor');
+        dump($userInfo);
         if(!$userInfo){
             //输出视图，且告诉前端未授权,显示微信授权按钮
             $grent = false;
@@ -61,7 +58,6 @@ Route::get('/huodong/wechat/2018/11/11',function (\Illuminate\Http\Request $requ
 //            echo "输出视图，且告诉前端未授权,显示微信授权按钮<br>";
 //            echo "<a href='{$huodongUrl}'>参与活动</a>";
         }else{
-
             //直接进入(已在其他页面授权)
 //            echo "直接进入，已再其他页面授权";
         }
