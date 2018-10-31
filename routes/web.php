@@ -67,7 +67,7 @@ Route::get('/huodong/wechat/2018/11/11/action',function (\Illuminate\Http\Reques
     $code = $request -> input('code');
     $openid = $request -> input('openid');
     //授权地址
-    $thisUrl = "http://www.ji2.cn/huodong/wechat/2018/11/11/action";
+    $thisUrl = "http://www.ji2.cn/huodong/wechat/2018/11/11/action?openid=".$openid;
     //参与活动链接/申请授权，授权后刷新页面，刷新页面时，给跳转链接加入openid
     $appid = \App\WechatConfig::where('key','appid')->first();
     $appid = $appid -> value;
