@@ -108,11 +108,11 @@ class Y2018M11D11Huodong extends Controller
         //---------------------------------继续初始化参数，因前方已排除活动不存在的情况----------------
         //初始化参数     ·助力人员数据
         $helpListArray = $this -> helperListData($openid);
-        echo "以下为助力人名单：<br>";
-        dump($helpListArray);
+//        echo "以下为助力人名单：<br>";
+//        dump($helpListArray);
         //初始化参数     ·助力人员人数
         $helperNum = sizeof($helpListArray,0);
-        echo "助力人数：$helperNum<br>";
+//        echo "助力人数：$helperNum<br>";
 
 
 
@@ -130,27 +130,27 @@ class Y2018M11D11Huodong extends Controller
 
         //--------------------------这是有CODE刚刚进行授权的情况---------------------------------
         if($code){
-            echo "这是有CODE刚刚进行授权的情况<br>";
+//            echo "这是有CODE刚刚进行授权的情况<br>";
 
             //------------获取用户资料
-            echo "获取用户资料<br>";
+//            echo "获取用户资料<br>";
             $webPageObj = new \App\Http\Controllers\WeChat\WebPage();
             $webPageObj -> getAccessTokenAndOpenid($code);
             $weUserInfo = $webPageObj -> getUserInfo();
             //------------发起抢红包活动----身份为发起人--------但不一定是第一次访问
             if($openid == $weUserInfo->openid){
                 $userIdentity = 'self';
-                echo "------------发起抢红包活动----身份为发起人--------但不一定是第一次访问<br>";
-                echo "将显示的数据包含-发起人信息-好友助力列表-访问身份<br>";
+//                echo "------------发起抢红包活动----身份为发起人--------但不一定是第一次访问<br>";
+//                echo "将显示的数据包含-发起人信息-好友助力列表-访问身份<br>";
             }
             //------------助力发起人抢红包------身份为助力者，其已经点了助力
             else{
-                echo "是参与者访问<br>";
+//                echo "是参与者访问<br>";
             }
         }
         //-----------------------------------这是没有code的情况----------------------------------------------
         else{
-            echo "这是没有code的情况<br>";
+//            echo "这是没有code的情况<br>";
             //这是还没有进行授权的情况，即用户第一次进入页面为他人助力
             if(!$weUserInfo){
             }
@@ -159,7 +159,7 @@ class Y2018M11D11Huodong extends Controller
                 //判断是否发起人openid与访问者openid是否一样
                 if($openid== $weUserInfo->openid){
                     $userIdentity = 'self';
-                    echo "是发起者访问<br>";
+//                    echo "是发起者访问<br>";
                 }
             }
         }
@@ -167,30 +167,31 @@ class Y2018M11D11Huodong extends Controller
 
         //如果是访问者
         if($userIdentity == 'visitor'){
-            dump($weUserInfo);
+//            dump($weUserInfo);
             //如果已记录助力，直接进入
             $visitLog = $visitLogObj-> where('openid',$weUserInfo -> openid) -> where('visit',$openid) -> first();
+
             if($visitLog){
                 $zhuli =1;
-                echo "已记录助力，直接进入<br>";
+//                echo "已记录助力，直接进入<br>";
             }else{
                 //助力
                 $this -> wechatClientWrite($openid,$weUserInfo,'false');
                 //得到所有该助力的数目
                 $helpList = $visitLogObj -> where('visit',$openid) -> get();
                 $helpListArray = $helpList -> toArray();
-                echo "以下为刷新后的助力人名单：<br>";
-                dump($helpListArray);
+//                echo "以下为刷新后的助力人名单：<br>";
+//                dump($helpListArray);
                 $helperNum = sizeof($helpListArray,0);
-                echo "助力人数为:$helperNum<br>";
+//                echo "助力人数为:$helperNum<br>";
                 //测试助力人数两人时，发放红包
                 if($helperNum == 2){
                     //测试发送红包
                     $payObj = new \App\Http\Controllers\WeChat\Pay();
                     $payObj -> payToUser($openid,'36');
-                    echo "助力成功，人数达标，您的好友抢到红包啦！<br>";
+//                    echo "助力成功，人数达标，您的好友抢到红包啦！<br>";
                 }else{
-                    echo "助力人数仅为{$helperNum}人,凑够两人发放红包<br>";
+//                    echo "助力人数仅为{$helperNum}人,凑够两人发放红包<br>";
                 }
             }
         }
@@ -257,8 +258,8 @@ class Y2018M11D11Huodong extends Controller
         $visitLogObj -> country = $weUserInfo -> country;
         $visitLogObj -> headimgurl = $weUserInfo -> headimgurl;
         $ret = $visitLogObj -> save();
-        echo "保存发起人信息后的返回结果为：<br>";
-        dump($ret);
-        echo "<br>";
+//        echo "保存发起人信息后的返回结果为：<br>";
+//        dump($ret);
+//        echo "<br>";
     }
 }

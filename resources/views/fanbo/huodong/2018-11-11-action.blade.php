@@ -137,7 +137,7 @@
         </style>
         @if($userIdentity == 'visitor')
             @php
-                echo $userIdentity;
+{{--                echo $userIdentity;--}}
             @endphp
             {{--助力者显示--}}
             <div class="visitorShow">
@@ -185,7 +185,10 @@
                 {{--已经助力的小伙伴/图标方式--}}
                 <div style="" class="helperIconList">
                     @if(!$helperNum)
-                        <div class="line-height: 5rem;margin-bottom:10px;color:#7a7a7a">赶紧告诉小伙伴们给你助力吧</div>
+                        <div style="line-height: 2rem;
+margin-bottom: 10px;
+color: #666;
+text-align: center;">赶紧告诉小伙伴们给你助力吧</div>
                     @endif
                     @foreach($helpListArray as $item)
                         <div class="helperIconItem">
