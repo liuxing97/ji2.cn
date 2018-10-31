@@ -10,7 +10,7 @@
             margin: 20px 0;
             background: #fffdfd;
             /*padding: 12px;*/
-            border: 1px solid #e5e5e5;
+            /*border: 1px solid #e5e5e5;*/
             box-shadow: 0 0 10px #c0bebe;
         }
         .huodongShow img{
