@@ -43,14 +43,11 @@ Route::get('/huodong/wechat/2018/11/11',function (\Illuminate\Http\Request $requ
         //        echo "123";
     }else{
         //判断是否已授权(已将用户信息保存到session中)，如果没有授权，跳转到授权页面
-        $userInfo = session('wechat_web_userinfor');
-        dump($userInfo);
+        $weUserInfo = session('wechat_web_userinfor');
+        dump($weUserInfo);
         //该情况是没有授权，因没有保存信息
-        if(!$userInfo){
+        if(!$weUserInfo){
             //输出视图，且告诉前端未授权,显示微信授权按钮
-            $grent = false;
-            $weUserInfo = false;
-            $huodongUrl = false;
             $thisUrl = "http://www.ji2.cn/huodong/wechat/2018/11/11";
             //参与活动链接/申请授权，授权后刷新页面，刷新页面时，给跳转链接加入openid
             $applyShouquanUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid={$appid}&redirect_uri=".$thisUrl."&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
