@@ -4,13 +4,6 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/huodong/wechat/2018/11/11',function (\Illuminate\Http\Request $request){
-    //当前页面为（活动介绍页面），用户应点击参与，点击参与后，会跳转到
-    //携带其openid的（活动详情页面）
-    //转发活动详情页面
-    //其他用户点击
-    //获取其他用户信息，统计成功
-    //如果统计了六个人的信息，发放奖金
-
     //活动介绍页面：
         //获取用户信息
         //提供参与活动按钮
@@ -35,7 +28,8 @@ Route::get('/huodong/wechat/2018/11/11',function (\Illuminate\Http\Request $requ
         $appid = \App\WechatConfig::where('key','appid')->first();
         $appid = $appid -> value;
         //参与活动实际地址
-        $jumpSrc = "http://www.ji2.cn/huodong/wechat/2019/11/11/action";
+        $jumpSrc = "http://www.ji2.cn/huodong/wechat/2019/11/11/action?openid=".$weUserInfo->openid;
+        dump($jumpSrc);
         $huodongUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid={$appid}&redirect_uri=".$jumpSrc."&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
 
 
@@ -56,12 +50,11 @@ Route::get('/huodong/wechat/2018/11/11',function (\Illuminate\Http\Request $requ
             $grent = false;
             $weUserInfo = false;
             $huodongUrl = false;
-            //参与活动链接
             $appid = \App\WechatConfig::where('key','appid')->first();
             $appid = $appid -> value;
             $thisUrl = "http://www.ji2.cn/huodong/wechat/2018/11/11";
-            $huodongUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid={$appid}&redirect_uri=".$thisUrl."&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
-
+            //参与活动链接/申请授权，授权后刷新页面，刷新页面时，给跳转链接加入openid
+            $applyShouquanUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid={$appid}&redirect_uri=".$thisUrl."&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
 //            echo "输出视图，且告诉前端未授权,显示微信授权按钮<br>";
 //            echo "<a href='{$huodongUrl}'>参与活动</a>";
         }else{
@@ -74,6 +67,7 @@ Route::get('/huodong/wechat/2018/11/11',function (\Illuminate\Http\Request $requ
     return view('/fanbo/huodong/2018-11-11',[
         'grent' => $grent,
         'userInfo' => $weUserInfo,
+        'applyShouquanUrl' => $applyShouquanUrl,
         'huodongUrl' => $huodongUrl
     ]);
 })->middleware('ui.checkdata');

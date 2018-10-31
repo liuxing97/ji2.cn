@@ -4,13 +4,9 @@
 @endsection
 @section('content')
     <style>
-        body{
-        }
         .huodongShow{
             margin: 20px 0;
             background: #fffdfd;
-            /*padding: 12px;*/
-            /*border: 1px solid #e5e5e5;*/
             box-shadow: 0 0 10px #c0bebe;
         }
         .huodongShow img{
@@ -34,11 +30,8 @@
         }
         .huodongGuize{
             border: 1px dashed #e5e5e5;
-
             padding: 12px 18px;
-
             box-sizing: border-box;
-
             width: 100%;
         }
         .huodongGuize p{
@@ -72,7 +65,11 @@
             <p>&nbsp;&nbsp;&nbsp;&nbsp;4、红包数量888个，抢完为止！</p>
             <p>&nbsp;&nbsp;&nbsp;&nbsp;5、活动截止日期,2018年11月16日0时0分。</p>
         </div>
-        <div class="btn-join">加入活动</div>
+        @if($huodongUrl)
+            <a href="{{$huodongUrl}}"><div class="btn-join">参与活动</div></a>
+            @else
+            <a href="{{$applyShouquanUrl}}"><div class="btn-join">申请授权后，可参加活动</div></a>
+            @endif
         <div class="shenquanItem" style="margin-top: 2rem;border: 1px solid #e5e5e5;">
             <img style="max-width: 100%" src="/quan01.png" />
         </div>
