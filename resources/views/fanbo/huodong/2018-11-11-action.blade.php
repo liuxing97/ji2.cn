@@ -182,11 +182,11 @@
                         @endphp个人助力，分享本页面，让小伙伴们助力吧！</p>
                 </div>
                 <div class="helperIconListTitle">都有哪些小伙伴为你助力了：</div>
-                @if(!$helperNum)
-                    赶紧告诉小伙伴们吧，大家一起抢红包~~~
-                    @endif
                 {{--已经助力的小伙伴/图标方式--}}
-                <div class="helperIconList">
+                <div style="" class="helperIconList">
+                    @if(!$helperNum)
+                        <div class="line-height: 3rem">赶紧告诉小伙伴们吧，大家一起抢红包~~~</div>
+                    @endif
                     @foreach($helpListArray as $item)
                         <div class="helperIconItem">
                             <img src="{{$item['headimgurl']}}" alt="">
