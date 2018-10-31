@@ -139,7 +139,7 @@ class Y2018M11D11Huodong extends Controller
             $weUserInfo = $webPageObj -> getUserInfo();
             //------------发起抢红包活动----身份为发起人--------但不一定是第一次访问
             if($openid == $weUserInfo->openid){
-                $userIdentity= 'self';
+                $userIdentity = 'self';
                 echo "------------发起抢红包活动----身份为发起人--------但不一定是第一次访问<br>";
                 echo "将显示的数据包含-发起人信息-好友助力列表-访问身份<br>";
             }
@@ -180,7 +180,7 @@ class Y2018M11D11Huodong extends Controller
             else{
                 //判断是否发起人openid与访问者openid是否一样
                 if($openid== $weUserInfo->openid){
-                    $userIdentity= 'self';
+                    $userIdentity = 'self';
                     echo "是发起者访问<br>";
                 }else{
                     echo "是参与者访问<br>";
@@ -241,7 +241,7 @@ class Y2018M11D11Huodong extends Controller
     //得到所有该助力的名单
     function helperListData($openid){
         $visitLogObj = new \App\Huodong20181111Log();
-        $helpList = $visitLogObj -> where('visit',$openid) -> get() -> toArray();
+        $helpList = $visitLogObj -> where('visit',$openid)-> where('originator','false') -> get() -> toArray();
         return $helpList;
     }
 
