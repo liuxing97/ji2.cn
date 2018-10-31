@@ -3,16 +3,13 @@ use Illuminate\Support\Facades\Route;
 
 
 
+//活动介绍页面：
+//获取用户信息
+//提供参与活动按钮
+//参与活动按钮，先进行发起人登记请求
+//再进行跳转至活动详情页面，该页面携带活动发起人的openid
+//然后要求用户点击转发
 Route::get('/huodong/wechat/2018/11/11',function (\Illuminate\Http\Request $request){
-    //活动介绍页面：
-        //获取用户信息
-        //提供参与活动按钮
-        //参与活动按钮，先进行发起人登记请求
-        //再进行跳转至活动详情页面，该页面携带活动发起人的openid
-        //然后要求用户点击转发
-
-    //判断授权的原则，先看是否是从授权页面过来的，即携带了code，再看是否已授权过
-
     //判断是否存在code
     $code = $request -> input('code');
     $applyShouquanUrl = false;
@@ -21,48 +18,32 @@ Route::get('/huodong/wechat/2018/11/11',function (\Illuminate\Http\Request $requ
     $huodongUrl = false;
     $appid = \App\WechatConfig::where('key','appid')->first();
     $appid = $appid -> value;
+    //该情况是刚刚完成授权的情况
     if($code){
-        //输出视图，且告诉前端已授权，直接显示参与活动按钮
         $grent = true;
-        //获取网页微信Obj
         $webPageObj = new \App\Http\Controllers\WeChat\WebPage();
-        //获取用户信息前初始化工作
         $webPageObj -> getAccessTokenAndOpenid($code);
-        //得到用户信息,后面交给前端
         $weUserInfo = $webPageObj -> getUserInfo();
-        //参与活动链接
-        //参与活动实际地址
         $jumpSrc = "http://www.ji2.cn/huodong/wechat/2018/11/11/action?openid=".$weUserInfo->openid;
-//        dump($jumpSrc);
         $huodongUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid={$appid}&redirect_uri=".$jumpSrc."&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
-
-        //        echo "输出视图，且告诉前端已授权，直接显示参与活动按钮";
-        //        测试发送红包
-        //        $payObj = new \App\Http\Controllers\WeChat\Pay();
-        //        $payObj -> payToUser($weUserInfo->openid);
-        //        echo "123";
     }else{
         //判断是否已授权(已将用户信息保存到session中)，如果没有授权，跳转到授权页面
         $weUserInfo = session('wechat_web_userinfor');
         dump($weUserInfo);
-        //该情况是没有授权，因没有保存信息
+        //从来没有进行过授权
         if(!$weUserInfo){
             //输出视图，且告诉前端未授权,显示微信授权按钮
             $thisUrl = "http://www.ji2.cn/huodong/wechat/2018/11/11";
             //参与活动链接/申请授权，授权后刷新页面，刷新页面时，给跳转链接加入openid
             $applyShouquanUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid={$appid}&redirect_uri=".$thisUrl."&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
-//            echo "输出视图，且告诉前端未授权,显示微信授权按钮<br>";
-//            echo "<a href='{$huodongUrl}'>参与活动</a>";
         }else{
-            //已授权，显示跳转链接
-            //直接进入(已在其他页面授权)
-//            echo "直接进入，已再其他页面授权";
+            //已在其他页面授权，显示参与活动按钮
             $jumpSrc = "http://www.ji2.cn/huodong/wechat/2018/11/11/action?openid=".$weUserInfo->openid;
             $huodongUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid={$appid}&redirect_uri=".$jumpSrc."&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
 
         }
     }
-    //测试时，直接界面输出未授权/活动跳转链接
+    //输出视图
     return view('/fanbo/huodong/2018-11-11',[
         'grent' => $grent,
         'userInfo' => $weUserInfo,
@@ -79,33 +60,145 @@ Route::get('/huodong/wechat/2018/11/11/action',function (\Illuminate\Http\Reques
     //如果不是发起人，检测是否是第八个人，如果是，补充显示，您的好友红包已入账。（页面三）
 
 
+
     //判断授权的原则，先看是否是从授权页面过来的，即携带了code，再看是否已授权过
 
     //如果没有携带code，先判断是否已授权，若已授权，直接进入
     $code = $request -> input('code');
     $openid = $request -> input('openid');
-    dump($code);
-    dump($openid);
+    //授权地址
+    $thisUrl = "http://www.ji2.cn/huodong/wechat/2018/11/11/action";
+    //参与活动链接/申请授权，授权后刷新页面，刷新页面时，给跳转链接加入openid
+    $appid = \App\WechatConfig::where('key','appid')->first();
+    $appid = $appid -> value;
+    $applyShouquanUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid={$appid}&redirect_uri=".$thisUrl."&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
+    //访问记录模型
+    $visitLogObj = new \App\Huodong20181111Log();
+    //如果不存在openid，则重定向至活动介绍页面
+    if(!$openid){
+        return redirect('/huodong/wechat/2018/11/11');
+    }
+    //这是刚刚进行授权的情况
     if($code){
+        echo "刚刚授权<br>";
         //进行获取用户信息//获取网页微信Obj
         $webPageObj = new \App\Http\Controllers\WeChat\WebPage();
         //获取用户信息前初始化工作
         $webPageObj -> getAccessTokenAndOpenid($code);
         //得到用户信息,后面交给前端
         $weUserInfo = $webPageObj -> getUserInfo();
+        if($openid== $weUserInfo->openid){
+            echo "是发起者访问<br>";
+            //判断活动表中是否已记录，若未记录，进行记录
+            $visitLog = $visitLogObj -> where('openid',$openid) -> where('originator','true') -> first();
+            if(!$visitLog){
+                //记录
+                $visitLogObj -> openid = $openid;
+                $visitLogObj -> originator = 'true';
+                $ret = $visitLogObj -> save();
+                echo "保存发起人信息后的返回结果为：<br>";
+                dump($ret);
+                echo "<br>";
+            }else{
+                echo "已登记过发起人信息，直接进入<br>";
+            }
+        }else{
+            echo "是参与者访问<br>";
+            $visitLog = $visitLogObj-> where('openid',$weUserInfo -> openid) -> where('visit',$openid) -> first();
+            //如果已记录助力，直接进入
+            if($visitLog){
+                echo "已记录助力，直接进入<br>";
+            }else{
+                $visitLogObj -> openid = $weUserInfo -> openid;
+                $visitLogObj -> originator = 'false';
+                $visitLogObj -> visit = $openid;
+                $ret = $visitLogObj -> save();
+                echo "保存助力人信息后的返回结果为：<br>";
+                dump($ret);
+                echo "<br>";
+                //得到所有该助力的数目
+                $helpList = $visitLogObj -> where('visit',$openid) -> get();
+                $helpListArray = $helpList -> toArray();
+                echo "以下为助力人名单：<br>";
+                dump($helpListArray);
+                $helperNum = sizeof($helpListArray,0);
+                //测试助力人数两人时，发放红包
+                if($helperNum == 2){
+                    //测试发送红包
+                    $payObj = new \App\Http\Controllers\WeChat\Pay();
+                    $payObj -> payToUser($openid,'36');
+                    echo "助力成功，人数达标，您的好友抢到红包啦！";
+                }else{
+                    echo "助力人数仅为{$helperNum}人,凑够两人发放红包";
+                }
+            }
+        }
+
         //进入页面
         return "进入页面，已授权1";
-    }else{
+    }
+    else{
         //判断是否已授权(已将用户信息保存到session中)，如果没有授权，跳转到授权页面
-        $userInfo = session('wechat_web_userinfor');
-        if(!$userInfo){
-            //不直接进入授权页面，先询问是否为他助力
-            return "是否助力";
-        }else{
+        $weUserInfo = session('wechat_web_userinfor');
+        //这是还没有进行授权的情况，即用户第一次进入页面为他人助力
+        if(!$weUserInfo){
+            //询问是否助力，点击是否助力，进入授权页面，授权后刷新
+            return "<a href='{$applyShouquanUrl}'>是否助力</a><br>";
+        }
+        //这是已经授权的情况
+        else{
+            //判断是否发起人openid与访问者openid是否一样
+            if($openid== $weUserInfo->openid){
+                echo "是发起者访问<br>";
+                //判断活动表中是否已记录，若未记录，进行记录
+                $visitLog = $visitLogObj -> where('openid',$openid) -> where('originator','true') -> first();
+                if(!$visitLog){
+                    //记录
+                    $visitLogObj -> openid = $openid;
+                    $visitLogObj -> originator = 'true';
+                    $ret = $visitLogObj -> save();
+                    echo "保存发起人信息后的返回结果为：<br>";
+                    dump($ret);
+                    echo "<br>";
+                }else{
+                    echo "已登记过发起人信息，直接进入<br>";
+                }
+            }else{
+                echo "是参与者访问<br>";
+                $visitLog = $visitLogObj-> where('openid',$weUserInfo -> openid) -> where('visit',$openid) -> first();
+                //如果已记录助力，直接进入
+                if($visitLog){
+                    echo "已记录助力，直接进入<br>";
+                }else{
+                    $visitLogObj -> openid = $weUserInfo -> openid;
+                    $visitLogObj -> originator = 'false';
+                    $visitLogObj -> visit = $openid;
+                    $ret = $visitLogObj -> save();
+                    echo "保存助力人信息后的返回结果为：<br>";
+                    dump($ret);
+                    echo "<br>";
+                    //得到所有该助力的数目
+                    $helpList = $visitLogObj -> where('visit',$openid) -> get();
+                    $helpListArray = $helpList -> toArray();
+                    echo "以下为助力人名单：<br>";
+                    dump($helpListArray);
+                    $helperNum = sizeof($helpListArray,0);
+                    //测试助力人数两人时，发放红包
+                    if($helperNum == 2){
+                        //测试发送红包
+                        $payObj = new \App\Http\Controllers\WeChat\Pay();
+                        $payObj -> payToUser($openid,'36');
+                        echo "助力成功，人数达标，您的好友抢到红包啦！";
+                    }else{
+                        echo "助力人数仅为{$helperNum}人,凑够两人发放红包";
+                    }
+                }
+            }
             //直接进入(已在上一页面授权)
         }
     }
-});
+    dump($weUserInfo);
+})->middleware('ui.checkdata');
 Route::get('/wechat/get/accesstoken',function (){
    $obj = new \App\Http\Controllers\WeChat\AccessToken();
    $obj -> get();
