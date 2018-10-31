@@ -168,7 +168,7 @@
             @else
             <div class="visitorShow">
                 <div class="originatorIcon">
-                    <img src="http://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eoAActpA8Yt8MVEhDy4e5icKxTJqZMg4ybZ8GhrH1BxsEEVIibDeyickYib8ic133h1WYVmFvJqpOibBibiaQ/132" alt="">
+                    <img src="{{$originatorData['headimgurl']}}" alt="">
                 </div>
                 <div class="originatorInfo">
                     <p style="color: brown;">成功参与抢红包啦！</p>
