@@ -146,28 +146,6 @@ class Y2018M11D11Huodong extends Controller
             //------------助力发起人抢红包------身份为助力者，其已经点了助力
             else{
                 echo "是参与者访问<br>";
-                //判断助力者是否已助力过
-                $visitLog = $visitLogObj-> where('openid',$weUserInfo -> openid) -> where('visit',$openid) -> first();
-                //没有助力的情况,进行助力，并刷新助力名单，助力人数数据
-                if(!$visitLog){
-                    $this -> wechatClientWrite($openid,$weUserInfo,'false');
-                    //得到所有该助力的数目
-                    $helpList = $visitLogObj -> where('visit',$openid) -> get();
-                    $helpListArray = $helpList -> toArray();
-                    echo "以下为刷新后的助力人名单：<br>";
-                    dump($helpListArray);
-                    $helperNum = sizeof($helpListArray,0);
-                    echo "助力人数为:$helperNum<br>";
-                    //测试助力人数两人时，发放红包
-                    if($helperNum == 2){
-                        //测试发送红包
-                        $payObj = new \App\Http\Controllers\WeChat\Pay();
-                        $payObj -> payToUser($openid,'36');
-                        echo "助力成功，人数达标，您的好友抢到红包啦！<br>";
-                    }else{
-                        echo "助力人数仅为{$helperNum}人,凑够两人发放红包<br>";
-                    }
-                }
             }
         }
         //-----------------------------------这是没有code的情况----------------------------------------------
@@ -182,36 +160,40 @@ class Y2018M11D11Huodong extends Controller
                 if($openid== $weUserInfo->openid){
                     $userIdentity = 'self';
                     echo "是发起者访问<br>";
-                }else{
-                    echo "是参与者访问<br>";
-                    $visitLog = $visitLogObj-> where('openid',$weUserInfo -> openid) -> where('visit',$openid) -> first();
-                    //如果已记录助力，直接进入
-                    if($visitLog){
-                        echo "已记录助力，直接进入<br>";
-                    }else{
-                        //--------------------------------直接使用上面的助力代码(START)-----------
-                        $this -> wechatClientWrite($openid,$weUserInfo,'false');
-                        //得到所有该助力的数目
-                        $helpList = $visitLogObj -> where('visit',$openid) -> get();
-                        $helpListArray = $helpList -> toArray();
-                        echo "以下为刷新后的助力人名单：<br>";
-                        dump($helpListArray);
-                        $helperNum = sizeof($helpListArray,0);
-                        echo "助力人数为:$helperNum<br>";
-                        //测试助力人数两人时，发放红包
-                        if($helperNum == 2){
-                            //测试发送红包
-                            $payObj = new \App\Http\Controllers\WeChat\Pay();
-                            $payObj -> payToUser($openid,'36');
-                            echo "助力成功，人数达标，您的好友抢到红包啦！<br>";
-                        }else{
-                            echo "助力人数仅为{$helperNum}人,凑够两人发放红包<br>";
-                        }
-                        //--------------------------------直接使用上面的助力代码(END)-----------
-                    }
                 }
             }
         }
+
+
+        //如果是访问者
+        if($userIdentity == 'visitor'){
+            //如果已记录助力，直接进入
+            $visitLog = $visitLogObj-> where('openid',$weUserInfo -> openid) -> where('visit',$openid) -> first();
+            if($visitLog){
+                echo "已记录助力，直接进入<br>";
+            }else{
+                //助力
+                $this -> wechatClientWrite($openid,$weUserInfo,'false');
+                //得到所有该助力的数目
+                $helpList = $visitLogObj -> where('visit',$openid) -> get();
+                $helpListArray = $helpList -> toArray();
+                echo "以下为刷新后的助力人名单：<br>";
+                dump($helpListArray);
+                $helperNum = sizeof($helpListArray,0);
+                echo "助力人数为:$helperNum<br>";
+                //测试助力人数两人时，发放红包
+                if($helperNum == 2){
+                    //测试发送红包
+                    $payObj = new \App\Http\Controllers\WeChat\Pay();
+                    $payObj -> payToUser($openid,'36');
+                    echo "助力成功，人数达标，您的好友抢到红包啦！<br>";
+                }else{
+                    echo "助力人数仅为{$helperNum}人,凑够两人发放红包<br>";
+                }
+            }
+        }
+
+
         //最后载入页面
         return view('/fanbo/huodong/2018-11-11-action',[
             'userIdentity' => $userIdentity,
