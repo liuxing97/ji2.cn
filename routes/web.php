@@ -86,12 +86,6 @@ Route::get('/huodong/wechat/2018/11/11/action',function (\Illuminate\Http\Reques
     if(!$openid){
         return redirect('/huodong/wechat/2018/11/11');
     }
-    //得到发起人数据
-    $originatorObj = $visitLogObj -> where('openid',$openid) -> where('originator','true') -> first();
-    if(!$originatorObj){
-        return redirect('/huodong/wechat/2018/11/11');
-    }
-    $originatorData = $originatorObj-> toArray();
     //这是刚刚进行授权的情况
     if($code){
         echo "刚刚授权<br>";
@@ -123,8 +117,18 @@ Route::get('/huodong/wechat/2018/11/11/action',function (\Illuminate\Http\Reques
             }else{
                 echo "已登记过发起人信息，直接进入<br>";
             }
+            //得到发起人数据
+            $originatorObj = $visitLogObj -> where('openid',$openid) -> where('originator','true') -> first();
+            $originatorData = $originatorObj-> toArray();
         }else{
             echo "是参与者访问<br>";
+            //得到发起人数据
+            $originatorObj = $visitLogObj -> where('openid',$openid) -> where('originator','true') -> first();
+            //参与者访问时才判断是否有发起人存在，不存在跳转
+            if(!$originatorObj){
+                return redirect('/huodong/wechat/2018/11/11');
+            }
+            $originatorData = $originatorObj-> toArray();
             $visitLog = $visitLogObj-> where('openid',$weUserInfo -> openid) -> where('visit',$openid) -> first();
             //如果已记录助力，直接进入
             if($visitLog){
