@@ -60,6 +60,8 @@ Route::get('/huodong/wechat/2018/11/11',function (\Illuminate\Http\Request $requ
         }else{
             //直接进入(已在其他页面授权)
 //            echo "直接进入，已再其他页面授权";
+            $applyShouquanUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid={$appid}&redirect_uri=".$thisUrl."&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
+
         }
     }
     //测试时，直接界面输出未授权/活动跳转链接

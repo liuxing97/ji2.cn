@@ -62,6 +62,7 @@ class WebPage extends Controller
         $url = "https://api.weixin.qq.com/sns/userinfo?access_token=".$access_token."&openid=".$openid."&lang=zh_CN";
         $res = file_get_contents($url);
         $res = json_decode($res);
+        session()->put('wechat_web_userinfor',$res);
         //获取到的内容
         //openid	用户的唯一标识
         //nickname	用户昵称
