@@ -18,14 +18,13 @@ class Pay extends Controller
     //desc备注
     //spbill_create_ip/ip
     //sign签名
-    function payToUser($openid){
+    function payToUser($openid,$amount){
         $appid = WechatConfig::where('key','appid')->first();
         $mch_appid = $appid ->value;
         $mchid = '1501833891';
         $nonce_str = md5(rand(0,999999999));
         $partner_trade_no = time();
         $check_name = 'NO_CHECK';
-        $amount = 36;
         $desc = "测试";
         $spbill_create_ip = '111.230.231.164';
         $sign =
