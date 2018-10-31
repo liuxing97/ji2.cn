@@ -83,6 +83,9 @@ Route::get('/huodong/wechat/2018/11/11/action',function (\Illuminate\Http\Reques
 
     //如果没有携带code，先判断是否已授权，若已授权，直接进入
     $code = $request -> input('code');
+    $openid = $request -> input('openid');
+    dump($code);
+    dump($openid);
     if($code){
         //进行获取用户信息//获取网页微信Obj
         $webPageObj = new \App\Http\Controllers\WeChat\WebPage();
