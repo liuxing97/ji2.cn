@@ -86,6 +86,8 @@ Route::get('/huodong/wechat/2018/11/11/action',function (\Illuminate\Http\Reques
     if(!$openid){
         return redirect('/huodong/wechat/2018/11/11');
     }
+    //$originatorData默认值
+//    $originatorData = [];
     //这是刚刚进行授权的情况
     if($code){
         echo "刚刚授权<br>";
@@ -165,9 +167,20 @@ Route::get('/huodong/wechat/2018/11/11/action',function (\Illuminate\Http\Reques
             }
         }
         //进入页面
-        return "进入页面，已授权1";
+        return view('/fanbo/huodong/2018-11-11-action',[
+            'userIdentity' => $userIdentity,
+            'applyShouquanUrl' => $applyShouquanUrl,
+            'huodongUrl' => $huodongUrl,
+            'helpListArray' => $helpListArray,
+            'helperNum' => $helperNum,
+            'originatorData' => $originatorData
+        ]);
     }
+    //这是没有code的情况
     else{
+        //得到发起人数据
+        $originatorObj = $visitLogObj -> where('openid',$openid) -> where('originator','true') -> first();
+        $originatorData = $originatorObj-> toArray();
         //判断是否已授权(已将用户信息保存到session中)，如果没有授权，跳转到授权页面
         $weUserInfo = session('wechat_web_userinfor');
         //这是还没有进行授权的情况，即用户第一次进入页面为他人助力
