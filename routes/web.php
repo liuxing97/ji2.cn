@@ -19,6 +19,7 @@ Route::get('/huodong/wechat/2018/11/11',function (\Illuminate\Http\Request $requ
     $weUserInfo = false;
     $grent =false;
     $huodongUrl = false;
+    $appid = \App\WechatConfig::where('key','appid')->first();
     if($code){
         //输出视图，且告诉前端已授权，直接显示参与活动按钮
         $grent = true;
@@ -29,7 +30,6 @@ Route::get('/huodong/wechat/2018/11/11',function (\Illuminate\Http\Request $requ
         //得到用户信息,后面交给前端
         $weUserInfo = $webPageObj -> getUserInfo();
         //参与活动链接
-        $appid = \App\WechatConfig::where('key','appid')->first();
         $appid = $appid -> value;
         //参与活动实际地址
         $jumpSrc = "http://www.ji2.cn/huodong/wechat/2019/11/11/action?openid=".$weUserInfo->openid;
@@ -45,12 +45,12 @@ Route::get('/huodong/wechat/2018/11/11',function (\Illuminate\Http\Request $requ
         //判断是否已授权(已将用户信息保存到session中)，如果没有授权，跳转到授权页面
         $userInfo = session('wechat_web_userinfor');
         dump($userInfo);
+        //该情况是没有授权，因没有保存信息
         if(!$userInfo){
             //输出视图，且告诉前端未授权,显示微信授权按钮
             $grent = false;
             $weUserInfo = false;
             $huodongUrl = false;
-            $appid = \App\WechatConfig::where('key','appid')->first();
             $appid = $appid -> value;
             $thisUrl = "http://www.ji2.cn/huodong/wechat/2018/11/11";
             //参与活动链接/申请授权，授权后刷新页面，刷新页面时，给跳转链接加入openid
@@ -58,10 +58,10 @@ Route::get('/huodong/wechat/2018/11/11',function (\Illuminate\Http\Request $requ
 //            echo "输出视图，且告诉前端未授权,显示微信授权按钮<br>";
 //            echo "<a href='{$huodongUrl}'>参与活动</a>";
         }else{
+            //已授权，显示跳转链接
             //直接进入(已在其他页面授权)
 //            echo "直接进入，已再其他页面授权";
-            $applyShouquanUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid={$appid}&redirect_uri=".$thisUrl."&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
-
+            $jumpSrc = "http://www.ji2.cn/huodong/wechat/2019/11/11/action?openid=".$weUserInfo->openid;
         }
     }
     //测试时，直接界面输出未授权/活动跳转链接
