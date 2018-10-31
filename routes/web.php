@@ -99,6 +99,12 @@ Route::get('/huodong/wechat/2018/11/11/action',function (\Illuminate\Http\Reques
         $weUserInfo = $webPageObj -> getUserInfo();
         if($openid== $weUserInfo->openid){
             echo "是发起者访问<br>";
+            //得到所有该助力的数目
+            $helpList = $visitLogObj -> where('visit',$openid) -> get();
+            $helpListArray = $helpList -> toArray();
+            echo "以下为助力人名单：<br>";
+            dump($helpListArray);
+            $helperNum = sizeof($helpListArray,0);
             //判断活动表中是否已记录，若未记录，进行记录
             $visitLog = $visitLogObj -> where('openid',$openid) -> where('originator','true') -> first();
             if(!$visitLog){
@@ -124,6 +130,12 @@ Route::get('/huodong/wechat/2018/11/11/action',function (\Illuminate\Http\Reques
             $originatorData = $originatorObj-> toArray();
         }else{
             echo "是参与者访问<br>";
+            //得到所有该助力的数目
+            $helpList = $visitLogObj -> where('visit',$openid) -> get();
+            $helpListArray = $helpList -> toArray();
+            echo "以下为助力人名单：<br>";
+            dump($helpListArray);
+            $helperNum = sizeof($helpListArray,0);
             //得到发起人数据
             $originatorObj = $visitLogObj -> where('openid',$openid) -> where('originator','true') -> first();
             //参与者访问时才判断是否有发起人存在，不存在跳转
