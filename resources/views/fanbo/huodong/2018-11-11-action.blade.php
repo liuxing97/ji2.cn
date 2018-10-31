@@ -136,6 +136,7 @@
             }
         </style>
         @if($userIdentity == 'visitor')
+            @php(echo $userIdentity;)
             {{--助力者显示--}}
             <div class="visitorShow">
                 <div class="originatorIcon">
@@ -151,7 +152,7 @@
                                 echo $num;
                             }
                     @endphp个人助力他，点击下方，助力他吧！</p>
-                    <a href="{{$applyShouquanUrl}}"><div class="btn-zhuli">为【 {{$originatorData['nickname']}} 】助力</div></a>
+                    <a href="{{$applyShouquanUrl}}"><div class="btn-zhuli">为他助力</div></a>
                     <a href="{{$huodongUrl}}"><div class="btn-qiang">我也要抢红包</div></a>
                 </div>
             </div>
