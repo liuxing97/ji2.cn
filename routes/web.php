@@ -87,7 +87,7 @@ Route::get('/huodong/wechat/2018/11/11/action',function (\Illuminate\Http\Reques
         return redirect('/huodong/wechat/2018/11/11');
     }
     //得到发起人数据
-    $originatorObj = $visitLogObj -> where('originator',$openid) -> first();
+    $originatorObj = $visitLogObj -> where('openid',$openid) -> where('originator','true') -> first();
     if(!$originatorObj){
         return redirect('/huodong/wechat/2018/11/11');
     }
@@ -177,7 +177,6 @@ Route::get('/huodong/wechat/2018/11/11/action',function (\Illuminate\Http\Reques
                 'helperNum' => $helperNum,
                 'originatorData' => $originatorData
             ]);
-            return "<a href='{$applyShouquanUrl}'>是否助力</a><br>";
         }
         //这是已经授权的情况
         else{
