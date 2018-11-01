@@ -66,7 +66,6 @@
 </style>
 
 <body>
-
     {{--头部--}}
     <div class="header">
         <a href="/"><img class="logo" src="/pages/img/logo.png" /></a>
@@ -87,7 +86,73 @@
             </ul>
         </div>
     @endif
+    <style>
+        .weekShow{
+            padding: 12px;
+            background: #fff;
+            margin-top: 20px;
+            box-shadow: 0 0 10px #7a7a7a;
+            position: relative;
+            overflow: hidden;
+        }
+        .weekShow .zhiding{
+            position: absolute;
 
+            width: 313px;
+
+            color: #fff;
+
+            background: #c51c1e;
+
+            line-height: 44px;
+
+            text-align: center;
+
+            transform: rotate(-45deg);
+
+            left: -123px;
+
+            top: 11px;
+        }
+        .weekShowMain{
+        }
+        .weekShowMain img{
+            max-width: 100%;
+        }
+        .weekShow .pro{
+            /*border-top: none;*/
+
+            /*line-height: 1.5rem;*/
+
+            /*padding: 12px;*/
+            color: #7a7a7a;
+
+            margin-top: 12px;
+
+            border: 1px dashed #8a8a8a;
+
+            line-height: 43px;
+
+            text-align: center;
+        }
+        .weekShow .pro .tm{}
+        .weekShow .pro .t{
+            display: inline-block;
+        }
+        .weekShow .pro .v{
+            display: inline-block;
+        }
+    </style>
+    <div class="weekShow">
+        <div class="zhiding">置顶</div>
+        <div class="weekShowMain">
+            <img src="/chihuo.jpg" />
+        </div>
+        <div class="pro">
+            <div class="t">下期精彩预告：</div>
+            <div class="v">冬日也掩盖不了我潮本色</div>
+        </div>
+    </div>
     @section('content')
         @show
 
