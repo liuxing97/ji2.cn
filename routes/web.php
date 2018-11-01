@@ -131,10 +131,21 @@ Route::group(['middleware' => ['client.visit','ui.checkdata']], function (){
         $archiveArray['updated_at'] = time();
         $obj = new \App\CmsArticle();
         $data = $obj -> where('state','1') -> orderBy('id','desc') -> simplePaginate(10);
+//        dump($data->)
         $dataListArray = $data -> toArray();
+
+
+        //得到分类表
+        $archiveObj = new \App\CmsArchive();
+        $archiveList = $archiveObj -> get();
+        $archiveList = $archiveList -> toArray();
+        foreach($archiveList as $item){
+            $archiveListData[$item['id']] = $item['title'];
+        }
         return view('fanbo/pages/archive',[
             'dataListArray' => $dataListArray,
-            'archiveData' => $archiveArray
+            'archiveData' => $archiveArray,
+            'archiveListData' => $archiveListData
         ]);
     });
 });
