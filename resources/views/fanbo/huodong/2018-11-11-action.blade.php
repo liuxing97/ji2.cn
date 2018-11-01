@@ -2,6 +2,10 @@
 @section('web-title')
     {{$siteData['censcms_web_name']}}-双十一转发抢红包！！！快来吧
 @endsection
+@php
+    $shenqiArray = new \App\CmsArticle();
+    $shenqiArray =  $shenqiArray -> where('archive','23')->orderBy('id','desc') -> take(3) -> get() -> toArray();
+@endphp
 @section('content')
     <style>
         .huodongShow{
