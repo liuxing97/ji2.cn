@@ -149,7 +149,7 @@
             <img src="/chihuo.jpg" />
         </div>
         <div class="pro">
-            <div class="t">下期精彩预告：</div>
+            <div class="t">下期精彩预告，每周日早8点：</div>
             <div class="v">冬日也掩盖不了我潮本色</div>
         </div>
     </div>
