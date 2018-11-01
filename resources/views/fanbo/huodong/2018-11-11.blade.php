@@ -107,14 +107,14 @@
 
         }
         .haoquanList .huodongItem{
-            width: 48%;
+            /*width: 48%;*/
             padding: 20px;
             box-sizing: border-box;
             background: #fff;
             display: inline-block;
             margin-top: 12px;
             box-shadow: 0 0 10px #c0bebe;
-            margin-right: 3%;
+            /*margin-right: 3%;*/
             position: relative;
         }
         .haoquanList .huodongItem:nth-of-type(2n){
@@ -127,19 +127,16 @@
         .btn-haoquan-more{
 
         }
-        .haoquanList .huodongItem .more{
-            width: 100%;
-            background: rgba(0,0,0,0.66);
-            height: 100%;
-            position: absolute;
-            top: 0;
-            left: 0;
-            text-align: center;
-            padding-top: 49%;
-            box-sizing: border-box;
+        .more{
+            background: #e8012f;
+
             color: #fff;
-            font-size: 22px;
-            letter-spacing: 6px;
+
+            margin-top: 20px;
+
+            line-height: 50px;
+
+            text-align: center;
         }
         .shenqi{
 
@@ -158,10 +155,7 @@
                 <img src="/quan02.jpg" alt="">
             </div>
                 @endfor
-                <div class="huodongItem">
-                    <a href="/archive/quan"><div class="more">更多好券</div></a>
-                    <img src="/quan02.jpg" alt="">
-                </div>
+                <a href="/archive/quan"><div class="more">更多好券</div></a>
         </div>
     </div>
     <div class="shenqi">

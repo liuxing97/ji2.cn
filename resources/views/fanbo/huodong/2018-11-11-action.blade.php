@@ -314,6 +314,9 @@ text-align: center;">赶紧告诉小伙伴们给你助力吧</div>
 
 
 
+
+
+
     <style>
         .haoquan{
 
@@ -334,7 +337,6 @@ text-align: center;">赶紧告诉小伙伴们给你助力吧</div>
         }
         .haoquanList .huodongItem{
             /*width: 48%;*/
-            width: 100%;
             padding: 20px;
             box-sizing: border-box;
             background: #fff;
@@ -354,19 +356,16 @@ text-align: center;">赶紧告诉小伙伴们给你助力吧</div>
         .btn-haoquan-more{
 
         }
-        .haoquanList .huodongItem .more{
-            width: 100%;
-            background: rgba(0,0,0,0.66);
-            height: 100%;
-            position: absolute;
-            top: 0;
-            left: 0;
-            text-align: center;
-            padding-top: 49%;
-            box-sizing: border-box;
+        .more{
+            background: #e8012f;
+
             color: #fff;
-            font-size: 22px;
-            letter-spacing: 6px;
+
+            margin-top: 20px;
+
+            line-height: 50px;
+
+            text-align: center;
         }
         .shenqi{
 
@@ -385,10 +384,7 @@ text-align: center;">赶紧告诉小伙伴们给你助力吧</div>
                     <img src="/quan02.jpg" alt="">
                 </div>
             @endfor
-            <div class="huodongItem">
-                <a href="/archive/quan"><div class="more">更多好券</div></a>
-                <img src="/quan02.jpg" alt="">
-            </div>
+            <a href="/archive/quan"><div class="more">更多好券</div></a>
         </div>
     </div>
     <div class="shenqi">
@@ -572,6 +568,9 @@ text-align: center;">赶紧告诉小伙伴们给你助力吧</div>
     <a href="/">
         <div style="color:brown;text-align: center;margin-top: 20px;background: #fff;border-radius: 3px;line-height: 50px;" class="moreItem">更多商品</div>
     </a>
+
+
+
 
 
 
