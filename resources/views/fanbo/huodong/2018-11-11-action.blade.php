@@ -333,14 +333,15 @@ text-align: center;">赶紧告诉小伙伴们给你助力吧</div>
 
         }
         .haoquanList .huodongItem{
-            width: 48%;
+            /*width: 48%;*/
+            width: 100%;
             padding: 20px;
             box-sizing: border-box;
             background: #fff;
             display: inline-block;
             margin-top: 12px;
             box-shadow: 0 0 10px #c0bebe;
-            margin-right: 3%;
+            /*margin-right: 3%;*/
             position: relative;
         }
         .haoquanList .huodongItem:nth-of-type(2n){
