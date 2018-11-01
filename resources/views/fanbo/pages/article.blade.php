@@ -23,7 +23,7 @@
 @section('content')
     <style>
         .content{
-            margin-top: 20px;
+            margin-top: 12px;
             padding: 20px 20px;
             /*padding: 0 1.5rem;*/
             background: #fff;

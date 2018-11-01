@@ -49,7 +49,7 @@
     }
     .archiveTitle{
         text-align: center;
-        margin-top: 2rem;
+        margin-top: 12px;
         font-size: 22px;
         background: #fff;
         line-height: 4rem;
@@ -91,7 +91,7 @@
             padding: 12px;
             background: #fff;
             margin-top: 20px;
-            box-shadow: 0 0 10px #7a7a7a;
+            /*box-shadow: 0 0 10px #7a7a7a;*/
             position: relative;
             overflow: hidden;
         }
