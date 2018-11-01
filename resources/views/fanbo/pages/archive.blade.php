@@ -119,9 +119,6 @@
             .headClass{
 
             }
-            .articleClassValue{
-
-            }
             .article .layui-icon{
                 /*vertical-align: top;*/
             }
@@ -133,6 +130,8 @@
                 margin-left: 12px;
                 vertical-align: middle;
                 color: brown;
+                position: relative;
+                top: 1px;
             }
         </style>
         @if($dataListArray['data'])
