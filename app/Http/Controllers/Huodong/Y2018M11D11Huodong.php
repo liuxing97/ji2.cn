@@ -193,6 +193,7 @@ class Y2018M11D11Huodong extends Controller
                 }else{
 //                    echo "助力人数仅为{$helperNum}人,凑够两人发放红包<br>";
                 }
+                $zhuli = 1;
             }
         }
 
