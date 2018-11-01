@@ -1,6 +1,3 @@
-@php
-{{--    $userIdentity = 'visitor';--}}
-@endphp
 @extends('fanbo/layouts/layout')
 @section('web-title')
     {{$siteData['censcms_web_name']}}-双十一转发抢红包！！！快来吧
@@ -136,9 +133,6 @@
             }
         </style>
         @if($userIdentity == 'visitor')
-            @php
-{{--                echo $userIdentity;--}}
-            @endphp
             {{--助力者显示--}}
             <div class="visitorShow">
                 <div class="originatorIcon">

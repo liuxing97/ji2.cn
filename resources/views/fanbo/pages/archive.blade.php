@@ -9,6 +9,8 @@
             padding: 20px 20px;
             /*padding: 0 1.5rem;*/
             background: #fff;
+            position: relative;
+            overflow: hidden;
         }
         .article .articletitle{
             border-color: #ff7975 !important;
@@ -113,6 +115,26 @@
                 max-height: 100%;
             }
         </style>
+        <style>
+            .headClass{
+
+            }
+            .articleClassValue{
+
+            }
+            .article .layui-icon{
+                /*vertical-align: top;*/
+            }
+            .article .layui-icon:before{
+                vertical-align: middle;
+            }
+            .articleClassValue{
+                font-size: 18px;
+                margin-left: 12px;
+                vertical-align: middle;
+                color: brown;
+            }
+        </style>
         @if($dataListArray['data'])
             @foreach($dataListArray['data'] as $item)
                 {{--如果是纯文字，无缩略图--}}
@@ -120,7 +142,11 @@
                     <a href="/article/{{$item['id']}}">
                     <div class="article">
                             <div class="article-header">
-                                <h3 class="articletitle"><i class="layui-icon layui-icon-read"></i>{{$item['title']}}</h3>
+                                <h3 class="articletitle"><i class="layui-icon layui-icon-read">
+                                        @if($archiveData['alias'] = 'new' && isset($archiveListData))
+                                            <span class="articleClassValue">{{$archiveListData[$item['archive']]}}</span>
+                                            @endif
+                                    </i>{{$item['title']}}</h3>
                                 <div class="release_time">{{$item['created_at']}}</div>
                                 <hr class="articletitle_hr">
                             </div>
@@ -141,7 +167,11 @@
                             </div>
                         </div>
                             <div class="article-header">
-                                <h3 class="articletitle"><i class="layui-icon layui-icon-read"></i>{{$item['title']}}</h3>
+                                <h3 class="articletitle"><i class="layui-icon layui-icon-read">
+                                        @if($archiveData['alias'] = 'new' && isset($archiveListData))
+                                            <span class="articleClassValue">{{$archiveListData[$item['archive']]}}</span>
+                                        @endif
+                                    </i>{{$item['title']}}</h3>
                                 <div class="release_time">{{$item['created_at']}}</div>
                                 <hr class="articletitle_hr">
                             </div>
