@@ -74,9 +74,9 @@
             @else
             <a href="{{$applyShouquanUrl}}"><div class="btn-join">申请授权后，可参加活动</div></a>
             @endif
-        <div class="shenquanItem" style="margin-top: 2rem;border: 1px solid #e5e5e5;">
-            <img style="max-width: 100%" src="/quan01.png" />
-        </div>
+        {{--<div class="shenquanItem" style="margin-top: 2rem;border: 1px solid #e5e5e5;">--}}
+            {{--<img style="max-width: 100%" src="/quan01.png" />--}}
+        {{--</div>--}}
     </div>
 
 
