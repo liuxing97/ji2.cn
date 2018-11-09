@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/huodong',function (){
     return redirect('/huodong/wechat/2018/11/11');
 });
+Route::get('/hui',function (){
+    return redirect('/article/107');
+});
 Route::get('/huodong/wechat/2018/11/11',function (\Illuminate\Http\Request $request){
     //判断是否存在code
     $code = $request -> input('code');

@@ -146,7 +146,9 @@
     <div class="weekShow">
         <div class="zhiding">置顶</div>
         <div class="weekShowMain">
-            <img src="/chihuo.jpg" />
+            <a href="/hui">
+                <img src="/chihuo.jpg" />
+            </a>
         </div>
         <div class="pro">
             <div class="t">下期精彩预告，每周日早8点：</div>
