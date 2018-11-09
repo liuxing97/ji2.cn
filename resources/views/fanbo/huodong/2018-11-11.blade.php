@@ -150,9 +150,9 @@
             <img style="max-height: 100%; max-width: 100%" src="/quan04.png" />
         </div>
         <div class="haoquanList">
-            @for($t=0;$t<5;$t++)
+            @for($t=6;$t<11;$t++)
             <div class="huodongItem">
-                <img src="/quan02.jpg" alt="">
+                <img src="/huodongimg/{{$t}}.jpg" alt="">
             </div>
                 @endfor
                 <a href="/archive/quan"><div class="more">更多好券</div></a>

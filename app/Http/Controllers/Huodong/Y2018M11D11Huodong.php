@@ -189,8 +189,8 @@ class Y2018M11D11Huodong extends Controller
 //                echo "助力人数为:$helperNum<br>";
                 $zhuli = 1;
 
-                //测试助力人数两人时，发放红包
-                if($helperNum == 1){
+                //测试助力人数六人时，发放红包
+                if($helperNum == 6){
                     //测试发送红包
                     $payObj = new \App\Http\Controllers\WeChat\Pay();
                     $hongbaoPrice = rand(0,111);
