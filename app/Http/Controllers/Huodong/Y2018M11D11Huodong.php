@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Huodong;
 
+use App\Huodong20181111Log;
 use App\WechatConfig;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -58,6 +59,8 @@ class Y2018M11D11Huodong extends Controller
         //参数初始化9    ·当前登录用户，不一定授权过，但是申请抢红包的用户，是一定授权过的
         $weUserInfo = session('wechat_web_userinfor');
         $zhuli=0;
+        //初始化参数10
+        $meiyoule = false;
 
 
 
@@ -190,10 +193,33 @@ class Y2018M11D11Huodong extends Controller
                 if($helperNum == 1){
                     //测试发送红包
                     $payObj = new \App\Http\Controllers\WeChat\Pay();
-                    $ret = $payObj -> payToUser($openid,'36');
-                    dump($ret);
-                    $isHas = strstr($ret,'SUCCESS');
-                    dump($isHas);
+                    $hongbaoPrice = rand('0,151');
+                    if($hongbaoPrice < 36){
+                        //没有抢上
+                        $meiyoule = true;
+                    }else{
+                        $ret = $payObj -> payToUser($openid,$hongbaoPrice);
+//                    dump($ret);
+                        //余额不足
+                        $isHas = strstr($ret,'NOTENOUGH');
+                        if($isHas){
+                            $meiyoule = true;
+                            //记录，没有抢上红包
+                        }
+//                    dump($isHas);
+                    }
+                    //没有抢上
+                    if($meiyoule){
+                       //记录，没有抢上红包
+                        $obj = new Huodong20181111Log();
+                        $obj = $obj -> where('openid',$originatorData['openid']) -> where('originator','true') -> first();
+                        $obj -> state = 'false';
+                    }else{
+                        $obj = new Huodong20181111Log();
+                        $obj = $obj -> where('openid',$originatorData['openid']) -> where('originator','true') -> first();
+                        $obj -> state = $hongbaoPrice;
+                    }
+                    $obj -> save();
                     //将红包记录保存到数据库
 //                    echo "助力成功，人数达标，您的好友抢到红包啦！<br>";
                 }else{
@@ -211,7 +237,8 @@ class Y2018M11D11Huodong extends Controller
             'helpListArray' => $helpListArray,
             'helperNum' => $helperNum,
             'originatorData' => $originatorData,
-            'zhuli' => $zhuli
+            'zhuli' => $zhuli,
+            'meiyoule' => $meiyoule
         ]);
     }
 

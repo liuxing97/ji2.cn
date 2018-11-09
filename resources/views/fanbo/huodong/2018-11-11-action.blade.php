@@ -145,7 +145,7 @@
                 <div class="originatorInfo">
                     <p style="color: brown;">您的好友【 {{$originatorData['nickname']}} 】正在抢红包！</p>
                     <p style="margin-top: 1rem;">还需要@php
-                            $num = 2-$helperNum;
+                            $num = 6-$helperNum;
                             if($num <0){
                                 echo "0";
                             }else{
@@ -170,14 +170,18 @@
                 </div>
                 <div class="originatorInfo">
                     <p style="color: brown;">成功参与抢红包啦！</p>
-                    <p style="margin-top: 1rem;">还需要@php
-                            $num = 2-$helperNum;
-                            if($num <0){
-                                echo "0";
-                            }else{
-                                echo $num;
-                            }
-                        @endphp个人助力，分享本页面，让小伙伴们助力吧！</p>
+                    @if($meiyoule)
+                        <p>坏了，抢慢了一步，红包从手中溜走了~~~</p>
+                        @else
+                        <p style="margin-top: 1rem;">还需要@php
+                                $num = 6-$helperNum;
+                                if($num <0){
+                                    echo "0";
+                                }else{
+                                    echo $num;
+                                }
+                            @endphp个人助力，分享本页面，让小伙伴们助力吧！</p>
+                        @endif
                 </div>
                 <div class="helperIconListTitle">都有哪些小伙伴为你助力了：</div>
                 {{--已经助力的小伙伴/图标方式--}}
