@@ -193,7 +193,7 @@ class Y2018M11D11Huodong extends Controller
                 if($helperNum == 1){
                     //测试发送红包
                     $payObj = new \App\Http\Controllers\WeChat\Pay();
-                    $hongbaoPrice = rand('0,151');
+                    $hongbaoPrice = rand(0,151);
                     if($hongbaoPrice < 36){
                         //没有抢上
                         $meiyoule = true;
