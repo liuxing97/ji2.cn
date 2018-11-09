@@ -53,11 +53,11 @@ class Pay extends Controller
             'spbill_create_ip'=>$spbill_create_ip,
             'sign'=>$sign,
         ];
-        dump($data);
+//        dump($data);
         $url = 'https://api.mch.weixin.qq.com/mmpaymkttransfers/promotion/transfers';
         $xml = new XML();
         $xml = $xml -> arrayToXml($data);
-        dump($xml);
+//        dump($xml);
         $ch = curl_init();
         $second=30;
         curl_setopt($ch,CURLOPT_TIMEOUT,$second);
@@ -79,7 +79,7 @@ class Pay extends Controller
         $data = curl_exec($ch);
         if($data){
             curl_close($ch);
-            dump($data);
+//            dump($data);
             return $data;
         }else{
             $error = curl_errno($ch);

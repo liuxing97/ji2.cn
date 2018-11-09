@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Route;
 //参与活动按钮，先进行发起人登记请求
 //再进行跳转至活动详情页面，该页面携带活动发起人的openid
 //然后要求用户点击转发
+Route::get('/huodong',function (){
+    return redirect('/huodong/wechat/2018/11/11');
+});
 Route::get('/huodong/wechat/2018/11/11',function (\Illuminate\Http\Request $request){
     //判断是否存在code
     $code = $request -> input('code');

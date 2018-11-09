@@ -187,10 +187,11 @@ class Y2018M11D11Huodong extends Controller
                 $zhuli = 1;
 
                 //测试助力人数两人时，发放红包
-                if($helperNum == 2){
+                if($helperNum == 1){
                     //测试发送红包
                     $payObj = new \App\Http\Controllers\WeChat\Pay();
-                    $payObj -> payToUser($openid,'36');
+                    $ret = $payObj -> payToUser($openid,'36');
+                    dump($ret);
                     //将红包记录保存到数据库
 //                    echo "助力成功，人数达标，您的好友抢到红包啦！<br>";
                 }else{
