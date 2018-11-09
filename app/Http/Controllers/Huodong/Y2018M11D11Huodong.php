@@ -198,15 +198,13 @@ class Y2018M11D11Huodong extends Controller
                         //没有抢上
                         $meiyoule = true;
                     }else{
-                        $ret = $payObj -> payToUser($openid,$hongbaoPrice);
-//                    dump($ret);
-                        //余额不足
-                        $isHas = strstr($ret,'NOTENOUGH');
-                        if($isHas){
-                            $meiyoule = true;
-                            //记录，没有抢上红包
-                        }
-//                    dump($isHas);
+                        //暂时不支付
+//                        $ret = $payObj -> payToUser($openid,$hongbaoPrice);
+//                        $isHas = strstr($ret,'NOTENOUGH');
+//                        if($isHas){
+//                            $meiyoule = true;
+//                        }
+                        $meiyoule= true;
                     }
                     //没有抢上
                     if($meiyoule){
@@ -227,7 +225,6 @@ class Y2018M11D11Huodong extends Controller
                 }
             }
         }
-
 
         //最后载入页面
         return view('/fanbo/huodong/2018-11-11-action',[
