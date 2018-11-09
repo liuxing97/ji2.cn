@@ -192,6 +192,8 @@ class Y2018M11D11Huodong extends Controller
                     $payObj = new \App\Http\Controllers\WeChat\Pay();
                     $ret = $payObj -> payToUser($openid,'36');
                     dump($ret);
+                    $isHas = strstr($ret,'SUCCESS');
+                    dump($isHas);
                     //将红包记录保存到数据库
 //                    echo "助力成功，人数达标，您的好友抢到红包啦！<br>";
                 }else{
