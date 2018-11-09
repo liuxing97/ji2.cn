@@ -5,6 +5,10 @@
 @php
     $shenqiArray = new \App\CmsArticle();
     $shenqiArray =  $shenqiArray -> where('archive','23')->orderBy('id','desc') -> take(3) -> get() -> toArray();
+
+    //查询发起人状态
+    $faqiObj = new \App\Huodong20181111Log();
+    $faqiObj = $faqiObj -> where('openid',$originatorData['openid']) -> where('originator','true') -> first();
 @endphp
 @section('content')
     <style>
@@ -144,14 +148,20 @@
                 </div>
                 <div class="originatorInfo">
                     <p style="color: brown;">您的好友【 {{$originatorData['nickname']}} 】正在抢红包！</p>
-                    <p style="margin-top: 1rem;">还需要@php
-                            $num = 6-$helperNum;
-                            if($num <0){
-                                echo "0";
-                            }else{
-                                echo $num;
-                            }
-                    @endphp个人助力他，点击下方，助力他吧！</p>
+                    @if($faqiObj -> state == 'false')
+                        <p>红包从您好友手上溜走了~</p>
+                        @elseif($faqiObj -> state == 'waiting')
+                        <p style="margin-top: 1rem;">还需要@php
+                                $num = 6-$helperNum;
+                                if($num <0){
+                                    echo "0";
+                                }else{
+                                    echo $num;
+                                }
+                            @endphp个人助力他，点击下方，助力他吧！</p>
+                        @else
+                        <p style="color: brown;">抢到红包啦！</p>
+                        @endif
                     @if($zhuli)
                         @else
                         <a href="{{$applyShouquanUrl}}"><div class="btn-zhuli">为他助力</div></a>
@@ -170,9 +180,10 @@
                 </div>
                 <div class="originatorInfo">
                     <p style="color: brown;">成功参与抢红包啦！</p>
-                    @if($meiyoule)
+
+                    @if($faqiObj -> state == 'false')
                         <p>坏了，抢慢了一步，红包从手中溜走了~~~</p>
-                        @else
+                        @elseif($faqiObj -> state == 'waiting')
                         <p style="margin-top: 1rem;">还需要@php
                                 $num = 6-$helperNum;
                                 if($num <0){
@@ -181,6 +192,8 @@
                                     echo $num;
                                 }
                             @endphp个人助力，分享本页面，让小伙伴们助力吧！</p>
+                        @else
+                        <p color="brown">红包到账啦~~~</p>
                         @endif
                 </div>
                 <div class="helperIconListTitle">都有哪些小伙伴为你助力了：</div>
@@ -190,7 +203,7 @@
                         <div style="line-height: 2rem;
 margin-bottom: 10px;
 color: #666;
-text-align: center;">赶紧告诉小伙伴们给你助力吧</div>
+text-align: center;">转发本页面，让小伙伴们给你助力吧</div>
                     @endif
                     @foreach($helpListArray as $item)
                         <div class="helperIconItem">
