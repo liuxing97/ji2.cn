@@ -4,6 +4,7 @@
     <style>
         .app_header{
             background: #35b44a;
+            background: #2ea52e;
             min-height: 100px;
             width: 100%;
             padding: 20px 24px;
