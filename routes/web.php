@@ -640,3 +640,8 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
     Route::resource('users', 'Admin\UsersController');
     Route::post('users_mass_destroy', ['uses' => 'Admin\UsersController@massDestroy', 'as' => 'users.mass_destroy']);
 });
+
+//2.0版本路由
+Route::get('/2.0/index',function (){
+    return view('/quan/index');
+})->middleware('ui.checkdata');
