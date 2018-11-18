@@ -159,12 +159,12 @@
             .circle_about .c-item .t{
                 display: inline-block;
 
-                width: 16%;
+                width: 21%;
             }
             .circle_about .c-item .v{
                 display: inline-block;
 
-                width: 78%;
+                width: 77%;
 
                 vertical-align: top;
 
