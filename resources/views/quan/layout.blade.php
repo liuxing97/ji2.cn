@@ -35,7 +35,7 @@
         margin: 0 auto;
         background: #f0f0f0;
         font-family: "微软雅黑";
-        padding-bottom: 20px;
+        /*padding-bottom: 20px;*/
     }
     .table{
         display: table;

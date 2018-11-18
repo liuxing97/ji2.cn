@@ -116,12 +116,10 @@
         <style>
             .circle_entry{
                 text-align: center;
-
                 margin-top: 15px;
             }
             .circle_entry .item{
                 display: inline-block;
-
                 width: 100px;
             }
             .circle_entry .item .bottom{
@@ -770,8 +768,44 @@
             </div>
             @endfor
         {{--三个圈子路径--}}
+        <style>
+            .go_circle{
+                background: #2eaf2e;
+                padding: 10px 16px 33px 16px;
+                margin-top: 36px;
+                border-radius: 12px;
+            }
+            .footer{
+                margin-top: -10px;
+                background: #2eaf2e;
+                line-height: 1.5rem;
+                color: #fff;
+                padding: 36px 16px;
+                border-top: 1px dashed #fff;
+            }
+            .footer p{
+                margin-bottom: 12px;
+            }
+        </style>
         <div class="go_circle">
-
+            <div class="circle_entry">
+                <div class="item">
+                    <img class="img" src="/quan/yuedongquan.png">
+                    <div class="bottom"></div>
+                </div>
+                <div class="item">
+                    <img class="img" src="/quan/shishangquan.png">
+                    <div class="bottom"></div>
+                </div>
+                <div class="item">
+                    <img class="img" src="/quan/kejiquan.png">
+                    <div class="bottom"></div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <p>极爱网，爱运动，爱科技，爱生活，更爱极爱网。<br>一个以生活为驱动的，电子商务网站。</p>
+            <p>Copyright ©2018-2019 极爱网 陕ICP备18006045号-2</p>
         </div>
     </div>
     @endsection
