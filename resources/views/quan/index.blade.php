@@ -337,7 +337,7 @@
                 <div class="item">
                     <div class="item-badge">
                         <div class="icon">
-                            <img class="img" src="http://localhost:86/quan/badge/badge-run-30-color.png">
+                            <img class="img" src="/quan/badge/badge-run-30-color.png">
                         </div>
                         <div class="describe">
                             <p class="t">青铜跑者</p>
@@ -436,7 +436,7 @@
         <div class="weekShow">
             <div style="font-size: 22px;color: brown;">惠购物（周推）</div>
             <div style="color: brown;margin-top: 20px;padding-top: 20px;border-top: 1px dashed #d2d2d2">
-                <img class="img" src="http://localhost:86/chihuo.jpg" alt="">
+                <img class="img" src="/chihuo.jpg" alt="">
             </div>
         </div>
         {{--今日最热·从运动圈·科技圈·时尚圈中挑选热门文章·按热度进行排名--}}
@@ -567,9 +567,9 @@
                     <div class="badge">
                         <div class="t">用户徽章</div>
                         <div class="v">
-                            <div class="item"><img style="max-width: 100%;max-height: 100%" src="http://localhost:86/quan/badge/badge-run-30-color.png"></div>
-                            <div class="item"><img style="max-width: 100%;max-height: 100%" src="http://localhost:86/quan/badge/badge-run-30-color.png"></div>
-                            <div class="item"><img style="max-width: 100%;max-height: 100%" src="http://localhost:86/quan/badge/badge-run-30-color.png"></div>
+                            <div class="item"><img style="max-width: 100%;max-height: 100%" src="/quan/badge/badge-run-30-color.png"></div>
+                            <div class="item"><img style="max-width: 100%;max-height: 100%" src="/quan/badge/badge-run-30-color.png"></div>
+                            <div class="item"><img style="max-width: 100%;max-height: 100%" src="/quan/badge/badge-run-30-color.png"></div>
                         </div>
                     </div>
                 </div>
