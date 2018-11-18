@@ -15,7 +15,6 @@
     <meta property="og:image" content="/share.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0,user-scalable=0;"/>
     <link rel="stylesheet" href="/layui/css/layui.css" />
-
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <script>
         var _hmt = _hmt || [];
@@ -27,6 +26,7 @@
         })();
     </script>
 </head>
+<body>
 <style>
     html,body{
         max-width: 400px;
@@ -39,6 +39,7 @@
     }
     .table{
         display: table;
+        margin: 0 auto;
     }
     .table-cell{
         display: table-cell;
@@ -52,10 +53,15 @@
     }
     .img{
         max-width: 100%;
+
+        max-height: 100%;
     }
 </style>
-<body>
 @section('body')
-    @endsection
+    @show
 </body>
+
+<script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+@section('js')
+    @show
 </html>
