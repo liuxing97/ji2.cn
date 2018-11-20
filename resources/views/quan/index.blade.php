@@ -70,9 +70,9 @@
 
             margin-top: 36px;
 
-            border: 1px solid #e5e5e5;
+            /*border: 1px solid #e5e5e5;*/
 
-            box-shadow: 0 0 10px #cecece;
+            /*box-shadow: 0 0 10px #cecece;*/
 
             border-radius: 12px;
         }
@@ -186,7 +186,14 @@
             </div>
         </div>
     </div>
-
+    <style>
+        .huodongTuiguang .title{}
+    </style>
+    {{--活动推广--}}
+    <div class="huodongTuiguang">
+        <div class="title">活动推广</div>
+        <div class="v">转发领红包</div>
+    </div>
     {{--名人堂--}}
     <div class="app_mrt">
         <div class="mrt-logoBox">
@@ -376,7 +383,7 @@
 
             border-radius: 9px;
 
-            box-shadow: 0 0 10px #afafaf;
+            /*box-shadow: 0 0 10px #afafaf;*/
 
             overflow: hidden;
         }
@@ -455,7 +462,7 @@
                 margin-top: 20px;
                 padding: 20px 20px;
                 border-radius: 12px;
-                box-shadow: 0 0 10px #cdcdcd;
+                /*box-shadow: 0 0 10px #cdcdcd;*/
             }
             .more_top{}
         </style>
@@ -473,7 +480,7 @@
                 padding: 12px 20px;
                 box-sizing: border-box;
                 border-radius: 8px;
-                box-shadow: 0 0 10px #d4d4d4;
+                /*box-shadow: 0 0 10px #d4d4d4;*/
             }
             .quan_hasPhoto{}
             .quan_header{}
