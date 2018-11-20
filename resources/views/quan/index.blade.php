@@ -417,6 +417,34 @@
             position: relative;
         }
     </style>
+    <style>
+        .help-point{
+            margin-top: 30px;
+            background: #fff;
+            border: 1px solid #e5e5e5;
+            /*padding: 8px 12px;*/
+        }
+        .help-point .t{
+            padding: 8px 12px;
+            border-bottom: 1px dashed #e5e5e5;
+            color: #393939;
+        }
+        .help-point .v{
+            line-height: 30px;
+            color: #7a7a7a;
+            padding: 8px 12px;
+            text-align: center;
+        }
+    </style>
+    {{--积分规则--}}
+    <div class="help-point">
+        <div class="t">积分使用指南</div>
+        <div class="v">
+            每积分可抵扣0.01人民币<br>
+            积分可用来抵扣本站自营商品<br>
+            仅部分商品，不可全部抵扣
+        </div>
+    </div>
     {{--应用中部--}}
     <div class="app_body">
         {{--本期推荐·每个星期的软文--}}
@@ -767,6 +795,314 @@
                 </div>
             </div>
             @endfor
+        <style>
+            @keyframes refresh{
+                from{
+                    /*text-shadow: 0 0 10px #fff;*/
+                    /*background: #0d6aad;*/
+                }
+                50%{
+                    /*text-shadow: 0 0 26px #0063f3;*/
+                }
+                to{
+                    /*text-shadow: 0 0 10px #fff;*/
+                    /*background: #fff;*/
+                }
+            }
+            @-moz-keyframes refresh /* Firefox */
+            {
+                from{
+                    text-shadow: 0 0 10px #fff;
+                    background: #0d6aad;
+                }
+                to{
+                    text-shadow: 0 0 10px #333;
+                    background: #fff;
+                }
+            }
+
+            @-webkit-keyframes refresh /* Safari 和 Chrome */
+            {
+            }
+
+            @-o-keyframes refresh /* Opera */
+            {
+            }
+            .refreshBtn{
+                margin: 0 auto;
+                margin-top: 36px;
+                text-align: center;
+                font-size: 44px;
+                color: #a1a1a1;
+                text-shadow: 0 0 10px #eee;
+                animation: refresh 3s infinite;
+                -moz-animation: refresh 3s infinite;	/* Firefox */
+                -webkit-animation: refresh 3s infinite;	/* Safari 和 Chrome */
+                -o-animation: refresh 3s infinite;	/* Opera */
+            }
+        </style>
+        <div style="display: none" class="refreshBtn layui-icon-refresh-3 layui-icon"></div>
+        {{--三个圈子--}}
+        <style>
+            .quan_block{
+                background: #fff;
+
+                margin-top: 27px;
+
+                border: 1px solid #e5e5e5;
+            }
+            .quan_block_header{
+                text-align: center;
+                line-height: 77px;
+                font-size: 22px;
+                background: #f8f8f8
+            }
+            .quan_block .articleList{}
+            .quan_block .articleList .articleItem{
+                border-top: 1px solid #e5e5e5;
+
+                padding: 12px 20px;
+            }
+            .quan_block .articleList .articleItem .t{
+                font-size: 18px;
+                line-height: 34px;
+                padding-left: 12px;
+                position: relative;
+
+            }
+            .quan_block .articleList .articleItem .t .left{
+                border-left: 2px solid brown;
+                display: inline-block;
+                line-height: 34px;
+                position: absolute;
+                left: 0;
+            }
+            .quan_block .articleList .articleItem .v{
+                color: #7a7a7a;
+                line-height: 1.5rem;
+                margin-top: 14px;
+                border-top: 1px dashed #e5e5e5;
+                padding: 12px 0;
+                /*height: 81px;*/
+                /*overflow: hidden;*/
+            }
+            .quan_block .articleList .articleItem .v .i{
+                float: left;
+                width: 100px;
+                height: 100px;
+                margin-right: 14px;
+                margin-top: 8px;
+            }
+            .quan_block .articleList .articleItem .p{
+                margin-top: 18px;
+            }
+            .quan_block .articleList .articleItem .p .p-icon{
+                width: 32px;
+
+                display: inline-block;
+
+                box-sizing: border-box;
+
+                margin-right: 6px;
+            }
+            .quan_block .articleList .articleItem .p .p-name{
+                display: inline-block;
+                color: #9e9e9e;
+            }
+            .quan_block .articleList .articleItem .article-time{
+                text-align: center;
+
+                color: #8d8d8d;
+
+                line-height: 56px;
+
+                border-top: 1px dashed #e5e5e5;
+
+            }
+        </style>
+        <div class="quan_block">
+            <div class="quan_block_header">
+                <div>科技圈</div>
+                <a style="display: none" href="/2.0/index">
+                    <div style="
+                    color: brown;
+                    font-size: 15px;
+                    position: relative;
+                    line-height: 30px;
+                    top: -6px;
+                    letter-spacing: 3px;
+                "><span class="layui-icon layui-icon-tree"></span>进入圈子</div>
+                </a>
+            </div>
+            <div class="articleList">
+                @for($i=0;$i<5;$i++)
+                    <div class="articleItem">
+                        <div class="t">
+                            <span class="left">&nbsp;</span>
+                            <span>小米与美图合作背后：美图的解脱，小米的多元化</span>
+                        </div>
+                        <div class="p">
+                            <div class="p-icon">
+                                <img class="img" src="http://thirdwx.qlogo.cn/mmopen/vi_32/nDDvSR6JUpC7oJNlsQtz9Yia0QNyO1LrYkWxOlj4nVRsdV0MjbVgoaBWsPbzVibqU8TticianlBiatwWcjZB84UuzyA/132"
+                                     alt=""></div>
+                            <div class="p-name">简约不失繁华</div>
+                            {{--<div class="p-time">发布时间：2018-11-20 08:23:83</div>--}}
+                        </div>
+                        <div class="v">
+                            <div class="i">
+                                <div style="
+                                /*vertical-align: middle;*/
+                                /*display: table-cell;*/
+                                height: 100px;
+                                /*border: 1px solid #e5e5e5;*/
+                                /*padding: 5px;*/
+                                box-sizing: border-box;
+                                ">
+                                        <img class="img" src="http://cms-bucket.nosdn.127.net/2018/11/20/00d4ca78e67e47fca08dabee9567f43a.png?imageView&thumbnail=190y120">
+
+                                </div>
+                            </div>
+                            <span>
+                                南极人电热毯护膝毯加热坐垫电暖垫办公室暖脚宝插电褥子暖身毯【包邮】【在售价】268.00元【下单链接】https://m
+                            </span>
+                            {{--美图手机则定位高端女性，小米的这一举动不仅可以将女性最关注的“自拍技术”纳入体系，而且将美图手机流量带入进来，还增加了女性用户市场。但是否能如愿达到效果，还有待市场检验。--}}
+                        </div>
+                        <div class="article-time">发布时间：2018-11-20 08:23:83</div>
+                    </div>
+                @endfor
+            </div>
+            <div style="
+                text-align: center;
+                line-height: 50px;
+                border-top: 1px solid #e5e5e5;
+                font-size: 14px;
+                color: #646464;
+                letter-spacing: 6px;
+                background: #f7f7f7;
+">阅读更多</div>
+        </div>
+        <div class="quan_block">
+            <div class="quan_block_header">
+                <div>时尚圈</div>
+                <a style="display: none" href="/2.0/index">
+                    <div style="
+                    color: brown;
+                    font-size: 15px;
+                    position: relative;
+                    line-height: 30px;
+                    top: -6px;
+                    letter-spacing: 3px;
+                "><span class="layui-icon layui-icon-tree"></span>进入圈子</div>
+                </a>
+            </div>
+            <div class="articleList">
+                @for($i=0;$i<5;$i++)
+                    <div class="articleItem">
+                        <div class="t">
+                            <span class="left">&nbsp;</span>
+                            <span>小米与美图合作背后：美图的解脱，小米的多元化</span>
+                        </div>
+                        <div class="p">
+                            <div class="p-icon">
+                                <img class="img" src="http://thirdwx.qlogo.cn/mmopen/vi_32/nDDvSR6JUpC7oJNlsQtz9Yia0QNyO1LrYkWxOlj4nVRsdV0MjbVgoaBWsPbzVibqU8TticianlBiatwWcjZB84UuzyA/132"
+                                     alt=""></div>
+                            <div class="p-name">简约不失繁华</div>
+                            {{--<div class="p-time">发布时间：2018-11-20 08:23:83</div>--}}
+                        </div>
+                        <div class="v">
+                            <div class="i">
+                                <div style="
+                                /*vertical-align: middle;*/
+                                /*display: table-cell;*/
+                                height: 100px;
+                                /*border: 1px solid #e5e5e5;*/
+                                /*padding: 5px;*/
+                                box-sizing: border-box;
+                                ">
+                                    <img class="img" src="http://cms-bucket.nosdn.127.net/2018/11/20/00d4ca78e67e47fca08dabee9567f43a.png?imageView&thumbnail=190y120">
+
+                                </div>
+                            </div>
+                            <span>
+                                南极人电热毯护膝毯加热坐垫电暖垫办公室暖脚宝插电褥子暖身毯【包邮】【在售价】268.00元【下单链接】https://m
+                            </span>
+                            {{--美图手机则定位高端女性，小米的这一举动不仅可以将女性最关注的“自拍技术”纳入体系，而且将美图手机流量带入进来，还增加了女性用户市场。但是否能如愿达到效果，还有待市场检验。--}}
+                        </div>
+                        <div class="article-time">发布时间：2018-11-20 08:23:83</div>
+                    </div>
+                @endfor
+            </div>
+            <div style="
+                text-align: center;
+                line-height: 50px;
+                border-top: 1px solid #e5e5e5;
+                font-size: 14px;
+                color: #646464;
+                letter-spacing: 6px;
+                background: #f7f7f7;
+">阅读更多</div>
+        </div>
+        <div class="quan_block">
+            <div class="quan_block_header">
+                <div>运动圈</div>
+                <a style="display: none" href="/2.0/index">
+                    <div style="
+                    color: brown;
+                    font-size: 15px;
+                    position: relative;
+                    line-height: 30px;
+                    top: -6px;
+                    letter-spacing: 3px;
+                "><span class="layui-icon layui-icon-tree"></span>进入圈子</div>
+                </a>
+            </div>
+            <div class="articleList">
+                @for($i=0;$i<5;$i++)
+                    <div class="articleItem">
+                        <div class="t">
+                            <span class="left">&nbsp;</span>
+                            <span>小米与美图合作背后：美图的解脱，小米的多元化</span>
+                        </div>
+                        <div class="p">
+                            <div class="p-icon">
+                                <img class="img" src="http://thirdwx.qlogo.cn/mmopen/vi_32/nDDvSR6JUpC7oJNlsQtz9Yia0QNyO1LrYkWxOlj4nVRsdV0MjbVgoaBWsPbzVibqU8TticianlBiatwWcjZB84UuzyA/132"
+                                     alt=""></div>
+                            <div class="p-name">简约不失繁华</div>
+                            {{--<div class="p-time">发布时间：2018-11-20 08:23:83</div>--}}
+                        </div>
+                        <div class="v">
+                            <div class="i">
+                                <div style="
+                                /*vertical-align: middle;*/
+                                /*display: table-cell;*/
+                                height: 100px;
+                                /*border: 1px solid #e5e5e5;*/
+                                /*padding: 5px;*/
+                                box-sizing: border-box;
+                                ">
+                                    <img class="img" src="http://cms-bucket.nosdn.127.net/2018/11/20/00d4ca78e67e47fca08dabee9567f43a.png?imageView&thumbnail=190y120">
+
+                                </div>
+                            </div>
+                            <span>
+                                南极人电热毯护膝毯加热坐垫电暖垫办公室暖脚宝插电褥子暖身毯【包邮】【在售价】268.00元【下单链接】https://m
+                            </span>
+                            {{--美图手机则定位高端女性，小米的这一举动不仅可以将女性最关注的“自拍技术”纳入体系，而且将美图手机流量带入进来，还增加了女性用户市场。但是否能如愿达到效果，还有待市场检验。--}}
+                        </div>
+                        <div class="article-time">发布时间：2018-11-20 08:23:83</div>
+                    </div>
+                @endfor
+            </div>
+            <div style="
+                text-align: center;
+                line-height: 50px;
+                border-top: 1px solid #e5e5e5;
+                font-size: 14px;
+                color: #646464;
+                letter-spacing: 6px;
+                background: #f7f7f7;
+">阅读更多</div>
+        </div>
         {{--三个圈子路径--}}
         <style>
             .go_circle{
@@ -811,6 +1147,7 @@
     @endsection
 @section('js')
     <script>
+        //使照片尺寸相同
         $(document).ready(function (){
             var width = $('.photoList').width();
             width = width*0.28-6-6;
