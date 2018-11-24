@@ -4,12 +4,15 @@
         .fixMenu{
             position: fixed;
 
-            bottom: 20px;
+            bottom: 10px;
+
+            right: 10px;
+
+            text-align: center;
+
+            color: #363636;
+
             z-index: 9999;
-
-            bottom: 0;
-
-            right: 0;
 
             background: #2ea52e;
 
