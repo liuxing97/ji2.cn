@@ -1,5 +1,25 @@
 @extends("quan.layout")
 @section('body')
+    <style>
+        .fixMenu{
+            position: fixed;
+
+            bottom: 20px;
+
+            right: 20px;
+
+            text-align: center;
+            color: #363636;
+        }
+        .fixMenu .layui-icon{
+            font-size: 22px;
+        }
+    </style>
+    {{--菜单--}}
+    <div class="fixMenu">
+        <div class="layui-icon layui-icon-spread-left"></div>
+        <div>菜单</div>
+    </div>
     {{--背景--}}
     <style>
         .app_header{
@@ -17,7 +37,7 @@
         .logoBox{
             width: 200px;
             margin: 0 auto;
-            margin-top: 28px;
+            /*margin-top: 28px;*/
         }
         .logoBox img{
             width: 100%;
@@ -85,6 +105,7 @@
     </style>
     <style>
         .appFixMenu{
+            display: none;
             position: fixed;
             background: rgba(0,0,0,0.3);
             color: #fff;
