@@ -17,6 +17,7 @@
         .logoBox{
             width: 200px;
             margin: 0 auto;
+            margin-top: 28px;
         }
         .logoBox img{
             width: 100%;
@@ -82,6 +83,91 @@
             margin-top: 20px;
         }
     </style>
+    <style>
+        .appFixMenu{
+            position: fixed;
+            background: rgba(0,0,0,0.3);
+            color: #fff;
+            width: 110px;
+            line-height: 28px;
+            text-align: center;
+            top: 20px;
+            border-radius: 40px;
+            left: 20px;
+        }
+        .appFixMenu .this{}
+        .appFixMenu .layui-icon{
+            margin-left: 8px;
+
+            position: relative;
+
+            top: 1px;
+        }
+    </style>
+    <div class="appFixMenu"><span class="this">名人堂</span><span class="layui-icon layui-icon-spread-left"></span></div>
+    {{--应用标签--}}
+    <style>
+        .appLabel{
+            position: fixed;
+            top:0;
+            left: 0;
+            display: none;
+            background: #fff;
+            height: 100%;
+            z-index: 9999;
+            box-shadow: 0 0 10px #7a7a7a;
+        }
+        .appLabel .i:nth-of-type(1){
+            text-align: center;
+            padding: 16px 18px;
+            line-height: 28px;
+            color: #868686;
+        }
+        .appLabel .i:nth-of-type(1) .layui-icon{
+            margin-left: 0;
+        }
+        .appLabel .i{
+            width: 210px;
+            line-height: 50px;
+            box-sizing: border-box;
+            padding: 0 20px;
+            padding-left: 26px;
+            color: #424242;
+        }
+        .appLabel .i:nth-of-type(2){
+            background: #f2f2f2;
+            border-left: 6px solid brown;
+            color: brown;
+        }
+        .appLabel .i .layui-icon{
+            margin-left: 20px;
+            font-size: 20px;
+            position: relative;
+            top: 3px;
+        }
+
+    </style>
+    <div class="appLabel">
+        <div class="i">
+            {{--<span class="layui-icon layui-icon-share"></span>--}}
+            爱运动，爱科技，爱生活，更爱极爱网。
+        </div>
+        {{--<div>顶部</div>--}}
+        <div class="i"><span>名人堂</span><span class="layui-icon layui-icon-senior"></span></div>
+        <div class="i"><span>科技圈</span><span class="layui-icon layui-icon-senior"></span></div>
+        <div class="i"><span>时尚圈</span><span class="layui-icon layui-icon-senior"></span></div>
+        <div class="i"><span>惠购物</span><span class="layui-icon layui-icon-senior"></span></div>
+        <div class="i"><span>TOP热点</span><span class="layui-icon layui-icon-senior"></span></div>
+        <div class="i"><span>全部分类</span><span class="layui-icon layui-icon-senior"></span></div>
+        <div class="i"><span>积分兑换</span><span class="layui-icon layui-icon-senior"></span></div>
+        {{--<div class="i">悦动圈</div>--}}
+        {{--<div class="i">科技圈</div>--}}
+        {{--<div class="i">时尚圈</div>--}}
+        {{--<div class="i">惠购物</div>--}}
+        {{--<div class="i">TOP热点</div>--}}
+        {{--<div class="i">全部分类</div>--}}
+        {{--<div class="i">积分兑换</div>--}}
+    </div>
     {{--应用头部--}}
     <div class="app_header">
         {{--Logo--}}
