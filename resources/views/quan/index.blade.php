@@ -89,7 +89,8 @@
             background: rgba(0,0,0,0.3);
             color: #fff;
             width: 110px;
-            line-height: 28px;
+            /*line-height: 28px;*/
+            line-height: 32px;
             text-align: center;
             top: 20px;
             border-radius: 40px;
