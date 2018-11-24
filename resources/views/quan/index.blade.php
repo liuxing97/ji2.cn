@@ -5,11 +5,19 @@
             position: fixed;
 
             bottom: 20px;
+            z-index: 9999;
 
-            right: 20px;
+            bottom: 0;
 
-            text-align: center;
-            color: #363636;
+            right: 0;
+
+            background: #2ea52e;
+
+            padding: 6px;
+
+            color: #fff;
+
+            border-radius: 3px;
         }
         .fixMenu .layui-icon{
             font-size: 22px;
