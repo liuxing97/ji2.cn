@@ -1302,7 +1302,7 @@ height: 100%;">
             @media only screen and (min-width: 660px){
                 html,body{
                     overflow-x: inherit;
-                    max-width: 660px;
+                    /*max-width: 660px;*/
                 }
                 .appLabel{
                 position: fixed;

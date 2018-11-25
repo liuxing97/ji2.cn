@@ -29,7 +29,7 @@
 <body>
 <style>
     html,body{
-        max-width: 400px;
+        /*max-width: 400px;*/
         min-height: 100%;
         position: relative;
         margin: 0 auto;
