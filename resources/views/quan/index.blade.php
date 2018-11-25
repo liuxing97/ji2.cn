@@ -2,6 +2,7 @@
 @section('body')
     <style>
         .fixMenu{
+            display: none;
             position: fixed;
 
             bottom: 10px;
@@ -114,17 +115,19 @@
     </style>
     <style>
         .appFixMenu{
-            display: none;
             position: fixed;
-            background: rgba(0,0,0,0.3);
+            background: rgba(0, 0, 0, 0.59);
             color: #fff;
             width: 110px;
             /*line-height: 28px;*/
             line-height: 32px;
             text-align: center;
-            top: 20px;
+            bottom: 20px;
             border-radius: 40px;
-            left: 20px;
+            /*left: 20px;*/
+            left: 0;
+            right: 0;
+            margin: 0 auto;
         }
         .appFixMenu .this{}
         .appFixMenu .layui-icon{
