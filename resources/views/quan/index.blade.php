@@ -155,13 +155,22 @@
     <style>
         .appLabel{
             position: fixed;
-            top:0;
+
+            top: 0;
+
             left: 0;
+
             /*display: none;*/
+
             background: #fff;
+
             height: 100%;
+
             z-index: 9999;
+
             box-shadow: 0 0 10px #7a7a7a;
+
+            padding-bottom: 100%;
         }
         .appLabel .i:nth-of-type(1){
             text-align: center;
