@@ -154,23 +154,15 @@
     {{--应用标签--}}
     <style>
         .appLabel{
-            position: fixed;
-
+            position: absolute;
             top: 0;
-
             left: 0;
-
-            /*display: none;*/
-
             background: #fff;
-
-            height: 2000px;
-
+            height: 100%;
             z-index: 9999;
-
             box-shadow: 0 0 10px #7a7a7a;
-
-            /*padding-bottom: 100%;*/
+            padding: 16px 0;
+            width: 210px;
         }
         .appLabel .i:nth-of-type(1){
             text-align: center;
@@ -206,18 +198,20 @@
         }
     </style>
     <div class="appLabel">
-        <div class="i">
-            {{--<span class="layui-icon layui-icon-share"></span>--}}
-            爱运动，爱科技，爱生活，更爱极爱网。
+        <div style="position: fixed">
+            <div class="i">
+                {{--<span class="layui-icon layui-icon-share"></span>--}}
+                爱运动，爱科技，爱生活，更爱极爱网。
+            </div>
+            {{--<div>顶部</div>--}}
+            <div class="i"><span>名人堂</span><span class="layui-icon layui-icon-senior"></span></div>
+            <div class="i"><span>科技圈</span><span class="layui-icon layui-icon-senior"></span></div>
+            <div class="i"><span>时尚圈</span><span class="layui-icon layui-icon-senior"></span></div>
+            <div class="i"><span>惠购物</span><span class="layui-icon layui-icon-senior"></span></div>
+            <div class="i"><span>TOP热点</span><span class="layui-icon layui-icon-senior"></span></div>
+            <div class="i"><span>全部分类</span><span class="layui-icon layui-icon-senior"></span></div>
+            <div class="i"><span>积分兑换</span><span class="layui-icon layui-icon-senior"></span></div>
         </div>
-        {{--<div>顶部</div>--}}
-        <div class="i"><span>名人堂</span><span class="layui-icon layui-icon-senior"></span></div>
-        <div class="i"><span>科技圈</span><span class="layui-icon layui-icon-senior"></span></div>
-        <div class="i"><span>时尚圈</span><span class="layui-icon layui-icon-senior"></span></div>
-        <div class="i"><span>惠购物</span><span class="layui-icon layui-icon-senior"></span></div>
-        <div class="i"><span>TOP热点</span><span class="layui-icon layui-icon-senior"></span></div>
-        <div class="i"><span>全部分类</span><span class="layui-icon layui-icon-senior"></span></div>
-        <div class="i"><span>积分兑换</span><span class="layui-icon layui-icon-senior"></span></div>
         {{--<div class="i">悦动圈</div>--}}
         {{--<div class="i">科技圈</div>--}}
         {{--<div class="i">时尚圈</div>--}}
