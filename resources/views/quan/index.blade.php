@@ -199,6 +199,8 @@
         .app_header,.app_mrt,.help-point,.app_body{
             position: relative;
             left: 225px;
+            max-width: 400px;
+            box-sizing: border-box;
         }
     </style>
     <div class="appLabel">
@@ -1294,6 +1296,17 @@ height: 100%;">
             <p>Copyright ©2018-2019 极爱网 陕ICP备18006045号-2</p>
         </div>
     </div>
+    <style>
+        @media only screen and (min-width: 660px){
+            html,body{
+                overflow-x: inherit;
+                max-width: 660px;
+            }
+            /*.appLabel{*/
+                /*position: fixed;*/
+            /*}*/
+        }
+    </style>
     @endsection
 @section('js')
     <script>
