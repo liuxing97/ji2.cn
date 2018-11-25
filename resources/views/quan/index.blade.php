@@ -1,6 +1,9 @@
 @extends("quan.layout")
 @section('body')
     <style>
+        html,body{
+            overflow-x: hidden;
+        }
         .fixMenu{
             display: none;
             position: fixed;
@@ -163,6 +166,7 @@
             box-shadow: 0 0 10px #7a7a7a;
             padding: 16px 0;
             width: 210px;
+
         }
         .appLabel .i:nth-of-type(1){
             text-align: center;
@@ -198,7 +202,8 @@
         }
     </style>
     <div class="appLabel">
-        <div style="">
+        <div style="position: fixed;
+height: 100%;">
             <div class="i">
                 {{--<span class="layui-icon layui-icon-share"></span>--}}
                 爱运动，爱科技，爱生活，更爱极爱网。
