@@ -10,13 +10,11 @@
 
             text-align: center;
 
-            color: #363636;
-
             z-index: 9999;
 
             background: #2ea52e;
 
-            padding: 6px;
+            padding: 10px;
 
             color: #fff;
 
