@@ -164,13 +164,13 @@
 
             background: #fff;
 
-            height: 100%;
+            height: 2000px;
 
             z-index: 9999;
 
             box-shadow: 0 0 10px #7a7a7a;
 
-            padding-bottom: 100%;
+            /*padding-bottom: 100%;*/
         }
         .appLabel .i:nth-of-type(1){
             text-align: center;
