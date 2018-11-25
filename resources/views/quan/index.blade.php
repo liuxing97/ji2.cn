@@ -116,7 +116,7 @@
     <style>
         .appFixMenu{
             position: fixed;
-
+            z-index: 99999;
             background: rgba(0, 0, 0, 0.59);
 
             color: #fff;
