@@ -157,7 +157,7 @@
             position: fixed;
             top:0;
             left: 0;
-            display: none;
+            /*display: none;*/
             background: #fff;
             height: 100%;
             z-index: 9999;
