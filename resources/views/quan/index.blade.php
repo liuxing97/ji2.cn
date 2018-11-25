@@ -198,7 +198,7 @@
         }
     </style>
     <div class="appLabel">
-        <div style="position: fixed">
+        <div style="">
             <div class="i">
                 {{--<span class="layui-icon layui-icon-share"></span>--}}
                 爱运动，爱科技，爱生活，更爱极爱网。
