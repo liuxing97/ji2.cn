@@ -200,7 +200,10 @@
             position: relative;
             top: 3px;
         }
-
+        .app_header,.app_mrt,.help-point,.app_body{
+            position: relative;
+            left: 225px;
+        }
     </style>
     <div class="appLabel">
         <div class="i">
