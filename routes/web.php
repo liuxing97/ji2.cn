@@ -643,5 +643,5 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
 
 //2.0版本路由
 Route::get('/2.0/index',function (){
-    return view('/quan/index');
+    return view('/quan/index/index');
 })->middleware('ui.checkdata');

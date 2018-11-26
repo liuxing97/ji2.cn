@@ -196,6 +196,9 @@
             position: relative;
             top: 3px;
         }
+        .appLabel .i-class{
+
+        }
         .app_header,.app_mrt,.help-point,.app_body{
             position: relative;
             left: 225px;
@@ -206,18 +209,24 @@
     </style>
     <div class="appLabel">
         <div style="position: fixed;
-height: 100%;">
+height: 100%;overflow: auto;">
             <div class="i">
                 {{--<span class="layui-icon layui-icon-share"></span>--}}
                 爱运动，爱科技，爱生活，更爱极爱网。
             </div>
             {{--<div>顶部</div>--}}
+            <div class="i"><span>抢红包</span><span class="layui-icon layui-icon-senior"></span></div>
+
             <div class="i"><span>名人堂</span><span class="layui-icon layui-icon-senior"></span></div>
+
+            <div class="i"><span>热门话题</span><span class="layui-icon layui-icon-senior"></span></div>
+
+            <div class="i"><span>悦动圈</span><span class="layui-icon layui-icon-senior"></span></div>
             <div class="i"><span>科技圈</span><span class="layui-icon layui-icon-senior"></span></div>
             <div class="i"><span>时尚圈</span><span class="layui-icon layui-icon-senior"></span></div>
-            <div class="i"><span>惠购物</span><span class="layui-icon layui-icon-senior"></span></div>
-            <div class="i"><span>TOP热点</span><span class="layui-icon layui-icon-senior"></span></div>
-            <div class="i"><span>全部分类</span><span class="layui-icon layui-icon-senior"></span></div>
+
+            {{--<div class="i"><span>惠购物</span><span class="layui-icon layui-icon-senior"></span></div>--}}
+            <div class="i"><span>商品分类</span><span class="layui-icon layui-icon-senior"></span></div>
             <div class="i"><span>积分兑换</span><span class="layui-icon layui-icon-senior"></span></div>
         </div>
         {{--<div class="i">悦动圈</div>--}}
@@ -601,24 +610,6 @@ height: 100%;">
         </div>
         {{--应用中部--}}
         <div class="app_body">
-            {{--本期推荐·每个星期的软文--}}
-            {{--本周主题--}}
-            <style>
-                .weekShow{
-                    background: #fff;
-                    margin-top: 20px;
-                    padding: 20px 20px;
-                    border-radius: 12px;
-                    /*box-shadow: 0 0 10px #cdcdcd;*/
-                }
-                .more_top{}
-            </style>
-            <div class="weekShow">
-                <div style="font-size: 22px;color: brown;">惠购物（周推）</div>
-                <div style="color: brown;margin-top: 20px;padding-top: 20px;border-top: 1px dashed #d2d2d2">
-                    <img class="img" src="/chihuo.jpg" alt="">
-                </div>
-            </div>
             {{--今日最热·从运动圈·科技圈·时尚圈中挑选热门文章·按热度进行排名--}}
             <style>
                 .quanTop{
@@ -730,7 +721,7 @@ height: 100%;">
                     max-height: 100%;
                 }
             </style>
-            @for($t=1;$t<11;$t++)
+            @for($t=1;$t<4;$t++)
                 <div class="quanTop quan-hasPhoto">
                     {{--圈名称-发布人-头衔--}}
                     <div class="quan_header">
@@ -883,119 +874,6 @@ height: 100%;">
                     </div>
                 </div>
             @endfor
-            {{--商品分类--}}
-            @for($t=1;$t<6;$t++)
-                <div class="classOfArchive">
-                    <div class="icon">
-                        酷玩智能
-                    </div>
-                    <div class="icon_after layui-icon layui-icon-right"></div>
-                    <div class="then">最新推荐</div>
-                    <style>
-                        .classOfArchive .commodity{
-                            border-top: 1px solid #e5e5e5;
-                            padding: 12px;
-                        }
-                        .classOfArchive .commodity .commodity-icon{
-                            width: 30%;
-                            text-align: center;
-                            float: left;
-                            /*margin-top: 12px;*/
-                            box-sizing: border-box;
-                            padding: 10px;
-                        }
-                        .classOfArchive .commodity .commodity-describe{
-                            /*padding-top: 12px;*/
-                            width: 70%;
-                            float: right;
-                            box-sizing: border-box;
-                            padding: 10px;
-                        }
-                        .classOfArchive .commodity .commodity-describe .t{
-                            margin-bottom: 14px;
-
-                            color: brown;
-
-                            font-size: 14px;
-                            line-height: 26px;
-                        }
-                        .classOfArchive .commodity .commodity-describe .v{
-                            background: brown;
-
-                            color: #fff;
-
-                            margin-top: 20px;
-
-                            line-height: 36px;
-
-                            text-align: center;
-
-                            border-radius: 3px;
-                        }
-                    </style>
-                    <div class="commodity">
-                        {{--商品图标--}}
-                        <div class="commodity-icon">
-                            <img style="max-width: 100%;max-height: 100%" src="https://img.alicdn.com/imgextra/https://img.alicdn.com/imgextra/i4/2880071045/O1CN011JaeKs6qwY0g80N_!!2880071045.jpg_430x430q90.jpg" />
-                        </div>
-                        {{--描述--}}
-                        <div class="commodity-describe">
-                            <div class="t">南极人电热毯护膝毯加热坐垫电暖垫办公室暖脚宝插电褥子暖身毯</div>
-                            <div class="v">
-                                <div>查看详情</div>
-                            </div>
-                        </div>
-                        <div class="clear"></div>
-                    </div>
-                </div>
-            @endfor
-            <style>
-                @keyframes refresh{
-                    from{
-                        /*text-shadow: 0 0 10px #fff;*/
-                        /*background: #0d6aad;*/
-                    }
-                    50%{
-                        /*text-shadow: 0 0 26px #0063f3;*/
-                    }
-                    to{
-                        /*text-shadow: 0 0 10px #fff;*/
-                        /*background: #fff;*/
-                    }
-                }
-                @-moz-keyframes refresh /* Firefox */
-                {
-                    from{
-                        text-shadow: 0 0 10px #fff;
-                        background: #0d6aad;
-                    }
-                    to{
-                        text-shadow: 0 0 10px #333;
-                        background: #fff;
-                    }
-                }
-
-                @-webkit-keyframes refresh /* Safari 和 Chrome */
-                {
-                }
-
-                @-o-keyframes refresh /* Opera */
-                {
-                }
-                .refreshBtn{
-                    margin: 0 auto;
-                    margin-top: 36px;
-                    text-align: center;
-                    font-size: 44px;
-                    color: #a1a1a1;
-                    text-shadow: 0 0 10px #eee;
-                    animation: refresh 3s infinite;
-                    -moz-animation: refresh 3s infinite;	/* Firefox */
-                    -webkit-animation: refresh 3s infinite;	/* Safari 和 Chrome */
-                    -o-animation: refresh 3s infinite;	/* Opera */
-                }
-            </style>
-            <div style="display: none" class="refreshBtn layui-icon-refresh-3 layui-icon"></div>
             {{--三个圈子--}}
             <style>
                 .quan_block{
@@ -1257,6 +1135,138 @@ height: 100%;">
                 background: #f7f7f7;
 ">阅读更多</div>
             </div>
+
+            {{--本期推荐·每个星期的软文--}}
+            {{--本周主题--}}
+            {{--<style>--}}
+                {{--.weekShow{--}}
+                    {{--background: #fff;--}}
+                    {{--margin-top: 20px;--}}
+                    {{--padding: 20px 20px;--}}
+                    {{--border-radius: 12px;--}}
+                    {{--/*box-shadow: 0 0 10px #cdcdcd;*/--}}
+                {{--}--}}
+                {{--.more_top{}--}}
+            {{--</style>--}}
+            {{--<div class="weekShow">--}}
+                {{--<div style="font-size: 22px;color: brown;">惠购物（周推）</div>--}}
+                {{--<div style="color: brown;margin-top: 20px;padding-top: 20px;border-top: 1px dashed #d2d2d2">--}}
+                    {{--<img class="img" src="/chihuo.jpg" alt="">--}}
+                {{--</div>--}}
+            {{--</div>--}}
+            {{--商品分类--}}
+            @for($t=1;$t<6;$t++)
+                <div class="classOfArchive">
+                    <div class="icon">
+                        酷玩智能
+                    </div>
+                    <div class="icon_after layui-icon layui-icon-right"></div>
+                    <div class="then">最新推荐</div>
+                    <style>
+                        .classOfArchive .commodity{
+                            border-top: 1px solid #e5e5e5;
+                            padding: 12px;
+                        }
+                        .classOfArchive .commodity .commodity-icon{
+                            width: 30%;
+                            text-align: center;
+                            float: left;
+                            /*margin-top: 12px;*/
+                            box-sizing: border-box;
+                            padding: 10px;
+                        }
+                        .classOfArchive .commodity .commodity-describe{
+                            /*padding-top: 12px;*/
+                            width: 70%;
+                            float: right;
+                            box-sizing: border-box;
+                            padding: 10px;
+                        }
+                        .classOfArchive .commodity .commodity-describe .t{
+                            margin-bottom: 14px;
+
+                            color: brown;
+
+                            font-size: 14px;
+                            line-height: 26px;
+                        }
+                        .classOfArchive .commodity .commodity-describe .v{
+                            background: brown;
+
+                            color: #fff;
+
+                            margin-top: 20px;
+
+                            line-height: 36px;
+
+                            text-align: center;
+
+                            border-radius: 3px;
+                        }
+                    </style>
+                    <div class="commodity">
+                        {{--商品图标--}}
+                        <div class="commodity-icon">
+                            <img style="max-width: 100%;max-height: 100%" src="https://img.alicdn.com/imgextra/https://img.alicdn.com/imgextra/i4/2880071045/O1CN011JaeKs6qwY0g80N_!!2880071045.jpg_430x430q90.jpg" />
+                        </div>
+                        {{--描述--}}
+                        <div class="commodity-describe">
+                            <div class="t">南极人电热毯护膝毯加热坐垫电暖垫办公室暖脚宝插电褥子暖身毯</div>
+                            <div class="v">
+                                <div>查看详情</div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            @endfor
+            <style>
+                @keyframes refresh{
+                    from{
+                        /*text-shadow: 0 0 10px #fff;*/
+                        /*background: #0d6aad;*/
+                    }
+                    50%{
+                        /*text-shadow: 0 0 26px #0063f3;*/
+                    }
+                    to{
+                        /*text-shadow: 0 0 10px #fff;*/
+                        /*background: #fff;*/
+                    }
+                }
+                @-moz-keyframes refresh /* Firefox */
+                {
+                    from{
+                        text-shadow: 0 0 10px #fff;
+                        background: #0d6aad;
+                    }
+                    to{
+                        text-shadow: 0 0 10px #333;
+                        background: #fff;
+                    }
+                }
+
+                @-webkit-keyframes refresh /* Safari 和 Chrome */
+                {
+                }
+
+                @-o-keyframes refresh /* Opera */
+                {
+                }
+                .refreshBtn{
+                    margin: 0 auto;
+                    margin-top: 36px;
+                    text-align: center;
+                    font-size: 44px;
+                    color: #a1a1a1;
+                    text-shadow: 0 0 10px #eee;
+                    animation: refresh 3s infinite;
+                    -moz-animation: refresh 3s infinite;	/* Firefox */
+                    -webkit-animation: refresh 3s infinite;	/* Safari 和 Chrome */
+                    -o-animation: refresh 3s infinite;	/* Opera */
+                }
+            </style>
+            <div style="display: none" class="refreshBtn layui-icon-refresh-3 layui-icon"></div>
             {{--三个圈子路径--}}
             <style>
                 .go_circle{
