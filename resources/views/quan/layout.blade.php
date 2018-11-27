@@ -16,6 +16,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0,user-scalable=0;"/>
     <link rel="stylesheet" href="/layui/css/layui.css" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="stylesheet" href="/module/ft-carousel/css/ft-carousel.css" />
     <script>
         var _hmt = _hmt || [];
         (function() {
@@ -62,6 +63,7 @@
 
 <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="/layui/layui.js"></script>
+<script type="text/javascript" src="/module/ft-carousel/js/ft-carousel.min.js"></script>
 @section('js')
     @show
 </html>
