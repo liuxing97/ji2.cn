@@ -413,7 +413,7 @@
             <div class="red-packet-main">
                 {{--<div class="red-title">好友助力，领现金红包</div>--}}
                 <div class="">
-                    <img class="img" src="http://localhost:86/quan04.png" alt="">
+                    <img class="img" src="/quan04.png" alt="">
                 </div>
                 <div class="red-content">
                     <div class="red-c-title">活动规则：</div>
