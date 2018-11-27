@@ -1027,7 +1027,7 @@
 
                     background: #57ba57;
 
-                    padding: 0 27px;
+                    padding: 0 22px;
 
                     color: #fff;
 

@@ -645,3 +645,6 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
 Route::get('/2.0/index',function (){
     return view('/quan/index/index');
 })->middleware('ui.checkdata');
+Route::get('/2.0/quan',function (){
+    return view('/quan/quan/quan');
+})->middleware('ui.checkdata');
