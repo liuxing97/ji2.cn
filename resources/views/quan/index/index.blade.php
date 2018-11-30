@@ -1,1930 +1,383 @@
 @extends("quan.layout")
 @section('body')
-    <style>
-        body{
-            overflow-x: hidden;
-        }
-        .contentMain{
-            max-width: 400px;
-            margin: 0 auto;
-            /*left: 105px;*/
-            position: relative;
-            /*left: 220px;*/
-        }
-        @media only screen and (min-width: 660px){
-            .appLabel {
-                display: block!important;
-            }
-            .contentMain{
-                left: 105px!important;
-            }
-        }
-        .contentMain .app_header{
-            /*background: #35b44a;*/
-            background: #2ea52e;
-            min-height: 100%;
-            width: 100%;
-            padding: 20px 24px;
-            box-sizing: border-box;
-            padding-top: 40px;
-            padding-bottom: 40px;
-             border-radius: 15px;
-            margin-top: -15px;
-        }
-        .contentMain .app_header .logoBox{
-            width: 200px;
-            margin: 0 auto;
-            /*margin-top: 28px;*/
-        }
-        .contentMain .app_header .logoBox img{
-            width: 100%;
-        }
-        .contentMain .app_header .app_describe{
-            background: #fff;
-            margin-top: 24px;
-        }
-        .contentMain .app_header .app_describe_top_logo{
-            display: inline-block;
-            width: 22%;
-            float: left;
-            border-right: 1px solid #e5e5e5;
-            padding-right: 2%;
-        }
-        .contentMain .app_header .app_describe_top_msg{
-            float: left;
-            font-size: 14px;
-            color: #7f7f7f;
-            width: 68%;
-            margin-left: 7%;
-        }
-        .contentMain .app_header .app_describe_top_msg p{
-            font-size: 13px;
-            /*letter-spacing: 2px;*/
-        }
-        .contentMain .app_header .app_describe_top_msg p:last-child{
-            margin-top: 6px;
-        }
-        .contentMain .app_header .app_describe_top{
-            width: 90%;
-            margin: 0 auto;
-            box-sizing: border-box;
-            padding: 20px 0;
-        }
-        .contentMain .app_header .app_describe_bottom{
-            line-height: 22px;
-            font-size: 14px;
-            text-align: center;
-            border-top: 1px solid #e5e5e5;
-            width: 92%;
-            color: #6a6a6a;
-            margin: 0 auto;
-            padding: 10px 10px;
-            box-sizing: border-box;
-        }
-        .contentMain .app_mrt{
-            padding: 16px 36px;
-            background: #fff;
-            margin-top: 36px;
-            /*border: 1px solid #e5e5e5;*/
-            /*box-shadow: 0 0 10px #cecece;*/
-            border-radius: 12px;
-        }
-        .contentMain .app_mrt .mrt-logoBox{
-            width: 100px;
-            margin: 0 auto;
-            margin-top: 20px;
-        }
-    </style>
-    <div class="contentMain layui-anim layui-anim-upbit">
-        {{--网站头部--}}
-        <div class="app_header">
-            {{--Logo--}}
-            <div class="logoBox">
-                <img src="/quan/logo.png" >
-            </div>
-            {{--应用描述--}}
-            <div class="app_describe">
-                {{--介绍--}}
-                <div class="app_describe_top">
-                    {{--极爱网Logo--}}
-                    <div class="app_describe_top_logo">
-                        <div class="table">
-                            <div class="table-cell">
-                                <img style="max-width: 100%;" src="/quan/logo2.png">
-                            </div>
-                        </div>
-                    </div>
-                    {{--极爱网介绍--}}
-                    <div class="app_describe_top_msg">
-                        <p>极爱网，爱运动，爱科技，爱生活，更爱极爱网。</p>
-                        <p>一个以生活为驱动的，电子商务网站。</p>
-                    </div>
-                    <div class="clear"></div>
-                </div>
-                {{--描述--}}
-                <div class="app_describe_bottom">
-                    <p>我们的理念，以生活为驱动的电子商务网站！</p>
-                </div>
-            </div>
-            {{--几个圈子入口--}}
-            <style>
-                .circle_entry{
-                    text-align: center;
-                    margin-top: 15px;
-                }
-                .circle_entry .item{
-                    display: inline-block;
-                    width: 100px;
-                }
-                .circle_entry .item .bottom{
-                    height: 18px;
-                    width: 25px;
-                    border-bottom: 2px dashed #fff;
-                    margin: 0 auto;
-                }
-            </style>
-            <div class="circle_entry">
-                <div class="item">
-                    <img class="img" src="/quan/yuedongquan.png">
-                    <div class="bottom"></div>
-                </div>
-                <div class="item">
-                    <img class="img" src="/quan/shishangquan.png">
-                    <div class="bottom"></div>
-                </div>
-                <div class="item">
-                    <img class="img" src="/quan/kejiquan.png">
-                    <div class="bottom"></div>
-                </div>
-            </div>
-            {{--圈子介绍--}}
-            <style>
-                .circle_about{
-                    color: #fff;
-                    margin-top: 33px;
-                }
-                .circle_about .c-item{
-                    margin-top: 6px;
-                    line-height: 26px;
-                    text-align: center;
-                }
-                .circle_about .c-item .t{
-                    display: inline-block;
-                    width: 21%;
-                }
-                .circle_about .c-item .v{
-                    display: inline-block;
-                    width: 77%;
-                    vertical-align: top;
-                    text-align: left;
-                }
-            </style>
-            <div class="circle_about">
-                <div class="c-item">
-                    <div class="t">悦动圈：</div>
-                    <div class="v">分享运动生活，挑战自我！更有运动奖励</div>
-                </div>
-                <div class="c-item">
-                    <div class="t">科技圈：</div>
-                    <div class="v">来来来，分享阅读最新科技咨询，大家一起做科技达人</div>
-                </div>
-                <div class="c-item">
-                    <div class="t">科技圈：</div>
-                    <div class="v">快快快，时尚是什么？大家一起来交流</div>
-                </div>
-            </div>
-        </div>
-        {{--隐藏部分--}}
-        <div>
-            {{--名人堂--}}
-            {{--<div class="app_mrt">--}}
-            {{--<div class="mrt-logoBox">--}}
-            {{--<img class="img" src="/quan/mingrentang.png">--}}
-            {{--</div>--}}
-            {{--<style>--}}
-            {{--.mrt-badge_list{}--}}
-            {{--.mrt-badge_list-main{--}}
-            {{--margin-top: 20px;--}}
-
-            {{--height: 360px;--}}
-
-            {{--overflow: hidden;--}}
-            {{--}--}}
-            {{--.show_or_hide{--}}
-            {{--text-align: center;--}}
-            {{--color: #4e4e4e;--}}
-            {{--width: 50%;--}}
-            {{--margin: 0 auto;--}}
-            {{--border-top: 2px dashed #c3c3c3;--}}
-            {{--margin-top: 40px;--}}
-            {{--padding-top: 6px;--}}
-
-            {{--}--}}
-            {{--.show_or_hide span{--}}
-            {{--font-size: 37px;--}}
-
-            {{--opacity: 0.7;--}}
-            {{--}--}}
-            {{--.mrt-badge_list-main .item{--}}
-            {{--margin-bottom: 30px;--}}
-            {{--}--}}
-            {{--.mrt-badge_list-main .item .item-badge{--}}
-            {{--padding-bottom: 23px;--}}
-            {{--border-bottom: 2px dashed #e3e3e3;--}}
-            {{--}--}}
-            {{--.mrt-badge_list-main .item .item-badge .icon{--}}
-            {{--display: inline-block;--}}
-            {{--width: 22%;--}}
-            {{--vertical-align: middle;--}}
-            {{--}--}}
-            {{--.mrt-badge_list-main .item .item-badge .describe{--}}
-            {{--background: url("/quan/badge/yuedongquan.png") no-repeat;--}}
-            {{--display: inline-block;--}}
-            {{--width: 68%;--}}
-            {{--background-size: 34%;--}}
-            {{--padding-top: 37px;--}}
-            {{--vertical-align: middle;--}}
-            {{--/*color: #fff;*/--}}
-            {{--font-size: 14px;--}}
-            {{--position: relative;--}}
-            {{--top: 6px;--}}
-            {{--}--}}
-            {{--.mrt-badge_list-main .item .item-badge .describe .t{--}}
-            {{--margin-top: 6px;--}}
-            {{--color: brown;--}}
-            {{--}--}}
-            {{--.mrt-badge_list-main .item .item-badge .describe .v{--}}
-            {{--margin-top: 6px;--}}
-
-            {{--color: #adadad;--}}
-
-            {{--line-height: 1.8rem;--}}
-
-            {{--}--}}
-            {{--.mrt-badge_list-main .item .item-state{--}}
-            {{--position: relative;--}}
-            {{--font-size: 14px;--}}
-            {{--/*color: #fff;*/--}}
-            {{--padding: 10px 0;--}}
-            {{--}--}}
-            {{--.mrt-badge_list-main .item .item-state .number{--}}
-            {{--color: brown;--}}
-            {{--}--}}
-            {{--.mrt-badge_list-main .item .item-state .msg{--}}
-            {{--margin-top: 2rem;--}}
-
-            {{--color: #adadad;--}}
-
-            {{--line-height: 1.8rem;--}}
-            {{--}--}}
-            {{--.mrt-badge_list-main .item .item-state .join{--}}
-            {{--background: brown;--}}
-            {{--display: inline-block;--}}
-            {{--width: 100px;--}}
-            {{--text-align: center;--}}
-            {{--line-height: 30px;--}}
-            {{--border-radius: 3px;--}}
-            {{--margin-top: 10px;--}}
-            {{--position: absolute;--}}
-            {{--color: #fff;--}}
-            {{--top: 0;--}}
-            {{--right: 0;--}}
-            {{--}--}}
-            {{--</style>--}}
-            {{--徽章列表--}}
-            {{--<div class="mrt-badge_list">--}}
-            {{--列表--}}
-            {{--<div class="mrt-badge_list-main">--}}
-            {{--<div class="item">--}}
-            {{--<div class="item-badge">--}}
-            {{--<div class="icon">--}}
-            {{--<img class="img" src="/quan/badge/badge-run-30-color.png">--}}
-            {{--</div>--}}
-            {{--<div class="describe">--}}
-            {{--<p class="t">青铜跑者</p>--}}
-            {{--<p class="v">联系30天，3000米跑步，挑战达成，即可获得该徽章！</p>--}}
-            {{--</div>--}}
-            {{--</div>--}}
-            {{--<div class="item-state">--}}
-            {{--达成人数--}}
-            {{--<p class="number">--}}
-            {{--达成人数：<span>0人</span>&nbsp;&nbsp;&nbsp;<span>+1000积分</span>--}}
-            {{--</p>--}}
-            {{--荣誉信息--}}
-            {{--<p class="msg">--}}
-            {{--看似平凡，却很难得，看似难得，却也很简单，唯一可以确定的是，这是伟大人生的第一步，来挑战吧！--}}
-            {{--</p>--}}
-            {{--加入挑战--}}
-            {{--<div class="join">加入挑战</div>--}}
-            {{--</div>--}}
-            {{--</div>--}}
-            {{--<div class="item">--}}
-            {{--<div class="item-badge">--}}
-            {{--<div class="icon">--}}
-            {{--<img class="img" src="/quan/badge/badge-run-30-color.png">--}}
-            {{--</div>--}}
-            {{--<div class="describe">--}}
-            {{--<p class="t">科技狂魔</p>--}}
-            {{--<p class="v">连续30天，发表科技文章！</p>--}}
-            {{--</div>--}}
-            {{--</div>--}}
-            {{--<div class="item-state">--}}
-            {{--达成人数--}}
-            {{--<p class="number">--}}
-            {{--达成人数：<span>0人</span>&nbsp;&nbsp;&nbsp;<span>+1000积分</span>--}}
-            {{--</p>--}}
-            {{--荣誉信息--}}
-            {{--<p class="msg">--}}
-            {{--看似平凡，却很难得，看似难得，却也很简单，唯一可以确定的是，这是伟大人生的第一步，来挑战吧！--}}
-            {{--</p>--}}
-            {{--加入挑战--}}
-            {{--<div class="join">加入挑战</div>--}}
-            {{--</div>--}}
-            {{--</div>--}}
-            {{--<div class="item">--}}
-            {{--<div class="item-badge">--}}
-            {{--<div class="icon">--}}
-            {{--<img class="img" src="/quan/badge/badge-run-30-color.png">--}}
-            {{--</div>--}}
-            {{--<div class="describe">--}}
-            {{--<p class="t">青铜跑者</p>--}}
-            {{--<p class="v">联系30天，3000米跑步，挑战达成，即可获得该徽章！</p>--}}
-            {{--</div>--}}
-            {{--</div>--}}
-            {{--<div class="item-state">--}}
-            {{--达成人数--}}
-            {{--<p class="number">--}}
-            {{--达成人数：<span>0人</span>&nbsp;&nbsp;&nbsp;<span>+1000积分</span>--}}
-            {{--</p>--}}
-            {{--荣誉信息--}}
-            {{--<p class="msg">--}}
-            {{--看似平凡，却很难得，看似难得，却也很简单，唯一可以确定的是，这是伟大人生的第一步，来挑战吧！--}}
-            {{--</p>--}}
-            {{--加入挑战--}}
-            {{--<div class="join">加入挑战</div>--}}
-            {{--</div>--}}
-            {{--</div>--}}
-            {{--</div>--}}
-            {{--隐藏与展示--}}
-            {{--<div class="show_or_hide">--}}
-            {{--隐藏--}}
-            {{--<span style="display: none" class="layui-icon-up layui-icon"></span>--}}
-            {{--<span class="layui-icon-down layui-icon"></span>--}}
-            {{--显示全部--}}
-            {{--</div>--}}
-            {{--</div>--}}
-            {{--</div>--}}
-        </div>
-        {{--红包部分--}}
-        <div class="red-packet">
-            <style>
-                .red-packet{
-                }
-                .red-packet-main{
-                    margin-top: 24px;
-
-                    overflow: hidden;
-
-                    background: #fff;
-
-                    border-radius: 10px;
-                }
-                .red-title{}
-                .red-content{
-                    line-height: 30px;
-
-                    padding: 10px 20px;
-                }
-                .red-c-title{}
-                .red-c-value{}
-                .red-btn{
-                    margin: 0 auto;
-                    /*margin-bottom: 0px;*/
-                    width: 143px;
-                    text-align: center;
-                    margin-bottom: 22px;
-                    /*color: #008897;*/
-                    background: brown;
-                    color: #fff;
-                    line-height: 35px;
-                    border-radius: 3px;
-                }
-            </style>
-            <div class="red-packet-main">
-                {{--<div class="red-title">好友助力，领现金红包</div>--}}
-                <div class="">
-                    <img class="img" src="/quan04.png" alt="">
-                </div>
-                <div class="red-content">
-                    <div class="red-c-title">活动规则：</div>
-                    <div class="red-c-value">
-                        <p>1、点击进入活动页面。</p>
-                        <p>2、转发活动页面，参与极爱网(ji2.cn)现金红包活动。</p>
-                        <p>3、发动您的好友，达到六人助力，现金红包直接入账！</p>
-                    </div>
-                </div>
-                <div class="red-btn">进入活动界面</div>
-            </div>
-        </div>
-        {{--今日最热·从运动圈·科技圈·时尚圈中挑选热门文章·按热度进行排名--}}
-        <style>
-            .quanTop{
-                margin-top: 35px;
-                background: #fff;
-                padding: 12px 20px;
-                box-sizing: border-box;
-                border-radius: 8px;
-                /*box-shadow: 0 0 10px #d4d4d4;*/
-            }
-            .quan_hasPhoto{}
-            .quan_header{}
-            .quan_header .quan_title{
-                display: inline-block;
-                vertical-align: middle;
-                line-height: 40px;
-                font-size: 18px;
-            }
-            .quan_header .publisher{
-                display: inline-block;
-                vertical-align: middle;
-                line-height: 40px;
-                float: right;
-                text-align: right;
-                position: relative;
-                top: -1px;
-            }
-            .quan_header .publisher .n{
-                display: inline-block;
-                vertical-align: middle;
-                margin-right: 12px;
-                padding-right: 12px;
-                color: #7a7a7a;
-                border-right: 1px solid #e5e5e5;
-            }
-            .quan_header .publisher .i{
-                width: 30px;
-                height: 30px;
-                display: inline-block;
-                /*vertical-align: middle;*/
-            }
-            .quan_header .badge{
-                vertical-align: middle;
-                display: block;
-                margin-top: 12px;
-                text-align: center;
-            }
-            .quan_header .badge .t{
-                display: block;
-                vertical-align: middle;
-                color: #7a7a7a;
-            }
-            .quan_header .badge .v{
-                vertical-align: middle;
-                display: inline-block;
-                margin-top: 12px;
-                letter-spacing: 8px;
-            }
-            .quan_header .badge .v .item{
-                display: inline-block;
-                width: 60px;
-                text-align: right;
-            }
-            .quan_content{
-                min-height: 100px;
-
-                border-top: 1px dashed #a6a6a6;
-
-                margin-top: 16px;
-
-                padding: 12px 6px;
-
-                line-height: 26px;
-
-                color: #7a7a7a;
-            }
-            .quan_content .title{
-                font-size: 22px;
-                line-height: 32px;
-                margin-bottom: 10px;
-                border-left: 2px solid brown;
-                padding-left: 12px;
-            }
-            .quan_content .words{
-            }
-            .quan_content .photoList{
-                width: 80%;
-                margin: 0 auto;
-                margin-top: 26px;
-                margin-bottom: 12px;
-            }
-            .quan_content .photoList .item{
-                display: inline-block;
-                width: 30%;
-                margin-right: 2.5%;
-                border: 1px solid #e5e5e5;
-                padding: 6px;
-                box-sizing: border-box;
-            }
-            .quan_content .photoList .item:nth-of-type(3n){
-                margin-right: 0;
-            }
-            .quan_content .photoList .item img{
-                max-width: 100%;
-                max-height: 100%;
-            }
-            .quan_time{
-                text-align: center;
-                color: #7a7a7a;
-                border-top: 1px dashed #e5e5e5;
-                line-height: 44px;
-            }
-            .quan_commentList{
-                display: none;
-            }
-            .quan_commentList .quan_comment{
-                border-left: 3px solid #e5e5e5;
-                padding: 12px 8px;
-                margin-bottom: 26px;
-                padding-left: 18px;
-            }
-            .quan_commentList .quan_comment .quan_comment_user{
-
-            }
-            .quan_commentList .quan_comment .quan_comment_user .user_icon{
-                width: 32px;
-                display: inline-block;
-            }
-            .quan_commentList .quan_comment .quan_comment_user .user_name{
-                display: inline-block;
-                color: #7a7a7a;
-                margin-left: 12px;
-            }
-            .quan_user_commit_value{
-                line-height: 26px;
-                margin-top: 12px;
-            }
-            .quan_fav{
-                text-align: center;
-                margin-bottom: 28px;
-                margin-top: 16px;
-            }
-            .quan_fav .btn-like{
-                display: inline-block;
-                /*border: 1px solid #e5e5e5;*/
-                line-height: 25px;
-                padding: 0 12px;
-                text-align: center;
-                border-radius: 41px;
-                color: #7a7a7a;
-                margin: 0 16px;
-                background: #f2f2f2
-            }
-            .quan_fav .btn-like{
-
-            }
-        </style>
-        <div>
-            @for($t=1;$t<2;$t++)
-                {{--<div class="quanTop quan-hasPhoto" style="">--}}
-                    {{--圈名称-发布人-头衔--}}
-                    {{--<div class="quan_header">--}}
-                        {{--圈名称-left--}}
-                        {{--<div class="quan_title"><span>本日热点</span><span>·Top{{$t}}</span></div>--}}
-                        {{--发布人：right，从左向右--}}
-                        {{--<div class="publisher">--}}
-                            {{--发布人名称--}}
-                            {{--<div class="n">简约不失繁华</div>--}}
-                            {{--发布人Logo--}}
-                            {{--<div class="i"><img style="max-height: 100%;max-width: 100%" src="http://thirdwx.qlogo.cn/mmopen/vi_32/nDDvSR6JUpC7oJNlsQtz9Yia0QNyO1LrYkWxOlj4nVRsdV0MjbVgoaBWsPbzVibqU8TticianlBiatwWcjZB84UuzyA/132" /></div>--}}
-                        {{--</div>--}}
-                        {{--头衔--}}
-                        {{--<div class="badge">--}}
-                            {{--<div class="t">用户徽章</div>--}}
-                            {{--<div class="v">--}}
-                                {{--<div class="item"><img style="max-width: 100%;max-height: 100%" src="/quan/badge/badge-run-30-color.png"></div>--}}
-                                {{--<div class="item"><img style="max-width: 100%;max-height: 100%" src="/quan/badge/badge-run-30-color.png"></div>--}}
-                                {{--<div class="item"><img style="max-width: 100%;max-height: 100%" src="/quan/badge/badge-run-30-color.png"></div>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                    {{--圈内容--}}
-                    {{--<div class="quan_content">--}}
-                        {{--<script>--}}
-
-                        {{--</script>--}}
-                        {{--<div class="words">今天是跑步第43天，坚持了这么长时间，令人意想不到，打卡签到，顺便给大家分享下我路上拍到的景色。</div>--}}
-                        {{--<div class="photoList">--}}
-                            {{--<div class="item">--}}
-                                {{--<div class="table">--}}
-                                    {{--<div class="table-cell">--}}
-                                        {{--<img src="https://img.alicdn.com/imgextra/https://img.alicdn.com/imgextra/i4/2880071045/O1CN011JaeKs6qwY0g80N_!!2880071045.jpg_430x430q90.jpg" alt="">--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                            {{--<div class="item">--}}
-                                {{--<div class="table">--}}
-                                    {{--<div class="table-cell">--}}
-                                        {{--<img src="http://thirdwx.qlogo.cn/mmopen/vi_32/nDDvSR6JUpC7oJNlsQtz9Yia0QNyO1LrYkWxOlj4nVRsdV0MjbVgoaBWsPbzVibqU8TticianlBiatwWcjZB84UuzyA/132" alt="">--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                            {{--<div class="item">--}}
-                                {{--<div class="table">--}}
-                                    {{--<div class="table-cell">--}}
-                                        {{--<img src="http://thirdwx.qlogo.cn/mmopen/vi_32/nDDvSR6JUpC7oJNlsQtz9Yia0QNyO1LrYkWxOlj4nVRsdV0MjbVgoaBWsPbzVibqU8TticianlBiatwWcjZB84UuzyA/132" alt="">--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                    {{--发布时间--}}
-                    {{--<div class="quan_time">--}}
-                        {{--发布时间：2018-11-18 08:24:00--}}
-                    {{--</div>--}}
-                    {{--喜欢--}}
-                    {{--<div class="quan_fav">--}}
-                        {{--<div class="btn-like">喜欢(101)</div>--}}
-                        {{--<div class="btn-like btn-dislike">不喜欢(0)</div>--}}
-                    {{--</div>--}}
-                    {{--评论·显示最热点的3条--}}
-                    {{--<div class="quan_commentList">--}}
-                         {{--一条--}}
-                        {{--<div class="quan_comment">--}}
-                            {{--<div class="quan_comment_user">--}}
-                                {{--图标--}}
-                                {{--<div class="user_icon">--}}
-                                    {{--<img class="img" src="http://thirdwx.qlogo.cn/mmopen/vi_32/nDDvSR6JUpC7oJNlsQtz9Yia0QNyO1LrYkWxOlj4nVRsdV0MjbVgoaBWsPbzVibqU8TticianlBiatwWcjZB84UuzyA/132" />--}}
-                                {{--</div>--}}
-                                {{--姓名--}}
-                                {{--<div class="user_name">简约不失繁华</div>--}}
-                            {{--</div>--}}
-                            {{--<div class="quan_user_commit_value">这里是评论内容</div>--}}
-                        {{--</div>--}}
-                        {{--<div class="quan_comment">--}}
-                            {{--<div class="quan_comment_user">--}}
-                                {{--图标--}}
-                                {{--<div class="user_icon">--}}
-                                    {{--<img class="img" src="http://thirdwx.qlogo.cn/mmopen/vi_32/nDDvSR6JUpC7oJNlsQtz9Yia0QNyO1LrYkWxOlj4nVRsdV0MjbVgoaBWsPbzVibqU8TticianlBiatwWcjZB84UuzyA/132" />--}}
-                                {{--</div>--}}
-                                {{--姓名--}}
-                                {{--<div class="user_name">简约不失繁华</div>--}}
-                            {{--</div>--}}
-                            {{--<div class="quan_user_commit_value">这里是评论内容</div>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                    {{--<div class="show_or_hide">--}}
-                        {{--隐藏--}}
-                        {{--<span style="display: none" class="layui-icon-up layui-icon"></span>--}}
-                        {{--<span class="layui-icon-down layui-icon"></span>--}}
-                        {{--显示全部--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-
-
-
-                <div class="quanTop quan-hasPhoto" style="">
-                    {{--圈名称-发布人-头衔--}}
-                    <div class="quan_header">
-                        {{--圈名称-left--}}
-                        <div class="quan_title"><span>本日热点</span><span>·Top{{$t}}</span></div>
-                        {{--发布人：right，从左向右--}}
-                        <div class="publisher">
-                            {{--发布人名称--}}
-                            <div class="n">简约不失繁华</div>
-                            {{--发布人Logo--}}
-                            <div class="i"><img style="max-height: 100%;max-width: 100%" src="http://thirdwx.qlogo.cn/mmopen/vi_32/nDDvSR6JUpC7oJNlsQtz9Yia0QNyO1LrYkWxOlj4nVRsdV0MjbVgoaBWsPbzVibqU8TticianlBiatwWcjZB84UuzyA/132" /></div>
-                        </div>
-                        {{--头衔--}}
-                        <div class="badge">
-                            <div class="t">用户徽章</div>
-                            <div class="v">
-                                <div class="item"><img style="max-width: 100%;max-height: 100%" src="/quan/badge/badge-run-30-color.png"></div>
-                                <div class="item"><img style="max-width: 100%;max-height: 100%" src="/quan/badge/badge-run-30-color.png"></div>
-                                <div class="item"><img style="max-width: 100%;max-height: 100%" src="/quan/badge/badge-run-30-color.png"></div>
-                            </div>
-                        </div>
-                    </div>
-                    {{--圈内容--}}
-                    <div class="quan_content">
-                        <div class="title">小米与美图合作背后：美图的解脱，小米的多元化</div>
-                        <div class="words">南极人电热毯护膝毯加热坐垫电暖垫办公室暖脚宝插电褥子暖身毯南极人电热毯护膝毯加热坐垫电暖垫办公室暖脚宝插电褥子暖身毯</div>
-                        <div class="photoList">
-                            <div class="item">
-                                <div class="table">
-                                    <div class="table-cell">
-                                        <img src="https://img.alicdn.com/imgextra/https://img.alicdn.com/imgextra/i4/2880071045/O1CN011JaeKs6qwY0g80N_!!2880071045.jpg_430x430q90.jpg" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="table">
-                                    <div class="table-cell">
-                                        <img src="http://thirdwx.qlogo.cn/mmopen/vi_32/nDDvSR6JUpC7oJNlsQtz9Yia0QNyO1LrYkWxOlj4nVRsdV0MjbVgoaBWsPbzVibqU8TticianlBiatwWcjZB84UuzyA/132" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="table">
-                                    <div class="table-cell">
-                                        <img src="http://thirdwx.qlogo.cn/mmopen/vi_32/nDDvSR6JUpC7oJNlsQtz9Yia0QNyO1LrYkWxOlj4nVRsdV0MjbVgoaBWsPbzVibqU8TticianlBiatwWcjZB84UuzyA/132" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    {{--发布时间--}}
-                    <style>
-                        .quan_time{
-                            text-align: center;
-                            color: #7a7a7a;
-                            border-top: 1px dashed #e5e5e5;
-                            line-height: 44px;
-                        }
-                        .quan_commentList{
-                            display: none;
-                        }
-                        .quan_commentList .quan_comment{
-                            border-left: 3px solid #e5e5e5;
-
-                            padding: 12px 8px;
-
-                            margin-bottom: 26px;
-
-                            padding-left: 18px;
-                        }
-                        .quan_commentList .quan_comment .quan_comment_user{
-
-                        }
-                        .quan_commentList .quan_comment .quan_comment_user .user_icon{
-                            width: 32px;
-
-                            display: inline-block;
-                        }
-                        .quan_commentList .quan_comment .quan_comment_user .user_name{
-                            display: inline-block;
-                            color: #7a7a7a;
-
-                            margin-left: 12px;
-                        }
-                        .quan_user_commit_value{
-                            line-height: 26px;
-                            margin-top: 12px;
-                        }
-                        .quan_fav{
-                            text-align: center;
-                            margin-bottom: 28px;
-                            margin-top: 16px;
-                        }
-                        .quan_fav .btn-like{
-                            display: inline-block;
-                            /*border: 1px solid #e5e5e5;*/
-                            line-height: 25px;
-                            padding: 0 12px;
-                            text-align: center;
-                            border-radius: 41px;
-                            color: #7a7a7a;
-                            margin: 0 16px;
-                            background: #f2f2f2
-                        }
-                        .quan_fav .btn-like{
-
-                        }
-                    </style>
-                    <div class="quan_time">
-                        发布时间：2018-11-18 08:24:00
-                    </div>
-                    {{--喜欢--}}
-                    <div class="quan_fav">
-                        <div class="btn-like">喜欢(101)</div>
-                        <div class="btn-like btn-dislike">不喜欢(0)</div>
-                    </div>
-                    {{--评论·显示最热点的3条--}}
-                    <div class="quan_commentList">
-                        {{--一条--}}
-                        <div class="quan_comment">
-                            <div class="quan_comment_user">
-                                {{--图标--}}
-                                <div class="user_icon">
-                                    <img class="img" src="http://thirdwx.qlogo.cn/mmopen/vi_32/nDDvSR6JUpC7oJNlsQtz9Yia0QNyO1LrYkWxOlj4nVRsdV0MjbVgoaBWsPbzVibqU8TticianlBiatwWcjZB84UuzyA/132" />
-                                </div>
-                                {{--姓名--}}
-                                <div class="user_name">简约不失繁华</div>
-                            </div>
-                            <div class="quan_user_commit_value">这里是评论内容</div>
-                        </div>
-                        <div class="quan_comment">
-                            <div class="quan_comment_user">
-                                {{--图标--}}
-                                <div class="user_icon">
-                                    <img class="img" src="http://thirdwx.qlogo.cn/mmopen/vi_32/nDDvSR6JUpC7oJNlsQtz9Yia0QNyO1LrYkWxOlj4nVRsdV0MjbVgoaBWsPbzVibqU8TticianlBiatwWcjZB84UuzyA/132" />
-                                </div>
-                                {{--姓名--}}
-                                <div class="user_name">简约不失繁华</div>
-                            </div>
-                            <div class="quan_user_commit_value">这里是评论内容</div>
-                        </div>
-                    </div>
-                    <div class="show_or_hide">
-                        {{--隐藏--}}
-                        <span style="display: none" class="layui-icon-up layui-icon"></span>
-                        {{--<span class="layui-icon-down layui-icon"></span>--}}
-                        {{--显示全部--}}
-                    </div>
-                </div>
-            @endfor
-        </div>
-        {{--去拼团--}}
-        <div class="goTuan">
-            <div class="goTuanRules">
-                <style>
-                    .goTuanRules{
-                        margin-top: 20px;
-                        padding: 20px 16px;
-                        /*padding-top: 20px;*/
-                        background: #Fff;
-                        position: relative;
-                        padding-top: 88px;
-                        height: 108px;
-                        overflow: hidden;
-                    }
-                    .goTuanRules-title{
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        line-height: 73px;
-                        background: #57ba57;
-                        width: 100%;
-                        text-align: center;
-                        color: #fff;
-                        font-size: 22px;
-                    }
-                    .goTuanRules-rule{
-                        line-height: 22px;
-                        margin-top: 20px;
-                    }
-                    .goTuanRules-rule-title{
-                        color: brown;
-                        margin-bottom: 10px;
-                    }
-                    .goTuanRules-rule-value{
-                        padding: 0 26px;
-                    }
-                    .goTuanRules-rule-value p{
-                        margin-bottom: 10px;
-                    }
-                    .goTuanRules-secTitle{
-                        display: none;
-                    }
-                    .goTuanRules-more{
-                        bottom: 0;
-                        background: #fff;
-                        text-align: center;
-                        color: brown;
-                        padding: 16px 0;
-                    }
-                    .goTuanRules-more .layui-icon{
-                        font-size: 18px;
-                        color: #6f6f6f;
-                        margin-top: 8px;
-                    }
-                </style>
-                <div class="goTuanRules-title">去拼团(自营商品)</div>
-                <div class="goTuanRules-secTitle">团购规则</div>
-                <div class="goTuanRules-rule">
-                    <div class="goTuanRules-rule-title">本期拼团</div>
-                    <div class="goTuanRules-rule-value">
-                        <p>1、全网10人起拼，平台推广。</p>
-                        <p>2、根据每周结束时具体的拼团人数决定最终价格（人越多，价格越低）。</p>
-                        <p>3、若最终人数不及10人，自动返还现金。</p>
-                        <p>4、拼购成功后，以实际价格，多余现金以积分形式进行返还，下次消费时可进行抵扣。</p>
-                    </div>
-                </div>
-                <div class="goTuanRules-rule">
-                    <div class="goTuanRules-rule-title">其他商品</div>
-                    <div class="goTuanRules-rule-value">
-                        <p>1、全网3人起拼。</p>
-                        <p>2、平台不进行推广，3名团购人请自助推广。</p>
-                        <p>3、若72小时内未完成3人拼购，自动返还现金。</p>
-                        <p>4、拼购成功后，根据商品价值返回积分，下次消费时可进行抵扣。</p>
-                    </div>
-                </div>
-            </div>
-            <div class="goTuanRules-more">阅读完整极爱网拼团规则<div class="layui-icon layui-icon-down"></div></div>
-            <style>
-                .goTuan{}
-                .goTuanItem{
-                    background: #fff;
-
-                    margin-top: 20px;
-
-                    padding: 32px 12px;
-
-                    position: relative;
-                }
-                .goTuanItem .left{
-                    display: inline-block;
-
-                    margin-right: 5px;
-
-                    width: 25%;
-                }
-                .goTuanItem .left .show{
-                    width: 100%;
-
-                    text-align: center;
-
-                    padding: 10px;
-
-                    box-sizing: border-box;
-
-                    position: relative;
-
-                    top: -5px;
-                }
-                .goTuanItem .right{
-                    display: inline-block;
-
-                    width: 70%;
-
-                    vertical-align: top;
-                }
-                .goTuanItem .right .t{
-                    margin-bottom: 10px;
-
-                    font-weight: bold;
-
-                    color: #4d4d4d;
-                }
-                .goTuanItem .right .self{
-                    background: brown;
-
-                    color: #fff;
-
-                    display: inline-block;
-
-                    padding: 2px 5px;
-
-                    border-radius: 3px;
-
-                    font-size: 14px;
-                }
-                .goTuanItem .right .p{
-                    margin-top: 10px;
-
-                    color: brown;
-
-                    font-weight: bold;
-                }
-                .goTuanItem .right .p-h{
-                    margin-top: 10px;
-
-                    font-size: 13px;
-
-                    color: #7a7a7a;
-                }
-                .goTuanItem .right .team{
-                    border: 1px solid #e5e5e5;
-
-                    margin-top: 10px;
-
-                    text-align: center;
-
-                    position: relative;
-
-                    background: #eaeaea;
-                }
-                .goTuanItem .right .team .v{
-                    color: #fff;
-
-                    position: relative;
-
-                    z-index: 999;
-                }
-                .goTuanItem .right .team .b{
-                    position: absolute;
-
-                    top: 0;
-
-                    left: 0;
-
-                    background: #57ba57;
-
-                    width: 80%;
-
-                    height: 20px;
-                }
-                .goTuanItem .buyBtn{
-                    margin-top: 20px;
-
-                    text-align: right;
-                }
-                .goTuanItem .buyBtn .item{
-                    display: inline-block;
-
-                    line-height: 30px;
-
-                    margin-left: 10px;
-
-                    background: #57ba57;
-
-                    padding: 0 22px;
-
-                    color: #fff;
-
-                    border-radius: 30px;
-                    box-sizing: border-box;
-                    height: 30px;
-                }
-            </style>
-            @for($i=0;$i<4;$i++)
-            <div class="goTuanItem">
-                {{--左侧样图--}}
-                <div class="left">
-                    <div class="show">
-                        <img class="img" src="https://img.alicdn.com/imgextra/https://img.alicdn.com/imgextra/i4/2880071045/O1CN011JaeKs6qwY0g80N_!!2880071045.jpg_430x430q90.jpg" />
-                    </div>
-                </div>
-                {{--右侧信息--}}
-                <div class="right">
-                    {{--标题--}}
-                    <div class="t">南极人电热毯护膝毯加热坐垫电暖垫办公室暖脚宝插电褥子暖身毯</div>
-                    {{--自营标签--}}
-                    <div class="self">自营</div>
-                    {{--价格--}}
-                    <div class="p"><span>¥</span>99.9（起团价）</div>
-                    {{--起团价说明--}}
-                    <div class="p-h">起团价：基础价格，拼团人数越多，价格越低。</div>
-                    {{--拼团情况·外层--}}
-                    <div class="team">
-                        {{--数字说明--}}
-                        <span class="v">711/10人起拼</span>
-                        {{--内层液态柱子--}}
-                        <span class="b"></span>
-                    </div>
-                    {{--去拼团--}}
-                    <div class="buyBtn">
-                        {{--独立购--}}
-                        <div style="color: brown;
-
-border: 1px solid brown;
-background: none;
-" class="item">独立购</div>
-                        {{--去拼团--}}
-                        <div style="
-border: 1px solid #57ba57;
-" class="item">去拼团</div>
-                    </div>
-                </div>
-            </div>
-                @endfor
-            {{--本期拼购--}}
-            <div style="
-    background: #57ba57;
-    color: #fff;
-    line-height: 50px;
-    margin-top: 20px;
-    text-align: center;
-" class="">本期所有拼团</div>
-        </div>
-        {{--三个圈子--}}
-        <style>
-            .quan_block{
-                background: #fff;
-
-                margin-top: 27px;
-
-                border: 1px solid #e5e5e5;
-            }
-            .quan_block_header{
-                text-align: center;
-                line-height: 77px;
-                font-size: 22px;
-                background: #f8f8f8
-            }
-            .quan_block .articleList{}
-            .quan_block .articleList .articleItem{
-                border-top: 1px solid #e5e5e5;
-
-                padding: 12px 20px;
-            }
-            .quan_block .articleList .articleItem .t{
-                font-size: 18px;
-                line-height: 34px;
-                padding-left: 12px;
-                position: relative;
-
-            }
-            .quan_block .articleList .articleItem .t .left{
-                border-left: 2px solid brown;
-                display: inline-block;
-                line-height: 34px;
-                position: absolute;
-                left: 0;
-            }
-            .quan_block .articleList .articleItem .v{
-                color: #7a7a7a;
-                line-height: 1.5rem;
-                margin-top: 14px;
-                border-top: 1px dashed #e5e5e5;
-                padding: 12px 0;
-                /*height: 81px;*/
-                /*overflow: hidden;*/
-            }
-            .quan_block .articleList .articleItem .v .i{
-                float: left;
-                width: 100px;
-                height: 100px;
-                margin-right: 14px;
-                margin-top: 8px;
-            }
-            .quan_block .articleList .articleItem .p{
-                margin-top: 18px;
-            }
-            .quan_block .articleList .articleItem .p .p-icon{
-                width: 32px;
-
-                display: inline-block;
-
-                box-sizing: border-box;
-
-                margin-right: 6px;
-            }
-            .quan_block .articleList .articleItem .p .p-name{
-                display: inline-block;
-                color: #9e9e9e;
-            }
-            .quan_block .articleList .articleItem .article-time{
-                text-align: center;
-
-                color: #8d8d8d;
-
-                line-height: 56px;
-
-                border-top: 1px dashed #e5e5e5;
-
-            }
-        </style>
-        <div class="quan_block">
-            <div class="quan_block_header">
-                <div>悦动圈·热点</div>
-            </div>
-            <div class="articleList">
-                @for($i=0;$i<5;$i++)
-                    <div class="articleItem">
-                        <div class="t">
-                            <span class="left">&nbsp;</span>
-                            <span>小米与美图合作背后：美图的解脱，小米的多元化</span>
-                        </div>
-                        <div class="p">
-                            <div class="p-icon">
-                                <img class="img" src="http://thirdwx.qlogo.cn/mmopen/vi_32/nDDvSR6JUpC7oJNlsQtz9Yia0QNyO1LrYkWxOlj4nVRsdV0MjbVgoaBWsPbzVibqU8TticianlBiatwWcjZB84UuzyA/132"
-                                     alt=""></div>
-                            <div class="p-name">简约不失繁华</div>
-                            {{--<div class="p-time">发布时间：2018-11-20 08:23:83</div>--}}
-                        </div>
-                        <div class="v">
-                            <div class="i">
-                                <div style="
-                                /*vertical-align: middle;*/
-                                /*display: table-cell;*/
-                                height: 100px;
-                                /*border: 1px solid #e5e5e5;*/
-                                /*padding: 5px;*/
-                                box-sizing: border-box;
-                                ">
-                                    <img class="img" src="http://cms-bucket.nosdn.127.net/2018/11/20/00d4ca78e67e47fca08dabee9567f43a.png?imageView&thumbnail=190y120">
-
-                                </div>
-                            </div>
-                            <span>
-                                南极人电热毯护膝毯加热坐垫电暖垫办公室暖脚宝插电褥子暖身毯【包邮】【在售价】268.00元【下单链接】https://m
-                            </span>
-                            {{--美图手机则定位高端女性，小米的这一举动不仅可以将女性最关注的“自拍技术”纳入体系，而且将美图手机流量带入进来，还增加了女性用户市场。但是否能如愿达到效果，还有待市场检验。--}}
-                        </div>
-                        <div class="article-time">发布时间：2018-11-20 08:23:83</div>
-                    </div>
-                @endfor
-            </div>
-            <div style="
-                text-align: center;
-                line-height: 50px;
-                border-top: 1px solid #e5e5e5;
-                font-size: 14px;
-                color: #646464;
-                letter-spacing: 6px;
-                background: #f7f7f7;
-">阅读更多</div>
-        </div>
-        <style>
-            .quan_tuan{}
-        </style>
-        <div class="quan_tuan">
-            <style>
-                .quan_tuan{
-                    border: 1px solid #e5e5e5;
-
-                    margin-top: 20px;
-                }
-                .quan_tuan .goTuanItem{
-                    margin-top: 0;
-
-                    border-top: 1px solid #e5e5e5;
-                }
-                .quan_tuan .quan_tuan_title{
-                    line-height: 77px;
-
-                    background: #fff;
-
-                    text-align: center;
-
-                    background: #f7f7f7;
-
-                    font-size: 18px;
-
-                    font-weight: bold;
-
-                    color: #6f6f6f;
-                }
-            </style>
-            <div class="quan_tuan_title">圈内拼团</div>
-            @for($i=0;$i<4;$i++)
-                <div class="goTuanItem">
-                    {{--左侧样图--}}
-                    <div class="left">
-                        <div class="show">
-                            <img class="img" src="https://img.alicdn.com/imgextra/https://img.alicdn.com/imgextra/i4/2880071045/O1CN011JaeKs6qwY0g80N_!!2880071045.jpg_430x430q90.jpg" />
-                        </div>
-                    </div>
-                    {{--右侧信息--}}
-                    <div class="right">
-                        {{--标题--}}
-                        <div class="t">南极人电热毯护膝毯加热坐垫电暖垫办公室暖脚宝插电褥子暖身毯</div>
-                        {{--自营标签--}}
-                        <div class="self">自营</div>
-                        {{--价格--}}
-                        <div class="p"><span>¥</span>99.9（起团价）</div>
-                        {{--起团价说明--}}
-                        <div class="p-h">起团价：基础价格，拼团人数越多，价格越低。</div>
-                        {{--拼团情况·外层--}}
-                        <div class="team">
-                            {{--数字说明--}}
-                            <span class="v">711/10人起拼</span>
-                            {{--内层液态柱子--}}
-                            <span class="b"></span>
-                        </div>
-                        {{--去拼团--}}
-                        <div class="buyBtn">
-                            {{--独立购--}}
-                            <div style="color: brown;
-
-border: 1px solid brown;
-background: none;
-" class="item">独立购</div>
-                            {{--去拼团--}}
-                            <div style="
-border: 1px solid #57ba57;
-" class="item">去拼团</div>
-                        </div>
-                    </div>
-                </div>
-            @endfor
-            <div style="
-                text-align: center;
-                line-height: 50px;
-                border-top: 1px solid #e5e5e5;
-                font-size: 14px;
-                color: #646464;
-                letter-spacing: 6px;
-                background: #f7f7f7;
-">本期拼团</div>
-        </div>
-        <div class="quan_block">
-            <div class="quan_block_header">
-                <div>科技圈</div>
-                <a style="display: none" href="/2.0/index">
-                    <div style="
-                    color: brown;
-                    font-size: 15px;
-                    position: relative;
-                    line-height: 30px;
-                    top: -6px;
-                    letter-spacing: 3px;
-                "><span class="layui-icon layui-icon-tree"></span>进入圈子</div>
-                </a>
-            </div>
-            <div class="articleList">
-                @for($i=0;$i<5;$i++)
-                    <div class="articleItem">
-                        <div class="t">
-                            <span class="left">&nbsp;</span>
-                            <span>小米与美图合作背后：美图的解脱，小米的多元化</span>
-                        </div>
-                        <div class="p">
-                            <div class="p-icon">
-                                <img class="img" src="http://thirdwx.qlogo.cn/mmopen/vi_32/nDDvSR6JUpC7oJNlsQtz9Yia0QNyO1LrYkWxOlj4nVRsdV0MjbVgoaBWsPbzVibqU8TticianlBiatwWcjZB84UuzyA/132"
-                                     alt=""></div>
-                            <div class="p-name">简约不失繁华</div>
-                            {{--<div class="p-time">发布时间：2018-11-20 08:23:83</div>--}}
-                        </div>
-                        <div class="v">
-                            <div class="i">
-                                <div style="
-                                /*vertical-align: middle;*/
-                                /*display: table-cell;*/
-                                height: 100px;
-                                /*border: 1px solid #e5e5e5;*/
-                                /*padding: 5px;*/
-                                box-sizing: border-box;
-                                ">
-                                    <img class="img" src="http://cms-bucket.nosdn.127.net/2018/11/20/00d4ca78e67e47fca08dabee9567f43a.png?imageView&thumbnail=190y120">
-
-                                </div>
-                            </div>
-                            <span>
-                                南极人电热毯护膝毯加热坐垫电暖垫办公室暖脚宝插电褥子暖身毯【包邮】【在售价】268.00元【下单链接】https://m
-                            </span>
-                            {{--美图手机则定位高端女性，小米的这一举动不仅可以将女性最关注的“自拍技术”纳入体系，而且将美图手机流量带入进来，还增加了女性用户市场。但是否能如愿达到效果，还有待市场检验。--}}
-                        </div>
-                        <div class="article-time">发布时间：2018-11-20 08:23:83</div>
-                    </div>
-                @endfor
-            </div>
-            <div style="
-                text-align: center;
-                line-height: 50px;
-                border-top: 1px solid #e5e5e5;
-                font-size: 14px;
-                color: #646464;
-                letter-spacing: 6px;
-                background: #f7f7f7;
-">阅读更多</div>
-        </div>
-        <div class="quan_tuan">
-            <div class="quan_tuan_title">圈内拼团</div>
-            @for($i=0;$i<4;$i++)
-                <div class="goTuanItem">
-                    {{--左侧样图--}}
-                    <div class="left">
-                        <div class="show">
-                            <img class="img" src="https://img.alicdn.com/imgextra/https://img.alicdn.com/imgextra/i4/2880071045/O1CN011JaeKs6qwY0g80N_!!2880071045.jpg_430x430q90.jpg" />
-                        </div>
-                    </div>
-                    {{--右侧信息--}}
-                    <div class="right">
-                        {{--标题--}}
-                        <div class="t">南极人电热毯护膝毯加热坐垫电暖垫办公室暖脚宝插电褥子暖身毯</div>
-                        {{--自营标签--}}
-                        <div class="self">自营</div>
-                        {{--价格--}}
-                        <div class="p"><span>¥</span>99.9（起团价）</div>
-                        {{--起团价说明--}}
-                        <div class="p-h">起团价：基础价格，拼团人数越多，价格越低。</div>
-                        {{--拼团情况·外层--}}
-                        <div class="team">
-                            {{--数字说明--}}
-                            <span class="v">711/10人起拼</span>
-                            {{--内层液态柱子--}}
-                            <span class="b"></span>
-                        </div>
-                        {{--去拼团--}}
-                        <div class="buyBtn">
-                            {{--独立购--}}
-                            <div style="color: brown;
-
-border: 1px solid brown;
-background: none;
-" class="item">独立购</div>
-                            {{--去拼团--}}
-                            <div style="
-border: 1px solid #57ba57;
-" class="item">去拼团</div>
-                        </div>
-                    </div>
-                </div>
-            @endfor
-            <div style="
-                text-align: center;
-                line-height: 50px;
-                border-top: 1px solid #e5e5e5;
-                font-size: 14px;
-                color: #646464;
-                letter-spacing: 6px;
-                background: #f7f7f7;
-">本期拼团</div>
-        </div>
-        <div class="quan_block">
-            <div class="quan_block_header">
-                <div>时尚圈</div>
-                <a style="display: none" href="/2.0/index">
-                    <div style="
-                    color: brown;
-                    font-size: 15px;
-                    position: relative;
-                    line-height: 30px;
-                    top: -6px;
-                    letter-spacing: 3px;
-                "><span class="layui-icon layui-icon-tree"></span>进入圈子</div>
-                </a>
-            </div>
-            <div class="articleList">
-                @for($i=0;$i<5;$i++)
-                    <div class="articleItem">
-                        <div class="t">
-                            <span class="left">&nbsp;</span>
-                            <span>小米与美图合作背后：美图的解脱，小米的多元化</span>
-                        </div>
-                        <div class="p">
-                            <div class="p-icon">
-                                <img class="img" src="http://thirdwx.qlogo.cn/mmopen/vi_32/nDDvSR6JUpC7oJNlsQtz9Yia0QNyO1LrYkWxOlj4nVRsdV0MjbVgoaBWsPbzVibqU8TticianlBiatwWcjZB84UuzyA/132"
-                                     alt=""></div>
-                            <div class="p-name">简约不失繁华</div>
-                            {{--<div class="p-time">发布时间：2018-11-20 08:23:83</div>--}}
-                        </div>
-                        <div class="v">
-                            <div class="i">
-                                <div style="
-                                /*vertical-align: middle;*/
-                                /*display: table-cell;*/
-                                height: 100px;
-                                /*border: 1px solid #e5e5e5;*/
-                                /*padding: 5px;*/
-                                box-sizing: border-box;
-                                ">
-                                    <img class="img" src="http://cms-bucket.nosdn.127.net/2018/11/20/00d4ca78e67e47fca08dabee9567f43a.png?imageView&thumbnail=190y120">
-
-                                </div>
-                            </div>
-                            <span>
-                                南极人电热毯护膝毯加热坐垫电暖垫办公室暖脚宝插电褥子暖身毯【包邮】【在售价】268.00元【下单链接】https://m
-                            </span>
-                            {{--美图手机则定位高端女性，小米的这一举动不仅可以将女性最关注的“自拍技术”纳入体系，而且将美图手机流量带入进来，还增加了女性用户市场。但是否能如愿达到效果，还有待市场检验。--}}
-                        </div>
-                        <div class="article-time">发布时间：2018-11-20 08:23:83</div>
-                    </div>
-                @endfor
-            </div>
-            <div style="
-                text-align: center;
-                line-height: 50px;
-                border-top: 1px solid #e5e5e5;
-                font-size: 14px;
-                color: #646464;
-                letter-spacing: 6px;
-                background: #f7f7f7;
-">阅读更多</div>
-        </div>
-        <div class="quan_tuan">
-            <div class="quan_tuan_title">圈内拼团</div>
-            @for($i=0;$i<4;$i++)
-                <div class="goTuanItem">
-                    {{--左侧样图--}}
-                    <div class="left">
-                        <div class="show">
-                            <img class="img" src="https://img.alicdn.com/imgextra/https://img.alicdn.com/imgextra/i4/2880071045/O1CN011JaeKs6qwY0g80N_!!2880071045.jpg_430x430q90.jpg" />
-                        </div>
-                    </div>
-                    {{--右侧信息--}}
-                    <div class="right">
-                        {{--标题--}}
-                        <div class="t">南极人电热毯护膝毯加热坐垫电暖垫办公室暖脚宝插电褥子暖身毯</div>
-                        {{--自营标签--}}
-                        <div class="self">自营</div>
-                        {{--价格--}}
-                        <div class="p"><span>¥</span>99.9（起团价）</div>
-                        {{--起团价说明--}}
-                        <div class="p-h">起团价：基础价格，拼团人数越多，价格越低。</div>
-                        {{--拼团情况·外层--}}
-                        <div class="team">
-                            {{--数字说明--}}
-                            <span class="v">711/10人起拼</span>
-                            {{--内层液态柱子--}}
-                            <span class="b"></span>
-                        </div>
-                        {{--去拼团--}}
-                        <div class="buyBtn">
-                            {{--独立购--}}
-                            <div style="color: brown;
-
-border: 1px solid brown;
-background: none;
-" class="item">独立购</div>
-                            {{--去拼团--}}
-                            <div style="
-border: 1px solid #57ba57;
-" class="item">去拼团</div>
-                        </div>
-                    </div>
-                </div>
-            @endfor
-            <div style="
-                text-align: center;
-                line-height: 50px;
-                border-top: 1px solid #e5e5e5;
-                font-size: 14px;
-                color: #646464;
-                letter-spacing: 6px;
-                background: #f7f7f7;
-">本期拼团</div>
-        </div>
-
-        {{--商品分类--}}
-        <style>
-            .classOfArchive{
-                /*height: 120px;*/
-
-                background: #ffffff;
-
-                margin-top: 36px;
-
-                border-radius: 9px;
-
-                /*box-shadow: 0 0 10px #afafaf;*/
-                border: 1px solid #e5e5e5;
-
-                overflow: hidden;
-            }
-            .classOfArchive .icon{
-                width: 120px;
-
-                height: 120px;
-
-                box-sizing: border-box;
-
-                font-size: 22px;
-
-                padding: 32px;
-
-                display: inline-block;
-
-                vertical-align: middle;
-            }
-            .classOfArchive .icon_after{
-                position: relative;
-                left: -20px;
-                display: inline-block;
-
-            }
-            .classOfArchive .then{
-                display: inline-block;
-
-                font-size: 16px;
-
-                color: #454545;
-
-                letter-spacing: 6px;
-
-                padding: 10px;
-
-                border-bottom: 2px solid brown;
-
-                position: relative;
-            }
-            .classOfArchive .commodity{
-                border-top: 1px solid #e5e5e5;
-                padding: 12px;
-            }
-            .classOfArchive .commodity .commodity-icon{
-                width: 30%;
-                text-align: center;
-                float: left;
-                /*margin-top: 12px;*/
-                box-sizing: border-box;
-                padding: 10px;
-            }
-            .classOfArchive .commodity .commodity-describe{
-                /*padding-top: 12px;*/
-                width: 70%;
-                float: right;
-                box-sizing: border-box;
-                padding: 10px;
-            }
-            .classOfArchive .commodity .commodity-describe .t{
-                margin-bottom: 14px;
-
-                color: brown;
-
-                font-size: 14px;
-                line-height: 26px;
-            }
-            .classOfArchive .commodity .commodity-describe .v{
-                background: brown;
-
-                color: #fff;
-
-                margin-top: 20px;
-
-                line-height: 36px;
-
-                text-align: center;
-
-                border-radius: 3px;
-            }
-            .classOfArchiveHelp{
-                border-top: 1px solid #e5e5e5;
-
-                line-height: 24px;
-
-                padding: 10px 20px;
-
-                color: #7a7a7a;
-            }
-            .classOfArchiveHelp p{
-                margin: 10px 0;
-            }
-        </style>
-        @for($t=1;$t<2;$t++)
-            <div class="classOfArchive">
-                <div style="background: #f7f7f7;">
-                    <div class="icon">
-                        各种好券
-                    </div>
-                    <div class="icon_after layui-icon layui-icon-right"></div>
-                    <div class="then">最新推荐</div>
-                </div>
-                {{--对于好券的说明--}}
-                <div class="classOfArchiveHelp">
-                    <p>搜集淘宝京东优惠商品，平价商品，给大家提供最惠的商品线报。</p>
-                    <p>优惠券一般仅3日内有效，若有意购买，请尽快领取并使用。</p>
-                </div>
-                @for($s=1;$s<10;$s++)
-                <div class="commodity">
-                    {{--商品图标--}}
-                    <div class="commodity-icon">
-                        <img style="max-width: 100%;max-height: 100%" src="https://img.alicdn.com/imgextra/https://img.alicdn.com/imgextra/i4/2880071045/O1CN011JaeKs6qwY0g80N_!!2880071045.jpg_430x430q90.jpg" />
-                    </div>
-                    {{--描述--}}
-                    <div class="commodity-describe">
-                        <div class="t">南极人电热毯护膝毯加热坐垫电暖垫办公室暖脚宝插电褥子暖身毯</div>
-                        <div class="v">
-                            <div>查看详情</div>
-                        </div>
-                    </div>
-                    <div class="clear"></div>
-                </div>
-                    @endfor
-                <div style="
-                text-align: center;
-                line-height: 50px;
-                border-top: 1px solid #e5e5e5;
-                font-size: 14px;
-                color: #646464;
-                letter-spacing: 6px;
-                background: #f7f7f7;
-">全部好券</div>
-            </div>
-        @endfor
-        <style>
-            .help-point{
-                margin-top: 30px;
-                background: #fff;
-                border: 1px solid #e5e5e5;
-                /*padding: 8px 12px;*/
-            }
-            .help-point .t{
-                padding: 8px 12px;
-                border-bottom: 1px dashed #e5e5e5;
-                color: #393939;
-            }
-            .help-point .v{
-                line-height: 30px;
-                color: #7a7a7a;
-                padding: 8px 12px;
-                text-align: center;
-            }
-        </style>
-        {{--积分规则--}}
-        <div class="help-point">
-            <div class="t">积分使用指南</div>
-            <div class="v">
-                每积分可抵扣0.01人民币<br>
-                积分可用来抵扣本站自营商品<br>
-                仅部分商品，不可全部抵扣
-            </div>
-        </div>
-        {{--三个圈子路径及尾部--}}
-        <style>
-            .go_circle{
-                background: #2eaf2e;
-                padding: 10px 16px 33px 16px;
-                margin-top: 36px;
-                border-radius: 12px;
-            }
-            .footer{
-                margin-top: -10px;
-                background: #2eaf2e;
-                line-height: 1.5rem;
-                color: #fff;
-                padding: 36px 16px;
-                border-top: 1px dashed #fff;
-            }
-            .footer p{
-                margin-bottom: 12px;
-            }
-        </style>
-        <div class="go_circle">
-            <div class="circle_entry">
-                <div class="item">
-                    <img class="img" src="/quan/yuedongquan.png">
-                    <div class="bottom"></div>
-                </div>
-                <div class="item">
-                    <img class="img" src="/quan/shishangquan.png">
-                    <div class="bottom"></div>
-                </div>
-                <div class="item">
-                    <img class="img" src="/quan/kejiquan.png">
-                    <div class="bottom"></div>
-                </div>
-            </div>
-        </div>
-        <div class="footer">
-            <p>极爱网，爱运动，爱科技，爱生活，更爱极爱网。<br>一个以生活为驱动的，电子商务网站。</p>
-            <p>Copyright ©2018-2019 极爱网 陕ICP备18006045号-2</p>
-        </div>
-    </div>
-    {{--外部·应用菜单--}}
-    <style>
-        .appLabel{
-            position: fixed;
-            top: 0;
-            left: 0;
-            background: #fff;
-            height: 100%;
-            z-index: 9999;
-            box-shadow: 0 0 10px #7a7a7a;
-            padding: 16px 0;
-            width: 210px;
-            display: none;
-
-        }
-        .appLabel .i:nth-of-type(1){
-            text-align: center;
-            padding: 16px 18px;
-            line-height: 28px;
-            color: #868686;
-        }
-        .appLabel .i:nth-of-type(1) .layui-icon{
-            margin-left: 0;
-        }
-        .appLabel .i{
-            width: 210px;
-            line-height: 50px;
-            box-sizing: border-box;
-            padding: 0 20px;
-            padding-left: 26px;
-            color: #424242;
-        }
-        .appLabel .i .c{
-            display: none;
-        }
-        .appLabel .i:nth-of-type(4) .c{
-            /*display: block;*/
-        }
-        .appLabel .i .c .c-i{
-            margin-left: 20px;
-            /*display: none;*/
-            color: #9a9a9a;
-        }
-        .appLabel .i .c .c-i .layui-icon{
-            display: none;
-        }
-        .appLabel .i .icon-tuan{
-            margin-left: 8px;
-            color: #c4c4c4;
-        }
-        .appLabel .i:nth-of-type(2){
-            background: #f2f2f2;
-            border-left: 6px solid brown;
-            color: brown;
-        }
-        .appLabel .i .layui-icon{
-            margin-left: 18px;
-            font-size: 20px;
-            position: relative;
-            top: 3px;
-        }
-        .appLabel .i-class{
-
-        }
-        .contentBox{}
-        .layui-icon-tuan{
-            color: #c4c4c4;
-        }
-    </style>
-    <div class="appLabel">
-        <div style="height: 100%;overflow: auto;">
-            <div class="i">
-                {{--<span class="layui-icon layui-icon-share"></span>--}}
-                爱运动，爱科技，爱生活，更爱极爱网。
-            </div>
-            {{--<div>顶部</div>--}}
-            <div class="i"><span>抢红包</span><span class="layui-icon layui-icon-senior"></span></div>
-
-            {{--<div class="i"><span>名人堂</span><span class="layui-icon layui-icon-senior"></span></div>--}}
-
-            <div class="i"><span>本日热点</span><span class="layui-icon layui-icon-senior"></span></div>
-            {{--去拼团·重点推荐位·每期进行改变控制--}}
-            <div class="i"><span>去拼团</span><span class="layui-icon layui-icon-senior"></span></div>
-
-            <div class="i">
-                <span>悦动圈</span>
-                <span class="layui-icon layui-icon-tuan layui-icon-senior"></span>
-                <span class="icon-tuan">资讯 · 团购</span>
-                <div class="c">
-                    <div class="c-i"><span>热点</span><span class="layui-icon layui-icon-senior"></span></div>
-                    <div class="c-i"><span>团购</span><span class="layui-icon layui-icon-senior"></span></div>
-                    <div class="c-i"><span>进圈</span><span class="layui-icon layui-icon-senior"></span></div>
-                </div>
-            </div>
-
-            <div class="i">
-                <span>科技圈</span>
-                <span class="layui-icon layui-icon-tuan layui-icon-senior"></span>
-                <span class="icon-tuan">资讯 · 团购</span>
-                <div class="c">
-                    <div class="c-i"><span>热点</span><span class="layui-icon layui-icon-senior"></span></div>
-                    <div class="c-i"><span>团购</span><span class="layui-icon layui-icon-senior"></span></div>
-                    <div class="c-i"><span>进圈</span><span class="layui-icon layui-icon-senior"></span></div>
-
-                </div>
-            </div>
-
-            <div class="i">
-                <span>时尚圈</span>
-                <span class="layui-icon layui-icon-tuan layui-icon-senior"></span>
-                <span class="icon-tuan">资讯 · 团购</span>
-                <div class="c">
-                    <div class="c-i"><span>热点</span><span class="layui-icon layui-icon-senior"></span></div>
-                    <div class="c-i"><span>团购</span><span class="layui-icon layui-icon-senior"></span></div>
-                    <div class="c-i"><span>进圈</span><span class="layui-icon layui-icon-senior"></span></div>
-
-                </div>
-            </div>
-
-            {{--<div class="i"><span>惠购物</span><span class="layui-icon layui-icon-senior"></span></div>--}}
-            <div class="i"><span>各种好券</span><span class="layui-icon layui-icon-senior"></span></div>
-            <div class="i"><span>本期拼团</span><span class="layui-icon layui-icon-senior"></span></div>
-            <div class="i"><span>自营商品</span><span class="layui-icon layui-icon-senior"></span></div>
-            <div class="i"><span>积分兑换</span><span class="layui-icon layui-icon-senior"></span></div>
-            <div style="height: 66px" class="i"></div>
-        </div>
-        {{--<div class="i">悦动圈</div>--}}
-        {{--<div class="i">科技圈</div>--}}
-        {{--<div class="i">时尚圈</div>--}}
-        {{--<div class="i">惠购物</div>--}}
-        {{--<div class="i">TOP热点</div>--}}
-        {{--<div class="i">全部分类</div>--}}
-        {{--<div class="i">积分兑换</div>--}}
-    </div>
-    {{--外部·当前菜单--}}
-    <style>
-        .appFixMenu{
-            position: fixed;
-            z-index: 99999;
-            background: rgba(0, 0, 0, 0.59);
-
-            color: #fff;
-
-            width: 136px;
-
-            line-height: 28px;
-
-            line-height: 36px;
-
-            text-align: center;
-
-            bottom: 20px;
-
-            border-radius: 40px;
-
-            left: 20px;
-
-            left: 0;
-
-            right: 0;
-
-            margin: 0 auto;
-        }
-        .appFixMenu .this{}
-        .appFixMenu .layui-icon{
-            margin-left: 8px;
-
-            position: relative;
-
-            top: 1px;
-        }
-    </style>
-    <div class="appFixMenu"><span class="this">名人堂</span><span class="layui-icon layui-icon-spread-left"></span></div>
 
 @endsection
+<style>
+    html,body{
+        background: #f6f7f9!important;
+    }
+    .contentMain{
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+    .app_header{
+        /*background: #fff;*/
+        padding: 12px 10px;
+        position: relative;
+    }
+    .app_header .logo, .app_header .toggle, .app_header .login{
+        display: inline-block;
+        line-height: 24px;
+        height: 24px;
+        vertical-align: middle;
+    }
+    .app_header_top{
+        position: relative;
+    }
+    .app_header .action{
+        height: 22px;
+        position: relative;
+        top: 1px;
+    }
+    .app_header .action{
+        float: right;
+    }
+    .app_header .action .layui-icon{
+        font-size: 24px;
+        color: #ed424b;
+    }
+    .app_header .toggle{
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        text-align: center;
+    }
+    .app_header .toggle .item{
+        display: inline-block;
 
+        text-align: center;
+
+        width: 50px;
+    }
+    .app_header .toggle .item:first-child{
+        background: #ed424b;
+
+        color: #fff;
+    }
+</style>
+<div class="contentMain">
+    {{--头部--}}
+    <div class="app_header">
+        {{--顶部--}}
+        <div class="app_header_top">
+            {{--logo--}}
+            <div class="logo">
+                <img class="img" src="/log32.png">
+            </div>
+            {{--切换--}}
+            <div class="toggle">
+                <span class="item">资讯</span>
+                <span class="item">团购</span>
+            </div>
+            {{--登录--}}
+            <div class="action">
+                <span class="layui-icon layui-icon-username"></span>
+            </div>
+        </div>
+        {{--banner--}}
+        <div class="ft-carousel" id="carousel">
+            <style>
+                #carousel{
+                    width: 100%;
+                    height: 120px;
+                    font-size: 40px;
+                    text-align: center;
+                    /*margin: 20px auto;*/
+                    margin-top: 10px;
+                    background-color: #464576;
+                }
+            </style>
+            <ul class="carousel-inner">
+                <li class="carousel-item"><img src="/module/ft-carousel/img/a1.png" /></li>
+                <li class="carousel-item"><img src="/module/ft-carousel//img/a2.png" /></li>
+                <li class="carousel-item"><img src="/module/ft-carousel//img/a3.png" /></li>
+                <li class="carousel-item"><img src="/module/ft-carousel//img/a4.png" /></li>
+                <li class="carousel-item"><img src="/module/ft-carousel//img/a5.png" /></li>
+                <li class="carousel-item"><img src="/module/ft-carousel//img/a6.png" /></li>
+            </ul>
+        </div>
+    </div>
+    {{--菜单--}}
+    <div class="app_header_menu">
+        <style>
+            .app_header_menu{
+                width: 100%;
+                /*position: absolute;*/
+                /*height: 100px;*/
+                background: #fff;
+                left: 0;
+                margin-top: 10px;
+                text-align: center;
+                padding: 16px 0;
+            }
+            .app_header_menu .help{
+                color: brown;
+                border-bottom: 1px dashed #e5e5e5;
+                line-height: 50px;
+                position: relative;
+                top: -15px;
+                width: 90%;
+                margin: 0 auto;
+            }
+            .app_header_menu .item{
+                display: inline-block;
+                width: 22%;
+                margin-right: 7px;
+                text-align: center;
+                margin-bottom: 12px;
+                vertical-align: top;
+            }
+            .app_header_menu .item:nth-of-type(4n){
+                margin-right: 0;
+            }
+            .app_header_menu .item .icon{
+                font-size: 28px;
+
+                width: 40px;
+
+                margin: 0 auto;
+
+                height: 40px;
+
+                color: #ababab;
+
+                line-height: 40px;
+            }
+            .app_header_menu .icon-group-one{
+                background-image: url("data:image/png;base64,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");
+                background-size: 100px 100px;
+                position: relative;
+                top: 0;
+                width: 35px!important;
+                height: 34px!important;
+            }
+            .app_header_menu .item .title{
+
+            }
+            .app_header_menu .itemList{
+                text-align: left;
+                width: 90%;
+                margin: 0 auto;
+            }
+        </style>
+        <div class="help">一个以生活为驱动的电子商务网站。</div>
+        <div class="itemList">
+            <div class="item">
+                <div class="icon"><img class="img" src="/icon-maney.png" alt=""></div>
+                <div class="title">抢红包</div>
+            </div>
+            {{--<div class="item">--}}
+            {{--<div style="--}}
+            {{--left: 3px;--}}
+            {{--" class="icon icon-group-one">--}}
+            {{--</div>--}}
+            {{--<div class="title">本日热点</div>--}}
+            {{--</div>--}}
+            {{--<div class="item">--}}
+            {{--<div style="--}}
+            {{--padding: 2px;--}}
+            {{--box-sizing: border-box;--}}
+            {{--position: relative;--}}
+            {{--left: 2px;--}}
+            {{--top: 1px;--}}
+            {{--opacity: 0.88;--}}
+            {{--" class="icon">--}}
+            {{--<img class="img" src="/tuan.png" alt="">--}}
+            {{--</div>--}}
+            {{--<div class="title">去拼团</div>--}}
+            {{--</div>--}}
+            {{--<div class="item">--}}
+            {{--<div style="--}}
+            {{--background-position-x: 210px;--}}
+
+            {{--background-position-y: 69px;--}}
+
+            {{--left: 3px;--}}
+
+            {{--background-size: 105px 105px;--}}
+            {{--" class="icon layui-icon icon-group-one"></div>--}}
+            {{--<div class="title">去拼团</div>--}}
+            {{--</div>--}}
+            {{--<div class="item">--}}
+            {{--<div style="position: relative;top: 5px;" class="icon">--}}
+            {{--<img class="img" src="/yue.png" alt="">--}}
+            {{--</div>--}}
+            {{--<div class="title">悦动圈</div>--}}
+            {{--</div>--}}
+            {{--<div class="item">--}}
+            {{--<div style="color: #a4c63e;" class="icon layui-icon layui-icon-app">--}}
+            {{--</div>--}}
+            {{--<div class="title">科技圈</div>--}}
+            {{--</div>--}}
+            {{--<div class="item">--}}
+            {{--<div class="icon layui-icon layui-icon-release"></div>--}}
+            {{--<div class="title">时尚圈</div>--}}
+            {{--</div>--}}
+            {{--<div class="item">--}}
+            {{--<div class="icon layui-icon layui-icon-app"></div>--}}
+            {{--<div class="title">各种好券</div>--}}
+            {{--</div>--}}
+            {{--<div class="item">--}}
+            {{--<div class="icon layui-icon layui-icon-app"></div>--}}
+            {{--<div class="title">本期拼团</div>--}}
+            {{--</div>--}}
+            {{--<div class="item">--}}
+            {{--<div class="icon layui-icon layui-icon-app"></div>--}}
+            {{--<div class="title">自营商品</div>--}}
+            {{--</div>--}}
+            {{--<div class="item">--}}
+            {{--<div class="icon layui-icon layui-icon-app"></div>--}}
+            {{--<div class="title">积分兑换</div>--}}
+            {{--</div>--}}
+            <div class="item">
+                <div class="icon layui-icon layui-icon-senior"></div>
+                <div class="title">本日热点</div>
+            </div>
+            <div class="item">
+                <div class="icon layui-icon layui-icon-senior"></div>
+                <div class="title">去拼团</div>
+            </div>
+            <div class="item">
+                <div class="icon layui-icon layui-icon-senior"></div>
+                <div class="title">悦动圈</div>
+            </div>
+            <div class="item">
+                <div class="icon layui-icon layui-icon-senior"></div>
+                <div class="title">科技圈</div>
+            </div>
+            <div class="item">
+                <div class="icon layui-icon layui-icon-senior"></div>
+                <div class="title">时尚圈</div>
+            </div>
+            <div class="item">
+                <div class="icon layui-icon layui-icon-senior"></div>
+                <div class="title">各种好券</div>
+            </div>
+            <div class="item">
+                <div class="icon layui-icon layui-icon-senior"></div>
+                <div class="title">本期拼团</div>
+            </div>
+            <div class="item">
+                <div class="icon layui-icon layui-icon-senior"></div>
+                <div class="title">自营商品</div>
+            </div>
+            <div class="item">
+                <div class="icon layui-icon layui-icon-senior"></div>
+                <div class="title">积分兑换</div>
+            </div>
+        </div>
+    </div>
+    {{--团购说明--}}
+    <div class="funcDescribe">
+        <style>
+            .funcDescribe{
+                padding: 10px 20px;
+                background: #fff;
+                margin-top: 12px;
+                position: relative;
+                border: 1px solid #e5e5e5;
+                overflow: hidden;
+            }
+            .funcDescribeTitle{
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                line-height: 32px;
+                background: #fafafa;
+                padding: 0 20px;
+                color: #333;
+                border-bottom: 1px solid #e5e5e5;
+                font-weight: bold;
+            }
+            .funcDescribeValue{
+                margin-top: 32px;
+            }
+            .funcDescribeValue p{
+                line-height: 28px;
+                /*margin-bottom: 10px;*/
+            }
+        </style>
+        <div class="funcDescribeTitle">团购规则</div>
+        <div class="funcDescribeValue">
+            <p>官宣团购：官方宣传团购活动，每周日凌晨更新，满10人开团，开团价基础上还有更低，参与人数越多价格越低。</p>
+            <p style="border-top: 1px dashed #e5e5e5;margin-top: 10px;padding-top: 10px;">其他商品：可单独购买，也可进行自行团购（满3人），或6位好友助力，即可享受团购价。</p>
+        </div>
+    </div>
+    {{--转换按钮--}}
+    <div class="toggleBox">
+        <style>
+            .toggleBox{
+                text-align: center;
+                margin-top: 30px;
+            }
+            .toggleBox .item:first-of-type{
+                background: #ed424b;
+                color: #fff;
+            }
+            .toggleBox .item{
+                display: inline-block;
+
+                text-align: center;
+
+                width: 66px;
+
+                line-height: 30px;
+
+                margin: 0 16px;
+            }
+        </style>
+        <div class="item">咨询</div>
+        <div class="item">团购</div>
+    </div>
+    {{--本日热点--}}
+    <div class="hotTop contentItemBox">
+        <style>
+            .contentItemBox{
+
+            }
+            .contentItemBoxTitle{
+
+            }
+            .articleItem{
+
+            }
+            .articleItem .title{
+
+            }
+            .articleItem .cover{
+
+            }
+            .articleItem .cover img{
+
+            }
+        </style>
+        <div class="contentItemBoxTitle">本日热点资讯</div>
+        <div class="hotTopList">
+            @for($i=0;$i<10;$i++)
+                <div class="articleItem">
+                    <div class="title">小米与美图合作背后：美图的解脱，小米的多元化</div>
+                    <div class="cover">
+                        <img src="https://img.alicdn.com/imgextra/https://img.alicdn.com/imgextra/i4/2880071045/O1CN011JaeKs6qwY0g80N_!!2880071045.jpg_430x430q90.jpg" alt="">
+                    </div>
+                </div>
+                @endfor
+        </div>
+    </div>
+</div>
 @section('js')
     <script>
-        //使照片尺寸相同
-        $(document).ready(function (){
-            var width = $('.photoList').width();
-            width = width*0.28-6-6;
-            $('.quan_content .photoList .item img').css({'max-height':width});
-        })
+        //        alert(1);
+        $("#carousel").FtCarousel(
+            {
+                index: 0,
+                auto: true,
+                time: 3000,
+                indicators: true,
+                buttons: false
+            }
+        );
     </script>
 @endsection
