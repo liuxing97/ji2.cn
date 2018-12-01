@@ -122,7 +122,7 @@
             .app_header_menu .item{
                 display: inline-block;
                 width: 22%;
-                margin-right: 6px;
+                margin-right: 4px;
                 text-align: center;
                 margin-bottom: 12px;
                 vertical-align: top;
