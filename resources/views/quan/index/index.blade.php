@@ -263,8 +263,23 @@
         <div class="item">团购</div>
     </div>
     {{--本日热团--}}
-    <div class="hotTuanBox">
+    <div class="hotTuanBox contentMainBox">
         <style>
+            .contentMainBox{
+
+            }
+            .contentMainBox .boxTitle{
+                font-size: 16px;
+                border-left: 2px solid #ed424b;
+                font-weight: bold;
+                padding-left: 12px;
+            }
+            .contentMainBox .boxTitle span{
+                font-size: 14px;
+                margin-left: 10px;
+                color: #7a7a7a;
+                font-weight: normal;
+            }
             .hotTuanBox{
                 width: 100%;
                 overflow-x: auto;
@@ -275,10 +290,7 @@
                 box-sizing: border-box;
             }
             .hotTuanBoxTitle{
-                font-size: 16px;
-                border-left: 2px solid #ed424b;
-                font-weight: bold;
-                padding-left: 12px;
+
             }
             .hotTuanBoxTitle span{
                 font-size: 14px;
@@ -366,12 +378,12 @@
                 height: 20px;
             }
         </style>
-        <div class="hotTuanBoxTitle">本周热团<span>官宣拼团，人越多价更低</span></div>
+        <div class="hotTuanBoxTitle boxTitle">本周热团<span>官宣拼团，人越多价更低</span></div>
         <div class="ft-carousel" id="carousel2">
             <style>
                 #carousel2{
                     width: 100%;
-                    height: 226px;
+                    height: 232px;
                     font-size: 40px;
                     text-align: center;
                     /*margin: 20px auto;*/
@@ -382,26 +394,26 @@
             <ul class="carousel-inner">
                 @for($t=0;$t<3;$t++)
                     <li class="carousel-item">
-                            <div class="hotTuanListItem">
-                                @for($i=0;$i<3;$i++)
-                                    <div class="hotTuanItem">
-                                        <div class="hotTuanItemMain">
-                                            <div class="itemIcon">
-                                                <img class="img" src="https://gaitaobao2.alicdn.com/tfscom/i1/1893021893/TB1UlbwdfjM8KJjSZFNXXbQjFXa_!!0-item_pic.jpg_300x300q90.jpg" alt="">
-                                            </div>
-                                            <div class="itemTitle">数据线三合一通用手机充电器多头功能快充苹果安卓一</div>
-                                            <div class="itemPrice">开团价<span class="v">¥8394.00</span></div>
-                                            {{--拼团情况·外层--}}
-                                            <div class="team">
-                                                {{--数字说明--}}
-                                                <span class="v">711/10人起拼</span>
-                                                {{--内层液态柱子--}}
-                                                <span class="b"></span>
-                                            </div>
+                        <div class="hotTuanListItem">
+                            @for($i=0;$i<3;$i++)
+                                <div class="hotTuanItem">
+                                    <div class="hotTuanItemMain">
+                                        <div class="itemIcon">
+                                            <img class="img" src="https://gaitaobao2.alicdn.com/tfscom/i1/1893021893/TB1UlbwdfjM8KJjSZFNXXbQjFXa_!!0-item_pic.jpg_300x300q90.jpg" alt="">
+                                        </div>
+                                        <div class="itemTitle">数据线三合一通用手机充电器多头功能快充苹果安卓一</div>
+                                        <div class="itemPrice">开团价<span class="v">¥8394.00</span></div>
+                                        {{--拼团情况·外层--}}
+                                        <div class="team">
+                                            {{--数字说明--}}
+                                            <span class="v">711/10人起拼</span>
+                                            {{--内层液态柱子--}}
+                                            <span class="b"></span>
                                         </div>
                                     </div>
-                                @endfor
-                            </div>
+                                </div>
+                            @endfor
+                        </div>
                     </li>
                     @endfor
             </ul>
