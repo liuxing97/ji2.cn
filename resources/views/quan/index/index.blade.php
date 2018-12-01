@@ -5,6 +5,7 @@
 <style>
     html,body{
         background: #f6f7f9!important;
+        padding-bottom: 50px;
     }
     .contentMain{
         width: 100%;
@@ -84,7 +85,6 @@
                     height: 120px;
                     font-size: 40px;
                     text-align: center;
-                    /*margin: 20px auto;*/
                     margin-top: 10px;
                     background-color: #464576;
                 }
@@ -104,8 +104,6 @@
         <style>
             .app_header_menu{
                 width: 100%;
-                /*position: absolute;*/
-                /*height: 100px;*/
                 background: #fff;
                 left: 0;
                 margin-top: 10px;
@@ -134,15 +132,10 @@
             }
             .app_header_menu .item .icon{
                 font-size: 28px;
-
                 width: 40px;
-
                 margin: 0 auto;
-
                 height: 40px;
-
                 color: #ababab;
-
                 line-height: 40px;
             }
             .app_header_menu .icon-group-one{
@@ -274,21 +267,23 @@
         <style>
             .hotTuanBox{
                 width: 100%;
-                /*background: #fff;*/
                 overflow-x: auto;
                 margin-top: 16px;
-                /*padding-top: 32px;*/
                 position: relative;
-                /*border: 1px solid #e5e5e5;*/
+                background: #fff;
+                padding: 20px 10px;
             }
             .hotTuanBoxTitle{
                 font-size: 16px;
-
-                border-bottom: 2px solid #ed424b;
-
-                line-height: 40px;
-
+                border-left: 2px solid #ed424b;
                 font-weight: bold;
+                padding-left: 12px;
+            }
+            .hotTuanBoxTitle span{
+                font-size: 14px;
+                margin-left: 10px;
+                color: #7a7a7a;
+                font-weight: normal;
             }
             .hotTuanListItem{
 
@@ -309,28 +304,73 @@
             }
             .hotTuanItemMain .itemTitle{
                 font-size: 12px;
-
+                margin-top: 10px;
+                height: 30px;
+                overflow: hidden;
+                color: #33373d;
             }
             #carousel2 .carousel-indicators{
-                padding: 6px 10px;
-
+                padding: 3px 10px;
                 background: rgba(0, 0, 0, 0.33);
-
                 width: 66px;
-
                 margin: 0 auto;
-
                 right: 0;
-
                 border-radius: 38px;
+                bottom: 0;
+            }
+            .hotTuanItemMain .itemIcon{
+                padding: 10px;
+                border: 1px solid #e5e5e5;
+            }
+            .hotTuanItemMain .itemPrice{
+                font-size: 12px;
+                margin-top: 6px;
+                text-align: right;
+                color: #7a7a7a;
+            }
+            .hotTuanItemMain .itemPrice .v{
+                color: brown;
+            }
+            .hotTuanItemMain .team{
+                border: 1px solid #e5e5e5;
+
+                margin-top: 10px;
+
+                text-align: center;
+
+                position: relative;
+
+                background: #b7b7b7;
+
+                overflow: hidden;
+
+                border-radius: 10px;
+            }
+            .hotTuanItemMain .team .v{
+
+                color: #fff;
+
+                position: relative;
+
+                z-index: 999;
+
+                font-size: 12px;
+            }
+            .hotTuanItemMain .team .b{
+                position: absolute;
+                top: 0;
+                left: 0;
+                background: #ab3d3d;
+                width: 80%;
+                height: 20px;
             }
         </style>
-        <div class="hotTuanBoxTitle">本周热团</div>
+        <div class="hotTuanBoxTitle">本周热团<span>官宣拼团，人越多价更低</span></div>
         <div class="ft-carousel" id="carousel2">
             <style>
                 #carousel2{
                     width: 100%;
-                    height: 216px;
+                    height: 248px;
                     font-size: 40px;
                     text-align: center;
                     /*margin: 20px auto;*/
@@ -349,6 +389,14 @@
                                                 <img class="img" src="https://gaitaobao2.alicdn.com/tfscom/i1/1893021893/TB1UlbwdfjM8KJjSZFNXXbQjFXa_!!0-item_pic.jpg_300x300q90.jpg" alt="">
                                             </div>
                                             <div class="itemTitle">数据线三合一通用手机充电器多头功能快充苹果安卓一</div>
+                                            <div class="itemPrice">开团价：<span class="v">¥8394.00</span></div>
+                                            {{--拼团情况·外层--}}
+                                            <div class="team">
+                                                {{--数字说明--}}
+                                                <span class="v">711/10人起拼</span>
+                                                {{--内层液态柱子--}}
+                                                <span class="b"></span>
+                                            </div>
                                         </div>
                                     </div>
                                 @endfor
