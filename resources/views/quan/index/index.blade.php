@@ -5,7 +5,7 @@
 <style>
     html,body{
         background: #f6f7f9!important;
-        padding-bottom: 50px;
+        /*padding-bottom: 50px;*/
     }
     .contentMain{
         width: 100%;
