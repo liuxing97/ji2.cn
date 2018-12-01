@@ -124,7 +124,7 @@
             .app_header_menu .item{
                 display: inline-block;
                 width: 22%;
-                margin-right: 7px;
+                margin-right: 6px;
                 text-align: center;
                 margin-bottom: 12px;
                 vertical-align: top;
@@ -168,69 +168,6 @@
                 <div class="icon"><img class="img" src="/icon-maney.png" alt=""></div>
                 <div class="title">抢红包</div>
             </div>
-            {{--<div class="item">--}}
-            {{--<div style="--}}
-            {{--left: 3px;--}}
-            {{--" class="icon icon-group-one">--}}
-            {{--</div>--}}
-            {{--<div class="title">本日热点</div>--}}
-            {{--</div>--}}
-            {{--<div class="item">--}}
-            {{--<div style="--}}
-            {{--padding: 2px;--}}
-            {{--box-sizing: border-box;--}}
-            {{--position: relative;--}}
-            {{--left: 2px;--}}
-            {{--top: 1px;--}}
-            {{--opacity: 0.88;--}}
-            {{--" class="icon">--}}
-            {{--<img class="img" src="/tuan.png" alt="">--}}
-            {{--</div>--}}
-            {{--<div class="title">去拼团</div>--}}
-            {{--</div>--}}
-            {{--<div class="item">--}}
-            {{--<div style="--}}
-            {{--background-position-x: 210px;--}}
-
-            {{--background-position-y: 69px;--}}
-
-            {{--left: 3px;--}}
-
-            {{--background-size: 105px 105px;--}}
-            {{--" class="icon layui-icon icon-group-one"></div>--}}
-            {{--<div class="title">去拼团</div>--}}
-            {{--</div>--}}
-            {{--<div class="item">--}}
-            {{--<div style="position: relative;top: 5px;" class="icon">--}}
-            {{--<img class="img" src="/yue.png" alt="">--}}
-            {{--</div>--}}
-            {{--<div class="title">悦动圈</div>--}}
-            {{--</div>--}}
-            {{--<div class="item">--}}
-            {{--<div style="color: #a4c63e;" class="icon layui-icon layui-icon-app">--}}
-            {{--</div>--}}
-            {{--<div class="title">科技圈</div>--}}
-            {{--</div>--}}
-            {{--<div class="item">--}}
-            {{--<div class="icon layui-icon layui-icon-release"></div>--}}
-            {{--<div class="title">时尚圈</div>--}}
-            {{--</div>--}}
-            {{--<div class="item">--}}
-            {{--<div class="icon layui-icon layui-icon-app"></div>--}}
-            {{--<div class="title">各种好券</div>--}}
-            {{--</div>--}}
-            {{--<div class="item">--}}
-            {{--<div class="icon layui-icon layui-icon-app"></div>--}}
-            {{--<div class="title">本期拼团</div>--}}
-            {{--</div>--}}
-            {{--<div class="item">--}}
-            {{--<div class="icon layui-icon layui-icon-app"></div>--}}
-            {{--<div class="title">自营商品</div>--}}
-            {{--</div>--}}
-            {{--<div class="item">--}}
-            {{--<div class="icon layui-icon layui-icon-app"></div>--}}
-            {{--<div class="title">积分兑换</div>--}}
-            {{--</div>--}}
             <div class="item">
                 <div class="icon layui-icon layui-icon-senior"></div>
                 <div class="title">本日热点</div>
@@ -329,48 +266,146 @@
                 margin: 0 16px;
             }
         </style>
-        <div class="item">咨询</div>
+        <div class="item">资讯</div>
         <div class="item">团购</div>
     </div>
-    {{--本日热点--}}
-    <div class="hotTop contentItemBox">
+    {{--本日热团--}}
+    <div class="hotTuanBox">
         <style>
-            .contentItemBox{
+            .hotTuanBox{
+                width: 100%;
+                /*background: #fff;*/
+                overflow-x: auto;
+                margin-top: 16px;
+                /*padding-top: 32px;*/
+                position: relative;
+                /*border: 1px solid #e5e5e5;*/
+            }
+            .hotTuanBoxTitle{
+                font-size: 16px;
+
+                border-bottom: 2px solid #ed424b;
+
+                line-height: 40px;
+
+                font-weight: bold;
+            }
+            .hotTuanListItem{
 
             }
-            .contentItemBoxTitle{
+            .hotTuanItem{
+                width: 30%;
+                height: 150px;
+                /*background: #0d6aad;*/
+                display: inline-block;
+            }
+            .hotTuanItem:last-of-type{
 
             }
-            .articleItem{
+            .hotTuanItemMain{
+                width: 100%;
+                /*background: #2ab27b;*/
+                height: 150px;
+            }
+            .hotTuanItemMain .itemTitle{
+                font-size: 12px;
 
             }
-            .articleItem .title{
+            #carousel2 .carousel-indicators{
+                padding: 6px 10px;
 
-            }
-            .articleItem .cover{
+                background: rgba(0, 0, 0, 0.33);
 
-            }
-            .articleItem .cover img{
+                width: 66px;
 
+                margin: 0 auto;
+
+                right: 0;
+
+                border-radius: 38px;
             }
         </style>
-        <div class="contentItemBoxTitle">本日热点资讯</div>
-        <div class="hotTopList">
-            @for($i=0;$i<10;$i++)
-                <div class="articleItem">
-                    <div class="title">小米与美图合作背后：美图的解脱，小米的多元化</div>
-                    <div class="cover">
-                        <img src="https://img.alicdn.com/imgextra/https://img.alicdn.com/imgextra/i4/2880071045/O1CN011JaeKs6qwY0g80N_!!2880071045.jpg_430x430q90.jpg" alt="">
-                    </div>
-                </div>
-                @endfor
+        <div class="hotTuanBoxTitle">本周热团</div>
+        <div class="ft-carousel" id="carousel2">
+            <style>
+                #carousel2{
+                    width: 100%;
+                    height: 216px;
+                    font-size: 40px;
+                    text-align: center;
+                    /*margin: 20px auto;*/
+                    margin-top: 26px;
+                    /*background-color: #464576;*/
+                }
+            </style>
+            <ul class="carousel-inner">
+                @for($t=0;$t<3;$t++)
+                    <li class="carousel-item">
+                            <div class="hotTuanListItem">
+                                @for($i=0;$i<3;$i++)
+                                    <div class="hotTuanItem">
+                                        <div class="hotTuanItemMain">
+                                            <div class="itemIcon">
+                                                <img class="img" src="https://gaitaobao2.alicdn.com/tfscom/i1/1893021893/TB1UlbwdfjM8KJjSZFNXXbQjFXa_!!0-item_pic.jpg_300x300q90.jpg" alt="">
+                                            </div>
+                                            <div class="itemTitle">数据线三合一通用手机充电器多头功能快充苹果安卓一</div>
+                                        </div>
+                                    </div>
+                                @endfor
+                            </div>
+                    </li>
+                    @endfor
+            </ul>
         </div>
     </div>
+    {{--本日热点--}}
+    {{--<div class="hotTop contentItemBox">--}}
+        {{--<style>--}}
+            {{--.contentItemBox{--}}
+
+            {{--}--}}
+            {{--.contentItemBoxTitle{--}}
+
+            {{--}--}}
+            {{--.articleItem{--}}
+
+            {{--}--}}
+            {{--.articleItem .title{--}}
+
+            {{--}--}}
+            {{--.articleItem .cover{--}}
+
+            {{--}--}}
+            {{--.articleItem .cover img{--}}
+
+            {{--}--}}
+        {{--</style>--}}
+        {{--<div class="contentItemBoxTitle">本日热点资讯</div>--}}
+        {{--<div class="hotTopList">--}}
+            {{--@for($i=0;$i<10;$i++)--}}
+                {{--<div class="articleItem">--}}
+                    {{--<div class="title">小米与美图合作背后：美图的解脱，小米的多元化</div>--}}
+                    {{--<div class="cover">--}}
+                        {{--<img src="https://img.alicdn.com/imgextra/https://img.alicdn.com/imgextra/i4/2880071045/O1CN011JaeKs6qwY0g80N_!!2880071045.jpg_430x430q90.jpg" alt="">--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+                {{--@endfor--}}
+        {{--</div>--}}
+    {{--</div>--}}
 </div>
 @section('js')
     <script>
         //        alert(1);
         $("#carousel").FtCarousel(
+            {
+                index: 0,
+                auto: true,
+                time: 3000,
+                indicators: true,
+                buttons: false
+            }
+        );
+        $("#carousel2").FtCarousel(
             {
                 index: 0,
                 auto: true,
