@@ -272,6 +272,7 @@
                 position: relative;
                 background: #fff;
                 padding: 20px 10px;
+                box-sizing: border-box;
             }
             .hotTuanBoxTitle{
                 font-size: 16px;
@@ -370,7 +371,7 @@
             <style>
                 #carousel2{
                     width: 100%;
-                    height: 248px;
+                    height: 226px;
                     font-size: 40px;
                     text-align: center;
                     /*margin: 20px auto;*/
@@ -389,7 +390,7 @@
                                                 <img class="img" src="https://gaitaobao2.alicdn.com/tfscom/i1/1893021893/TB1UlbwdfjM8KJjSZFNXXbQjFXa_!!0-item_pic.jpg_300x300q90.jpg" alt="">
                                             </div>
                                             <div class="itemTitle">数据线三合一通用手机充电器多头功能快充苹果安卓一</div>
-                                            <div class="itemPrice">开团价：<span class="v">¥8394.00</span></div>
+                                            <div class="itemPrice">开团价<span class="v">¥8394.00</span></div>
                                             {{--拼团情况·外层--}}
                                             <div class="team">
                                                 {{--数字说明--}}
