@@ -60,6 +60,7 @@
         background: #fff;
         padding-bottom: 18px;
         box-shadow: 0 0 10px #ccc;
+        margin-top: 47px;
     }
     .common_show .common_title{
         font-size: 15px;
@@ -212,7 +213,6 @@
 
                 bottom: 0;
 
-                left: 0;
 
                 width: 100%;
 
@@ -226,17 +226,11 @@
             }
             .buySlef{
                 position: absolute;
-
                 line-height: 50px;
-
-                right: 100px;
-
+                right: 30%;
                 text-align: center;
-
-                width: 100px;
-
+                width: 30%;
                 background: #5f5f5f;
-
                 color: #fff;
                 bottom: 0;
             }
@@ -247,7 +241,7 @@
 
                 right: 0;
 
-                width: 100px;
+                width: 30%;
 
                 text-align: center;
 
@@ -257,12 +251,26 @@
                 bottom: 0;
             }
         </style>
+        <div style="
+width: 40%;
+position: absolute;
+right: 60%;
+padding: 0 16px;
+text-align: center;
+line-height: 21px;
+top: 2px;
+box-sizing: border-box;
+color: #7a7a7a;
+">3人团购或6人助力团购买</div>
         {{--单独买--}}
         <div class="buySlef">单独买</div>
         {{--团价买--}}
-        <div class="buy">团价买</div>
+        <div class="buy">团购买</div>
     </div>
     <style>
+        .common_header, .common_footer{
+            max-width: 400px;
+        }
         .footer{
             background: #2eaf2e;
             line-height: 1.5rem;
