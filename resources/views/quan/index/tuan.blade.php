@@ -191,6 +191,45 @@
                 </div>
             </a>
         </div>
+        <style>
+            .selfClass{width: 90%;
+                margin: 0 auto;}
+            .selfClassTitle{padding-top: 12px;
+
+                text-align: center;}
+            .selfClassTitle span{
+                font-size: 14px;
+
+                background: #ed424b;
+
+                color: #fff;
+
+                display: block;
+
+                width: 102px;
+
+                text-align: center;
+
+                line-height: 32px;
+            }
+            .selfClassList{text-align: left;margin-top: 16px;}
+            .selfClassList .item{
+                line-height: 30px;
+                border: 1px dashed #a9a9a9;
+                color: #a8a8a8;
+            }
+        </style>
+        {{--自营商品分类--}}
+        <div class="selfClass">
+            <div class="selfClassTitle"><span>自营商品分类</span></div>
+            <div class="selfClassList">
+                <div class="item">科技圈</div>
+                <div class="item">时尚圈</div>
+                <div class="item">悦动圈</div>
+                <div class="item">手机</div>
+                <div class="item">笔记本</div>
+            </div>
+        </div>
     </div>
     {{--转换按钮--}}
     <div class="toggleBox">
@@ -205,13 +244,9 @@
             }
             .toggleBox .item{
                 display: inline-block;
-
                 text-align: center;
-
                 width: 66px;
-
                 line-height: 30px;
-
                 margin: 0 16px;
             }
         </style>
