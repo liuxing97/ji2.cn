@@ -50,7 +50,7 @@
         text-align: center;
         width: 50px;
     }
-    .app_header .toggle a:nth-of-type(1){
+    .app_header .toggle a:nth-of-type(2){
         background: #ed424b;
         color: #fff;
     }
@@ -160,40 +160,10 @@
                     <div class="title">抢红包</div>
                 </div>
             </a>
-            <a href="#day_hot">
+            <a href="">
                 <div class="item">
                     <div class="icon layui-icon layui-icon-senior"></div>
-                    <div class="title">本日热点</div>
-                </div>
-            </a>
-            <a href="#go_tuan">
-                <div class="item">
-                    <div class="icon layui-icon layui-icon-senior"></div>
-                    <div class="title">去拼团</div>
-                </div>
-            </a>
-            <a href="#quan_yuedong">
-                <div class="item">
-                    <div class="icon layui-icon layui-icon-senior"></div>
-                    <div class="title">悦动圈</div>
-                </div>
-            </a>
-            <a href="#quan_keji">
-                <div class="item">
-                    <div class="icon layui-icon layui-icon-senior"></div>
-                    <div class="title">科技圈</div>
-                </div>
-            </a>
-            <a href="#quan_shishang">
-                <div class="item">
-                    <div class="icon layui-icon layui-icon-senior"></div>
-                    <div class="title">时尚圈</div>
-                </div>
-            </a>
-            <a href="#gezhong_quan">
-                <div class="item">
-                    <div class="icon layui-icon layui-icon-senior"></div>
-                    <div class="title">各种好券</div>
+                    <div class="title">团购规则</div>
                 </div>
             </a>
             <a href="#week_tuan">
@@ -208,6 +178,12 @@
                     <div class="title">自营商品</div>
                 </div>
             </a>
+            <a href="#gezhong_quan">
+                <div class="item">
+                    <div class="icon layui-icon layui-icon-senior"></div>
+                    <div class="title">各种好券</div>
+                </div>
+            </a>
             <a href="#jifen_help">
                 <div class="item">
                     <div class="icon layui-icon layui-icon-senior"></div>
@@ -215,6 +191,32 @@
                 </div>
             </a>
         </div>
+    </div>
+    {{--转换按钮--}}
+    <div class="toggleBox">
+        <style>
+            .toggleBox{
+                text-align: center;
+                margin-top: 30px;
+            }
+            .toggleBox .item:nth-of-type(2){
+                background: #ed424b;
+                color: #fff;
+            }
+            .toggleBox .item{
+                display: inline-block;
+
+                text-align: center;
+
+                width: 66px;
+
+                line-height: 30px;
+
+                margin: 0 16px;
+            }
+        </style>
+        <a href="/2.0/index" class="item">资讯</a>
+        <a href="/2.0/tuan" class="item">团购</a>
     </div>
     {{--团购说明--}}
     <div class="funcDescribe">
@@ -253,39 +255,30 @@
             <p style="border-top: 1px dashed #e5e5e5;margin-top: 10px;padding-top: 10px;">其他商品：可单独购买，也可进行自行团购（满3人），或6位好友助力，即可享受团购价。</p>
         </div>
     </div>
-    {{--转换按钮--}}
-    <div class="toggleBox">
-        <style>
-            .toggleBox{
-                text-align: center;
-                margin-top: 30px;
-            }
-            .toggleBox .item:first-of-type{
-                background: #ed424b;
-                color: #fff;
-            }
-            .toggleBox .item{
-                display: inline-block;
-
-                text-align: center;
-
-                width: 66px;
-
-                line-height: 30px;
-
-                margin: 0 16px;
-            }
-        </style>
-        <a href="/2.0/index" class="item">资讯</a>
-        <a href="/2.0/tuan" class="item">团购</a>
-    </div>
     {{--本日热团--}}
-    <div id="day_tuan" class="hotTuanBox contentMainBox">
+    <div id="day_tuan" class="hotTuanBox contentMainBox-tuan">
         <style>
             .contentMainBox{
                 margin-top: 20px;
                 background: #fff;
                 padding: 20px 10px;
+            }
+            .contentMainBox-tuan{
+                margin-top: 20px;
+            }
+            .contentMainBox-tuan .boxTitle{
+                font-size: 18px;
+                font-weight: bold;
+                padding-left: 12px;
+                text-align: center;
+            }
+            .contentMainBox-tuan .boxTitle span{
+                font-size: 14px;
+                margin-left: 10px;
+                color: #7a7a7a;
+                font-weight: normal;
+                display: block;
+                margin-top: 10px;
             }
             .contentMainBox .boxTitle{
                 font-size: 16px;
@@ -299,306 +292,70 @@
                 color: #7a7a7a;
                 font-weight: normal;
             }
-            .hotTuanBox{
-                width: 100%;
-                overflow-x: auto;
-                margin-top: 16px;
-                position: relative;
-                background: #fff;
-                padding: 20px 10px;
-                box-sizing: border-box;
-            }
-            .hotTuanBoxTitle{
 
-            }
-            .hotTuanBoxTitle span{
-                font-size: 14px;
-                margin-left: 10px;
-                color: #7a7a7a;
-                font-weight: normal;
-            }
-            .hotTuanListItem{
-
-            }
-            .hotTuanItem{
-                width: 30%;
-                height: 150px;
-                /*background: #0d6aad;*/
-                display: inline-block;
-            }
-            .hotTuanItem:last-of-type{
-
-            }
-            .hotTuanItemMain{
-                width: 100%;
-                /*background: #2ab27b;*/
-                height: 150px;
-            }
-            .hotTuanItemMain .itemTitle{
-                font-size: 12px;
-                margin-top: 10px;
-                height: 30px;
-                overflow: hidden;
-                color: #33373d;
-            }
-            #carousel2 .carousel-indicators{
-                padding: 3px 10px;
-                background: rgba(0, 0, 0, 0.33);
-                width: 66px;
-                margin: 0 auto;
-                right: 0;
-                border-radius: 38px;
-                bottom: 0;
-            }
-            .hotTuanItemMain .itemIcon{
-                padding: 10px;
-                border: 1px solid #e5e5e5;
-            }
-            .hotTuanItemMain .itemPrice{
-                font-size: 12px;
-                margin-top: 6px;
-                text-align: right;
-                color: #7a7a7a;
-            }
-            .hotTuanItemMain .itemPrice .v{
-                color: brown;
-            }
-            .hotTuanItemMain .team{
-                border: 1px solid #e5e5e5;
-
-                margin-top: 10px;
-
-                text-align: center;
-
-                position: relative;
-
-                background: #b7b7b7;
-
-                overflow: hidden;
-
-                border-radius: 10px;
-            }
-            .hotTuanItemMain .team .v{
-
-                color: #fff;
-
-                position: relative;
-
-                z-index: 999;
-
-                font-size: 12px;
-            }
-            .hotTuanItemMain .team .b{
-                position: absolute;
-                top: 0;
-                left: 0;
-                background: #ab3d3d;
-                width: 80%;
-                height: 20px;
-            }
         </style>
-        <div class="hotTuanBoxTitle boxTitle">本周热拼<span>官宣拼团，人越多价更低，上方切换团购板块</span></div>
-        <div class="ft-carousel" id="carousel2">
-            <style>
-                #carousel2{
-                    width: 100%;
-                    height: 232px;
-                    font-size: 40px;
-                    text-align: center;
-                    /*margin: 20px auto;*/
-                    margin-top: 26px;
-                    /*background-color: #464576;*/
-                }
-            </style>
-            <ul class="carousel-inner">
-                @for($t=0;$t<3;$t++)
-                    <li class="carousel-item">
-                        <div class="hotTuanListItem">
-                            @for($i=0;$i<3;$i++)
-                                <div class="hotTuanItem">
-                                    <div class="hotTuanItemMain">
-                                        <div class="itemIcon">
-                                            <img class="img" src="https://gaitaobao2.alicdn.com/tfscom/i1/1893021893/TB1UlbwdfjM8KJjSZFNXXbQjFXa_!!0-item_pic.jpg_300x300q90.jpg" alt="">
-                                        </div>
-                                        <div class="itemTitle">数据线三合一通用手机充电器多头功能快充苹果安卓一</div>
-                                        <div class="itemPrice">开团价<span class="v">¥8394.00</span></div>
 
-                                    </div>
-                                </div>
-                            @endfor
-                        </div>
-                    </li>
-                @endfor
-            </ul>
-        </div>
-    </div>
-    {{--本日热点--}}
-    <div id="day_hot" class="hotTop contentMainBox">
-        <div class="hotTopList">
-            <div class="contentItemBoxTitle boxTitle">本日热点<span>了解最新资讯，做信息达人</span></div>
-            <div class="">
-                @for($i=0;$i<5;$i++)
-                    <div class="articleItem">
-                        <div class="title">小米与美图合作背后：美图的解脱，小米的多元化</div>
-                        <div class="cover">
-                            <img class="img" src="https://img.alicdn.com/imgextra/https://img.alicdn.com/imgextra/i4/2880071045/O1CN011JaeKs6qwY0g80N_!!2880071045.jpg_430x430q90.jpg" alt="">
-                        </div>
-                    </div>
-                @endfor
-            </div>
-            <div style="text-align: center;margin-top: 1rem;color: brown;font-weight: bold;"><a href=""></a>显示全部</div>
-        </div>
-    </div>
-    {{--去拼团--}}
-    <div id="go_tuan" class="goTuan">
-        <div class="goTuanRules">
-            <style>
-                .goTuanRules{
-                    margin-top: 20px;
-                    padding: 20px 16px;
-                    /*padding-top: 20px;*/
-                    background: #Fff;
-                    position: relative;
-                    padding-top: 88px;
-                    height: 108px;
-                    overflow: hidden;
-                }
-                .goTuanRules-title{
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    line-height: 73px;
-                    background: #57ba57;
-                    width: 100%;
-                    text-align: center;
-                    color: #fff;
-                    font-size: 22px;
-                }
-                .goTuanRules-rule{
-                    line-height: 22px;
-                    margin-top: 20px;
-                }
-                .goTuanRules-rule-title{
-                    color: brown;
-                    margin-bottom: 10px;
-                }
-                .goTuanRules-rule-value{
-                    padding: 0 26px;
-                }
-                .goTuanRules-rule-value p{
-                    margin-bottom: 10px;
-                }
-                .goTuanRules-secTitle{
-                    display: none;
-                }
-                .goTuanRules-more{
-                    bottom: 0;
-                    background: #fff;
-                    text-align: center;
-                    color: brown;
-                    padding: 16px 0;
-                }
-                .goTuanRules-more .layui-icon{
-                    font-size: 18px;
-                    color: #6f6f6f;
-                    margin-top: 8px;
-                }
-            </style>
-            <div class="goTuanRules-title">去拼团(自营商品)</div>
-            <div class="goTuanRules-secTitle">团购规则</div>
-            <div class="goTuanRules-rule">
-                <div class="goTuanRules-rule-title">本期拼团</div>
-                <div class="goTuanRules-rule-value">
-                    <p>1、全网10人起拼，平台推广。</p>
-                    <p>2、根据每周结束时具体的拼团人数决定最终价格（人越多，价格越低）。</p>
-                    <p>3、若最终人数不及10人，自动返还现金。</p>
-                    <p>4、拼购成功后，以实际价格，多余现金以积分形式进行返还，下次消费时可进行抵扣。</p>
-                </div>
-            </div>
-            <div class="goTuanRules-rule">
-                <div class="goTuanRules-rule-title">其他商品</div>
-                <div class="goTuanRules-rule-value">
-                    <p>1、全网3人起拼。</p>
-                    <p>2、平台不进行推广，3名团购人请自助推广。</p>
-                    <p>3、若72小时内未完成3人拼购，自动返还现金。</p>
-                    <p>4、拼购成功后，根据商品价值返回积分，下次消费时可进行抵扣。</p>
-                </div>
-            </div>
-        </div>
-        <div class="goTuanRules-more">阅读完整极爱网拼团规则<div class="layui-icon layui-icon-down"></div></div>
+        <div class="hotTuanBoxTitle boxTitle">本期拼团<span>官宣拼团，人越多价更低</span></div>
         <style>
-            .goTuan{}
-            .goTuanItem{
+            .commonItem{
+                display: inline-block;
+                width: 47%;
+                margin-right: 3%;
+                margin-top: 30px;
                 background: #fff;
-
-                margin-top: 20px;
-
-                padding: 32px 12px;
-
-                position: relative;
-            }
-            .goTuanItem .left{
-                display: inline-block;
-
-                margin-right: 5px;
-
-                width: 25%;
-            }
-            .goTuanItem .left .show{
-                width: 100%;
-
-                text-align: center;
-
-                padding: 10px;
-
                 box-sizing: border-box;
-
-                position: relative;
-
-                top: -5px;
+                padding: 22px 12px;
+                box-shadow: 0 0 10px #e5e5e5;
             }
-            .goTuanItem .right{
-                display: inline-block;
-
-                width: 70%;
-
-                vertical-align: top;
+            .commonItem:nth-of-type(2n){
+                margin-right: 0;
             }
-            .goTuanItem .right .t{
-                margin-bottom: 10px;
-
-                font-weight: bold;
-
-                color: #4d4d4d;
+            .commonItem .title{
+                margin-top: 12px;
+                line-height: 1.5rem;
+                text-align: left;
+                height: 45px;
+                overflow: hidden;
             }
-            .goTuanItem .right .self{
-                background: brown;
-
+            .commonItem .title .from{
+                background: #ed424b;
                 color: #fff;
-
-                display: inline-block;
-
-                padding: 2px 5px;
-
-                border-radius: 3px;
-
+                margin-right: 5px;
+                padding: 0 3px;
+                border-radius: 2px;
+            }
+            .commonItem .cover{
+                padding: 10px;
+                border: 1px solid #e5e5e5;
+            }
+            .commonItem .price{
+                text-align: right;
+                margin-top: 10px;
+            }
+            .commonItem .price .t{
                 font-size: 14px;
-            }
-            .goTuanItem .right .p{
-                margin-top: 10px;
-
-                color: brown;
-
-                font-weight: bold;
-            }
-            .goTuanItem .right .p-h{
-                margin-top: 10px;
-
-                font-size: 13px;
-
                 color: #7a7a7a;
             }
-            .goTuanItem .right .team{
+            .commonItem .price .v{
+                color: #ed424b;
+                font-size: 16px;
+                font-weight: bold;
+            }
+            .commonItem .source-price{
+                text-align: right;
+
+                color: #7a7a7a;
+
+                text-decoration: line-through;
+
+                margin-top: 10px;
+            }
+            .commonItem .source-price .t{
+                /*display: none;*/
+            }
+            .commonItem .source-price .v{
+            }
+            .commonItem .team{
                 border: 1px solid #e5e5e5;
 
                 margin-top: 10px;
@@ -609,14 +366,14 @@
 
                 background: #eaeaea;
             }
-            .goTuanItem .right .team .v{
+            .commonItem .team .v{
                 color: #fff;
 
                 position: relative;
 
                 z-index: 999;
             }
-            .goTuanItem .right .team .b{
+            .commonItem .team .b{
                 position: absolute;
 
                 top: 0;
@@ -629,132 +386,58 @@
 
                 height: 20px;
             }
-            .goTuanItem .buyBtn{
-                margin-top: 20px;
-
-                text-align: right;
-            }
-            .goTuanItem .buyBtn .item{
-                display: inline-block;
-
-                line-height: 30px;
-
-                margin-left: 10px;
-
-                background: #57ba57;
-
-                padding: 0 22px;
-
-                color: #fff;
-
-                border-radius: 30px;
-                box-sizing: border-box;
-                height: 30px;
-            }
         </style>
-        @for($i=0;$i<4;$i++)
-            <div class="goTuanItem">
-                {{--左侧样图--}}
-                <div class="left">
-                    <div class="show">
-                        <img class="img" src="https://img.alicdn.com/imgextra/https://img.alicdn.com/imgextra/i4/2880071045/O1CN011JaeKs6qwY0g80N_!!2880071045.jpg_430x430q90.jpg" />
-                    </div>
-                </div>
-                {{--右侧信息--}}
-                <div class="right">
-                    {{--标题--}}
-                    <div class="t">南极人电热毯护膝毯加热坐垫电暖垫办公室暖脚宝插电褥子暖身毯</div>
-                    {{--自营标签--}}
-                    <div class="self">自营</div>
-                    {{--价格--}}
-                    <div class="p"><span>¥</span>99.9（起团价）</div>
-                    {{--起团价说明--}}
-                    <div class="p-h">起团价：基础价格，拼团人数越多，价格越低。</div>
-                    {{--拼团情况·外层--}}
-                    <div class="team">
-                        {{--数字说明--}}
-                        <span class="v">711/10人起拼</span>
-                        {{--内层液态柱子--}}
-                        <span class="b"></span>
-                    </div>
-                    {{--去拼团--}}
-                    <div class="buyBtn">
-                        {{--独立购--}}
-                        <div style="color: brown;
-
-border: 1px solid brown;
-background: none;
-" class="item">独立购</div>
-                        {{--去拼团--}}
-                        <div style="
-border: 1px solid #57ba57;
-" class="item">去拼团</div>
-                    </div>
-                </div>
-            </div>
-        @endfor
-        {{--本期拼购--}}
-        <div style="
-    background: #57ba57;
-    color: #fff;
-    line-height: 50px;
-    margin-top: 20px;
-    text-align: center;
-" class="">本期所有拼团</div>
-    </div>
-    {{--悦动圈--}}
-    <div id="quan_yuedong" class="contentMainBox">
-        <div class="hotTopList">
-            <div class="contentItemBoxTitle boxTitle">悦动圈<span>健康生活每一天</span></div>
-            <div class="">
-                @for($i=0;$i<5;$i++)
-                    <div class="articleItem">
-                        <div class="title">对抗雾霾，口罩和空气净化器各有优劣！一篇文章教你怎么选</div>
+        <div style="text-align: center">
+            <div style="display: inline-block;text-align: left" class="">
+                @for($i=0;$i<10;$i++)
+                    <div class="commonItem">
                         <div class="cover">
                             <img class="img" src="https://img.alicdn.com/imgextra/https://img.alicdn.com/imgextra/i4/2880071045/O1CN011JaeKs6qwY0g80N_!!2880071045.jpg_430x430q90.jpg" alt="">
+                        </div>
+                        <div class="title"><span class="from">自营</span>南极人电热毯护膝毯加热坐垫电暖垫办公室暖脚宝插电褥子暖身毯</div>
+                        {{--价格--}}
+                        <div class="source-price"><span class="t">原价</span><span class="v">￥2999.00</span></div>
+                        <div class="price"><span class="t">起拼价</span><span class="v">￥1999.00</span></div>
+                        {{--拼团情况·外层--}}
+                        <div class="team">
+                            {{--数字说明--}}
+                            <span class="v">711/10人起拼</span>
+                            {{--内层液态柱子--}}
+                            <span class="b"></span>
                         </div>
                     </div>
                 @endfor
             </div>
-            <div style="text-align: center;margin-top: 1rem;color: brown;font-weight: bold;"><a href=""></a>显示全部</div>
         </div>
     </div>
-    {{--科技圈--}}
-    <div id="quan_keji" class="contentMainBox">
-        <div class="hotTopList">
-            <div class="contentItemBoxTitle boxTitle">科技圈<span>引领科技时尚，做科技达人</span></div>
-            <div class="">
-                @for($i=0;$i<5;$i++)
-                    <div class="articleItem">
-                        <div class="title">手机不行卖电池 三星计划投资6270万美元在美建汽车电池厂</div>
+    {{--自营商品--}}
+    <div id="" class="contentMainBox-tuan">
+        <div class="hotTuanBoxTitle boxTitle">自营商品<span>团购比单独支付更划算</span></div>
+        <div style="text-align: center">
+            <div style="display: inline-block;text-align: left" class="">
+                @for($i=0;$i<10;$i++)
+                    <div class="commonItem">
                         <div class="cover">
                             <img class="img" src="https://img.alicdn.com/imgextra/https://img.alicdn.com/imgextra/i4/2880071045/O1CN011JaeKs6qwY0g80N_!!2880071045.jpg_430x430q90.jpg" alt="">
                         </div>
+                        <div class="title"><span class="from">自营</span>南极人电热毯护膝毯加热坐垫电暖垫办公室暖脚宝插电褥子暖身毯</div>
+                        {{--价格--}}
+                        <div class="source-price"><span class="t">独购价</span><span class="v">￥2999.00</span></div>
+                        <div class="price"><span class="t">团购价</span><span class="v">￥1999.00</span></div>
+                        {{--拼团情况·外层--}}
+                        {{--<div class="team">--}}
+                            {{--数字说明--}}
+                            {{--<span class="v">有2人在团/3人起团</span>--}}
+                            {{--内层液态柱子--}}
+                            {{--<span class="b"></span>--}}
+                        {{--</div>--}}
                     </div>
                 @endfor
             </div>
-            <div style="text-align: center;margin-top: 1rem;color: brown;font-weight: bold;"><a href=""></a>显示全部</div>
-        </div>
-    </div>
-    {{--时尚圈--}}
-    <div id="quan_shishang" class="contentMainBox">
-        <div class="hotTopList">
-            <div class="contentItemBoxTitle boxTitle">时尚圈<span>潮生活，我的时尚每一天</span></div>
-            <div class="">
-                @for($i=0;$i<5;$i++)
-                    <div class="articleItem">
-                        <div class="title">别出新裁 缔造奢华时尚酷感 ochirly 2018冬季新品重磅上市</div>
-                        <div class="cover">
-                            <img class="img" src="https://img.alicdn.com/imgextra/https://img.alicdn.com/imgextra/i4/2880071045/O1CN011JaeKs6qwY0g80N_!!2880071045.jpg_430x430q90.jpg" alt="">
-                        </div>
-                    </div>
-                @endfor
-            </div>
-            <div style="text-align: center;margin-top: 1rem;color: brown;font-weight: bold;"><a href=""></a>显示全部</div>
         </div>
     </div>
     {{--各种好券--}}
-    <div id="gezhong_quan" class="contentMainBox">
+    <div id="gezhong_quan" class="contentMainBox-tuan">
         <div class="hotTopList">
             <div class="contentItemBoxTitle boxTitle">各种好券<span>淘宝、京东优惠好券</span></div>
             <style>
@@ -838,7 +521,37 @@ border: 1px solid #57ba57;
             仅部分商品，不可全部抵扣
         </div>
     </div>
-
+    <style>
+        .articleItem{
+            margin-top: 20px;
+            border-bottom: 1px dashed #e5e5e5;
+            text-align: center;
+        }
+        .articleItem:last-of-type{
+            border-bottom: none;
+        }
+        .articleItem .title{
+            width: 67%;
+            display: inline-block;
+            vertical-align: top;
+            font-size: 14px;
+            font-weight: bold;
+            color: #4a4a4a;
+            text-align: left;
+            line-height: 1.5rem;
+        }
+        .articleItem .cover{
+            height: 66px;
+            overflow: hidden;
+            text-align: center;
+            display: inline-block;
+            width: 25%;
+            margin-left: 1%;
+        }
+        .articleItem .cover img{
+            max-height: inherit;
+        }
+    </style>
     <style>
         .footer{
             background: #2eaf2e;
@@ -856,37 +569,6 @@ border: 1px solid #57ba57;
         <p>Copyright ©2018-2019 极爱网 陕ICP备18006045号-2</p>
     </div>
 </div>
-<style>
-    .articleItem{
-        margin-top: 20px;
-        border-bottom: 1px dashed #e5e5e5;
-        text-align: center;
-    }
-    .articleItem:last-of-type{
-        border-bottom: none;
-    }
-    .articleItem .title{
-        width: 67%;
-        display: inline-block;
-        vertical-align: top;
-        font-size: 14px;
-        font-weight: bold;
-        color: #4a4a4a;
-        text-align: left;
-        line-height: 1.5rem;
-    }
-    .articleItem .cover{
-        height: 66px;
-        overflow: hidden;
-        text-align: center;
-        display: inline-block;
-        width: 25%;
-        margin-left: 1%;
-    }
-    .articleItem .cover img{
-        max-height: inherit;
-    }
-</style>
 @section('js')
     <script>
         //        alert(1);
