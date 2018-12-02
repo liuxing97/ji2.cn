@@ -651,3 +651,12 @@ Route::get('/2.0/tuan',function (){
 Route::get('/2.0/quan',function (){
     return view('/quan/quan/quan');
 })->middleware('ui.checkdata');
+Route::get('/2.0/common',function (){
+    return view('/quan/common/common');
+})->middleware('ui.checkdata');
+Route::get('/2.0/customer',function (){
+    return view('/quan/customer/customer');
+})->middleware('ui.checkdata');
+Route::get('/2.0/customer',function (){
+    return view('/quan/hongbao/hongbao');
+})->middleware('ui.checkdata');
