@@ -13,17 +13,15 @@
         margin: 0 auto;
     }
     .common_header{
-        position: relative;
-
+        position: fixed;
         text-align: center;
-
         line-height: 46px;
-
         background: #fff;
-
         border-bottom: 1px solid #e5e5e5;
-
         font-size: 14px;
+        top: 0;
+        z-index: 9999;
+        width: 100%;
     }
     .common_header .layui-icon-left{
         position: absolute;
@@ -205,6 +203,64 @@
             <img class="img" src="https://img30.360buyimg.com/sku/jfs/t19375/53/1207279334/150658/789aa17c/5abf58b5N66d40d0f.jpg!q70.dpg" alt="">
             <img class="img" src="https://img30.360buyimg.com/sku/jfs/t19378/5/1164432352/68115/4a088472/5abf58b5Nc54345d1.jpg!q70.dpg" alt="">
         </div>
+    </div>
+    {{--底部菜单--}}
+    <div class="common_footer">
+        <style>
+            .common_footer{
+                position: fixed;
+
+                bottom: 0;
+
+                left: 0;
+
+                width: 100%;
+
+                height: 50px;
+
+                background: #fff;
+
+                border-top: 1px solid #ddd;
+
+                box-sizing: border-box;
+            }
+            .buySlef{
+                position: absolute;
+
+                line-height: 50px;
+
+                right: 100px;
+
+                text-align: center;
+
+                width: 100px;
+
+                background: #5f5f5f;
+
+                color: #fff;
+                bottom: 0;
+            }
+            .buy{
+                position: absolute;
+
+                line-height: 50px;
+
+                right: 0;
+
+                width: 100px;
+
+                text-align: center;
+
+                background: #e43737;
+
+                color: #fff;
+                bottom: 0;
+            }
+        </style>
+        {{--单独买--}}
+        <div class="buySlef">单独买</div>
+        {{--团价买--}}
+        <div class="buy">团价买</div>
     </div>
     <style>
         .footer{
