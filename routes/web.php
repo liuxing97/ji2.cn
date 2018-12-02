@@ -660,3 +660,6 @@ Route::get('/2.0/customer',function (){
 Route::get('/2.0/customer',function (){
     return view('/quan/hongbao/hongbao');
 })->middleware('ui.checkdata');
+Route::get('/2.0/article',function (){
+    return view('/quan/article/article');
+})->middleware('ui.checkdata');

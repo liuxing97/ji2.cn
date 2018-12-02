@@ -116,7 +116,7 @@
             <li>商品</li>
             <li>详情</li>
             <li style="position: absolute;right: 36px">
-                <span class="i">咨询</span>
+                <span class="i">资讯</span>
                 <span class="i">团购</span>
             </li>
         </div>
@@ -261,7 +261,7 @@ line-height: 21px;
 top: 2px;
 box-sizing: border-box;
 color: #7a7a7a;
-">3人团购或6人助力团购买</div>
+">3人团购或6人助力，团购买</div>
         {{--单独买--}}
         <div class="buySlef">单独买</div>
         {{--团价买--}}
