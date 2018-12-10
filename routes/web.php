@@ -663,3 +663,21 @@ Route::get('/2.0/customer',function (){
 Route::get('/2.0/article',function (){
     return view('/quan/article/article');
 })->middleware('ui.checkdata');
+Route::get('/2.0/self',function (){
+    return view('/quan/self/self');
+})->middleware('ui.checkdata');
+Route::get('/2.0/login',function (){
+    return view('/quan/login/login');
+})->middleware('ui.checkdata');
+Route::get('/2.0/register',function (){
+    return view('/quan/login/register');
+})->middleware('ui.checkdata');
+Route::get('/2.0/user',function (){
+    return view('/quan/user/user');
+})->middleware('ui.checkdata');
+Route::get('/2.0/buy/buy',function (){
+    return view('/quan/buy/buy');
+})->middleware('ui.checkdata');
+Route::get('/2.0/buy/tuan',function (){
+    return view('/quan/buy/tuan');
+})->middleware('ui.checkdata');

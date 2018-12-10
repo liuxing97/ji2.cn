@@ -236,17 +236,11 @@
             }
             .buy{
                 position: absolute;
-
                 line-height: 50px;
-
                 right: 0;
-
                 width: 30%;
-
                 text-align: center;
-
                 background: #e43737;
-
                 color: #fff;
                 bottom: 0;
             }
@@ -263,9 +257,9 @@ box-sizing: border-box;
 color: #7a7a7a;
 ">3人团购或6人助力，团购买</div>
         {{--单独买--}}
-        <div class="buySlef">单独买</div>
+        <a href="/2.0/buy/buy"><div class="buySlef">单独买</div></a>
         {{--团价买--}}
-        <div class="buy">团购买</div>
+        <a href="/2.0/buy/tuan"><div class="buy">团购买</div></a>
     </div>
     <style>
         .common_header, .common_footer{

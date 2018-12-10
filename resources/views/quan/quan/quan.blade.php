@@ -112,13 +112,15 @@
                     padding: 16px 0;
                 }
                 .app_header_menu .help{
-                    color: brown;
+                    color: #635f5f;
                     border-bottom: 1px dashed #e5e5e5;
                     line-height: 50px;
                     position: relative;
                     top: -15px;
                     width: 90%;
                     margin: 0 auto;
+                    font-size: 18px;
+                    font-weight: bold;
                 }
                 .app_header_menu .item{
                     display: inline-block;
@@ -160,106 +162,27 @@
                     margin: 0 auto;
                 }
             </style>
-            <div class="help">一个以生活为驱动的电子商务网站。</div>
+            <div class="help">科技圈</div>
             <div class="itemList">
                 <div class="item">
                     <div class="icon"><img class="img" src="/icon-maney.png" alt=""></div>
                     <div class="title">抢红包</div>
                 </div>
-                {{--<div class="item">--}}
-                {{--<div style="--}}
-                {{--left: 3px;--}}
-                {{--" class="icon icon-group-one">--}}
-                {{--</div>--}}
-                {{--<div class="title">本日热点</div>--}}
-                {{--</div>--}}
-                {{--<div class="item">--}}
-                {{--<div style="--}}
-                {{--padding: 2px;--}}
-                {{--box-sizing: border-box;--}}
-                {{--position: relative;--}}
-                {{--left: 2px;--}}
-                {{--top: 1px;--}}
-                {{--opacity: 0.88;--}}
-                {{--" class="icon">--}}
-                {{--<img class="img" src="/tuan.png" alt="">--}}
-                {{--</div>--}}
-                {{--<div class="title">去拼团</div>--}}
-                {{--</div>--}}
-                {{--<div class="item">--}}
-                {{--<div style="--}}
-                {{--background-position-x: 210px;--}}
-
-                {{--background-position-y: 69px;--}}
-
-                {{--left: 3px;--}}
-
-                {{--background-size: 105px 105px;--}}
-                {{--" class="icon layui-icon icon-group-one"></div>--}}
-                {{--<div class="title">去拼团</div>--}}
-                {{--</div>--}}
-                {{--<div class="item">--}}
-                {{--<div style="position: relative;top: 5px;" class="icon">--}}
-                {{--<img class="img" src="/yue.png" alt="">--}}
-                {{--</div>--}}
-                {{--<div class="title">悦动圈</div>--}}
-                {{--</div>--}}
-                {{--<div class="item">--}}
-                {{--<div style="color: #a4c63e;" class="icon layui-icon layui-icon-app">--}}
-                {{--</div>--}}
-                {{--<div class="title">科技圈</div>--}}
-                {{--</div>--}}
-                {{--<div class="item">--}}
-                {{--<div class="icon layui-icon layui-icon-release"></div>--}}
-                {{--<div class="title">时尚圈</div>--}}
-                {{--</div>--}}
-                {{--<div class="item">--}}
-                {{--<div class="icon layui-icon layui-icon-app"></div>--}}
-                {{--<div class="title">各种好券</div>--}}
-                {{--</div>--}}
-                {{--<div class="item">--}}
-                {{--<div class="icon layui-icon layui-icon-app"></div>--}}
-                {{--<div class="title">本期拼团</div>--}}
-                {{--</div>--}}
-                {{--<div class="item">--}}
-                {{--<div class="icon layui-icon layui-icon-app"></div>--}}
-                {{--<div class="title">自营商品</div>--}}
-                {{--</div>--}}
-                {{--<div class="item">--}}
-                {{--<div class="icon layui-icon layui-icon-app"></div>--}}
-                {{--<div class="title">积分兑换</div>--}}
-                {{--</div>--}}
                 <div class="item">
                     <div class="icon layui-icon layui-icon-senior"></div>
-                    <div class="title">本日热点</div>
+                    <div class="title">科技热点</div>
                 </div>
                 <div class="item">
                     <div class="icon layui-icon layui-icon-senior"></div>
-                    <div class="title">去拼团</div>
+                    <div class="title">圈内团购</div>
                 </div>
                 <div class="item">
                     <div class="icon layui-icon layui-icon-senior"></div>
-                    <div class="title">悦动圈</div>
+                    <div class="title">圈内好品</div>
                 </div>
                 <div class="item">
                     <div class="icon layui-icon layui-icon-senior"></div>
-                    <div class="title">科技圈</div>
-                </div>
-                <div class="item">
-                    <div class="icon layui-icon layui-icon-senior"></div>
-                    <div class="title">时尚圈</div>
-                </div>
-                <div class="item">
-                    <div class="icon layui-icon layui-icon-senior"></div>
-                    <div class="title">各种好券</div>
-                </div>
-                <div class="item">
-                    <div class="icon layui-icon layui-icon-senior"></div>
-                    <div class="title">本期拼团</div>
-                </div>
-                <div class="item">
-                    <div class="icon layui-icon layui-icon-senior"></div>
-                    <div class="title">自营商品</div>
+                    <div class="title">圈内好券</div>
                 </div>
                 <div class="item">
                     <div class="icon layui-icon layui-icon-senior"></div>
@@ -267,7 +190,71 @@
                 </div>
             </div>
         </div>
-        <div>
+        <style>
+            .contentMainBox{
+                margin-top: 20px;
+                background: #fff;
+                padding: 20px 10px;
+            }
+            .contentMainBox .boxTitle{
+                font-size: 16px;
+                border-left: 2px solid #ed424b;
+                font-weight: bold;
+                padding-left: 12px;
+            }
+            .contentMainBox .boxTitle span{
+                font-size: 14px;
+                margin-left: 10px;
+                color: #7a7a7a;
+                font-weight: normal;
+            }
+        </style>
+        <style>
+            .articleItem{
+                margin-top: 20px;
+                border-bottom: 1px dashed #e5e5e5;
+                text-align: center;
+            }
+            .articleItem:last-of-type{
+                border-bottom: none;
+            }
+            .articleItem .title{
+                width: 67%;
+                display: inline-block;
+                vertical-align: top;
+                font-size: 14px;
+                font-weight: bold;
+                color: #4a4a4a;
+                text-align: left;
+                line-height: 1.5rem;
+            }
+            .articleItem .cover{
+                height: 66px;
+                overflow: hidden;
+                text-align: center;
+                display: inline-block;
+                width: 25%;
+                margin-left: 1%;
+            }
+            .articleItem .cover img{
+                max-height: inherit;
+            }
+        </style>
+        <div id="quan_yuedong" class="contentMainBox">
+            <div class="hotTopList">
+                <div class="contentItemBoxTitle boxTitle">科技热点<span>健康生活每一天</span></div>
+                <div class="">
+                    @for($i=0;$i<10;$i++)
+                        <div class="articleItem">
+                            <div class="title">对抗雾霾，口罩和空气净化器各有优劣！一篇文章教你怎么选</div>
+                            <div class="cover">
+                                <img class="img" src="https://img.alicdn.com/imgextra/https://img.alicdn.com/imgextra/i4/2880071045/O1CN011JaeKs6qwY0g80N_!!2880071045.jpg_430x430q90.jpg" alt="">
+                            </div>
+                        </div>
+                    @endfor
+                </div>
+                <div style="text-align: center;margin-top: 1rem;color: brown;font-weight: bold;"><div class="layui-icon layui-icon-down"></div></div>
+            </div>
         </div>
     </div>
 @section('js')

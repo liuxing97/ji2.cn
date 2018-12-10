@@ -152,7 +152,7 @@
                 margin: 0 auto;
             }
         </style>
-        <div class="help">一个以生活为驱动的电子商务网站。</div>
+        <div class="help">一个以生活为驱动的导购平台。</div>
         <div class="itemList">
             <a href="">
                 <div class="item">
@@ -205,7 +205,7 @@
             <a href="#self_item">
                 <div class="item">
                     <div class="icon layui-icon layui-icon-senior"></div>
-                    <div class="title">自营商品</div>
+                    <div class="title">在售商品</div>
                 </div>
             </a>
             <a href="#jifen_help">
@@ -251,6 +251,7 @@
         <div class="funcDescribeValue">
             <p>官宣团购：官方宣传团购活动，每周日凌晨更新，满10人开团，开团价基础上还有更低，参与人数越多价格越低。</p>
             <p style="border-top: 1px dashed #e5e5e5;margin-top: 10px;padding-top: 10px;">其他商品：可单独购买，也可进行自行团购（满3人），或6位好友助力，即可享受团购价。</p>
+            <p style="color: brown;border-top: 1px dashed #e5e5e5;margin-top: 10px;padding-top: 10px;">我们与各商家进行洽谈，为您提供优质的商品，付款方式为货到付款，请放心购买，七日内无条件退款。</p>
         </div>
     </div>
     {{--转换按钮--}}
@@ -360,6 +361,13 @@
                 text-align: right;
                 color: #7a7a7a;
             }
+            .hotTuanItemMain .itemSourcePrice{
+                font-size: 12px;
+                margin-top: 6px;
+                text-align: right;
+                color: #7a7a7a;
+                text-decoration: line-through;
+            }
             .hotTuanItemMain .itemPrice .v{
                 color: brown;
             }
@@ -421,6 +429,7 @@
                                             <img class="img" src="https://gaitaobao2.alicdn.com/tfscom/i1/1893021893/TB1UlbwdfjM8KJjSZFNXXbQjFXa_!!0-item_pic.jpg_300x300q90.jpg" alt="">
                                         </div>
                                         <div class="itemTitle">数据线三合一通用手机充电器多头功能快充苹果安卓一</div>
+                                        <div class="itemSourcePrice">原价<span class="v">¥8394.00</span></div>
                                         <div class="itemPrice">开团价<span class="v">¥8394.00</span></div>
 
                                     </div>
@@ -504,24 +513,24 @@
                     margin-top: 8px;
                 }
             </style>
-            <div class="goTuanRules-title">去拼团(自营商品)</div>
+            <div class="goTuanRules-title">去拼团(每周特惠)</div>
             <div class="goTuanRules-secTitle">团购规则</div>
             <div class="goTuanRules-rule">
                 <div class="goTuanRules-rule-title">本期拼团</div>
                 <div class="goTuanRules-rule-value">
                     <p>1、全网10人起拼，平台推广。</p>
                     <p>2、根据每周结束时具体的拼团人数决定最终价格（人越多，价格越低）。</p>
-                    <p>3、若最终人数不及10人，自动返还现金。</p>
-                    <p>4、拼购成功后，以实际价格，多余现金以积分形式进行返还，下次消费时可进行抵扣。</p>
+                    <p>3、拼购结束后，我们将为您提供拼团通知，并最终底价。</p>
+                    <p>4、您确认购买后，我们将与与您取得联系，为您提供相应的服务（货到付款）。</p>
                 </div>
             </div>
             <div class="goTuanRules-rule">
                 <div class="goTuanRules-rule-title">其他商品</div>
                 <div class="goTuanRules-rule-value">
                     <p>1、全网3人起拼。</p>
-                    <p>2、平台不进行推广，3名团购人请自助推广。</p>
-                    <p>3、若72小时内未完成3人拼购，自动返还现金。</p>
-                    <p>4、拼购成功后，根据商品价值返回积分，下次消费时可进行抵扣。</p>
+                    <p>2、平台不进行推广，请自行推广6人助力，或3人团购。</p>
+                    <p>3、若72小时内未完成3人团购或6人助力，拼团失败，需重新发起。</p>
+                    <p>4、若拼购成功，您确认购买后，我们将与您取得联系，为您提供相应的服务（货到付款）。</p>
                 </div>
             </div>
         </div>
@@ -584,8 +593,15 @@
 
                 font-size: 14px;
             }
-            .goTuanItem .right .p{
+            .goTuanItem .right .p_source{
                 margin-top: 10px;
+                color: #7a7a7a;
+                text-decoration: line-through;
+                display: inline-block;
+                font-weight: normal;
+                font-size: 12px;
+            }
+            .goTuanItem .right .p{
 
                 color: brown;
 
@@ -665,9 +681,9 @@
                     {{--标题--}}
                     <div class="t">南极人电热毯护膝毯加热坐垫电暖垫办公室暖脚宝插电褥子暖身毯</div>
                     {{--自营标签--}}
-                    <div class="self">自营</div>
+                    <div class="self">第三方·平台已查验</div>
                     {{--价格--}}
-                    <div class="p"><span>¥</span>99.9（起团价）</div>
+                    <div class="p"><span>¥</span>99.9（起团价）<div class="p_source">原价&nbsp;<span>¥</span>99.9</div></div>
                     {{--起团价说明--}}
                     <div class="p-h">起团价：基础价格，拼团人数越多，价格越低。</div>
                     {{--拼团情况·外层--}}
@@ -680,15 +696,19 @@
                     {{--去拼团--}}
                     <div class="buyBtn">
                         {{--独立购--}}
-                        <div style="color: brown;
+                        <a href="/2.0/common">
+                            <div style="color: brown;
 
 border: 1px solid brown;
 background: none;
 " class="item">独立购</div>
+                        </a>
                         {{--去拼团--}}
-                        <div style="
+                        <a href="/2.0/common">
+                            <div style="
 border: 1px solid #57ba57;
 " class="item">去拼团</div>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -852,7 +872,7 @@ border: 1px solid #57ba57;
         }
     </style>
     <div class="footer">
-        <p>极爱网，爱运动，爱科技，爱生活，更爱极爱网。<br>一个以生活为驱动的，电子商务网站。</p>
+        <p>极爱网，爱运动，爱科技，爱生活，更爱极爱网。<br>一个以生活为驱动的导购平台。</p>
         <p>Copyright ©2018-2019 极爱网 陕ICP备18006045号-2</p>
     </div>
 </div>
